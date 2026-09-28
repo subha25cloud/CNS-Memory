@@ -1,0 +1,1361 @@
+Absolutely bro. I would make it from scratch, incorporating the earlier points we almost lost, but without turning it into an over-engineered list of imaginary settings.
+
+This should become the canonical Control Plane / Head / Brain / Settings log. Your Local LLM Construction & Final Blueprint remains completely separate.
+
+
+---
+
+CNS — HEAD, BRAIN, CONTROL PLANE & SETTINGS ARCHITECTURE
+
+Status: FINAL ARCHITECTURE DIRECTION
+
+Scope: CNS control plane, chat control, brain/model orchestration, memory continuity, bots, connections, extensions and settings
+
+> Important: This document defines the architecture and responsibilities of the CNS control plane.
+It does not freeze every internal setting of every future subsystem. When a subsystem such as Bots, Memory, Trading or Brain is implemented, its own detailed design chapter must expand the relevant section without breaking this architecture.
+
+Do not invent unnecessary settings merely to fill the UI. Build the actual settings required by the subsystem when its implementation is designed.
+
+
+
+
+---
+
+1. FUNDAMENTAL PRINCIPLE
+
+CNS and an LLM are not the same thing.
+
+CNS is the system.
+
+LLMs are interchangeable reasoning resources used by CNS.
+
+CNS
+                          │
+              ┌───────────┴───────────┐
+              │                       │
+        CONTROL PLANE             CNS CORE
+              │                       │
+       Brain / Memory /          Trading / State /
+       Tools / Connections       Workflows / Knowledge
+              │
+        ┌─────┼─────┐
+        │     │     │
+      Local  Remote Paid
+      Models Models Models
+
+The model can change.
+
+CNS identity, memory, projects, workflows, permissions and system state must remain.
+
+
+---
+
+2. THE CNS CONTROL SURFACES
+
+CNS must be controllable through multiple interfaces:
+
+USER
+                   │
+       ┌───────────┼───────────┐
+       │           │           │
+      CHAT        GUI         CLI
+       │           │           │
+       └───────────┼───────────┘
+                   │
+               CNS CONTROL
+                   │
+          ┌────────┼────────┐
+          │        │        │
+       Agents  Automation  System
+
+Voice can operate through the Chat interface.
+
+Agents and automation can also use the same underlying control interfaces.
+
+Critical rule
+
+Chat, GUI and CLI must not become separate implementations of CNS logic.
+
+They should ultimately communicate with the same CNS control APIs/interfaces.
+
+
+---
+
+3. CHAT IS THE PRIMARY COCKPIT
+
+The user should not have to leave the conversation every time they want to activate a capability.
+
+The chat interface should provide compact controls for relevant capabilities.
+
+Conceptually:
+
+[ + ] [ 🧠 Model ] [ Think ] [ Research ] [ 🌐 ] [ 🎙 ] [ 📹 ] [ Send ]
+
+The exact UI can evolve.
+
+The principle is:
+
+> Frequently used capabilities should be accessible directly from the conversation.
+
+
+
+Examples:
+
+Select/change brain
+
+Thinking mode
+
+Research mode
+
+Internet
+
+Voice
+
+Video
+
+Attachments
+
+Other model-supported capabilities
+
+
+Advanced configuration remains inside Settings.
+
+
+---
+
+4. CHAT MODEL BAR
+
+The user should be able to see and control the current brain/model from the conversation.
+
+For example:
+
+🧠 Qwen 8B Q4
+LOCAL • CNS SERVER • READY
+
+or:
+
+🧠 GPT ...
+AUTHORIZED SUBSCRIPTION
+REASONING • READY
+
+The model display should expose useful information such as:
+
+Model family
+
+Model/version
+
+Local/remote
+
+Provider or compute home
+
+Quantization/size where applicable
+
+Important capabilities
+
+Current availability/status
+
+
+This prevents confusion between a full hosted model and a smaller quantized local model.
+
+
+---
+
+5. AUTO BRAIN MODE
+
+CNS should have an AUTO mode.
+
+In AUTO mode CNS evaluates the task and chooses an appropriate available reasoning resource according to:
+
+Task complexity
+
+Required capabilities
+
+Model capability
+
+Context requirements
+
+Availability
+
+Local resources
+
+Provider health
+
+Cost policy
+
+User preferences
+
+Privacy policy
+
+Current model state
+
+
+The user must always be able to override AUTO.
+
+Examples:
+
+> “Use local DeepSeek.”
+
+
+
+> “Use Qwen.”
+
+
+
+> “Use only free models.”
+
+
+
+> “Don't use remote models.”
+
+
+
+> “Use my authorized paid model.”
+
+
+
+> “Use the strongest available model.”
+
+
+
+
+---
+
+6. CNS MUST NOT SILENTLY MAKE EXPENSIVE DECISIONS
+
+If a task appears substantially more demanding than the current model can reasonably handle, CNS may recommend escalation.
+
+Example:
+
+> ⚡ This task requires stronger reasoning.
+Current brain: Local Qwen 8B
+Recommended: Authorized GPT
+Use stronger brain?
+
+
+
+The user decides according to their configured policy.
+
+CNS may also have an automatic policy such as:
+
+Allow paid model automatically: NO
+Ask before paid usage: YES
+Maximum permitted cost: configured by user
+
+The exact cost controls will be designed later.
+
+
+---
+
+7. “WHY DID CNS CHOOSE THIS MODEL?”
+
+When AUTO selects a model, the user should optionally be able to inspect the decision.
+
+Example:
+
+Why this model?
+
+Task:
+Complex system architecture
+
+Requirements:
+High reasoning
+Long context
+Technical synthesis
+
+Selected:
+Authorized GPT
+
+Reason:
+Required capability unavailable locally.
+Free remote models currently unavailable.
+User policy permits authorized paid model.
+
+This creates transparency without forcing the user to understand the internal routing system.
+
+
+---
+
+8. THE BRAIN IS A ROUTING SYSTEM, NOT ONE MODEL
+
+CNS must support multiple directions of model supply.
+
+Path A — Same model, different home
+
+Qwen
+ ↓
+Home A unavailable
+ ↓
+Home B
+ ↓
+Local Qwen
+
+Path B — Same family, different model
+
+Qwen 30B
+ ↓
+Unavailable
+ ↓
+Qwen 14B
+ ↓
+Qwen 8B
+
+Path C — Different model family
+
+Qwen
+ ↓
+Unavailable / unsuitable
+ ↓
+DeepSeek
+ ↓
+Other approved model
+
+Path D — Premium route
+
+Free/local supply exhausted
+             ↓
+Authorized subscription / API
+             ↓
+Stronger model
+
+CNS should therefore think in terms of:
+
+> Model + Capability + Home + Availability + Policy
+
+
+
+rather than simply:
+
+> “Which model name?”
+
+
+
+
+---
+
+9. MODEL HOME
+
+A model and its compute home are separate concepts.
+
+For example:
+
+MODEL:
+Qwen
+
+HOME:
+Local CNS Server
+
+or:
+
+MODEL:
+Qwen
+
+HOME:
+Remote Provider A
+
+or:
+
+MODEL:
+Qwen
+
+HOME:
+Remote Provider B
+
+CNS can therefore move between homes without redesigning the model architecture.
+
+Provider health, quota, rate limits, latency and availability can influence routing.
+
+
+---
+
+10. BRAIN CAPABILITY PIPELINE
+
+This is one of the central CNS mechanisms.
+
+If the user activates:
+
+> Deep Thinking
+
+
+
+CNS must not blindly pretend that every model supports it.
+
+Instead:
+
+USER ACTIVATES CAPABILITY
+          │
+          ▼
+   CNS CAPABILITY LAYER
+          │
+          ▼
+CHECK CURRENT MODEL
+          │
+    ┌─────┴─────┐
+    │           │
+ SUPPORTED   UNSUPPORTED
+    │           │
+    ▼           ▼
+Activate      Explain /
+native        recommend
+capability    compatible option
+
+The same architecture applies to:
+
+Deep Thinking
+
+Research
+
+Vision
+
+Audio
+
+Video
+
+Tool calling
+
+Other future capabilities
+
+
+Where the selected model/provider exposes a native capability, CNS should activate it through the appropriate adapter.
+
+Where it does not, CNS must clearly indicate that.
+
+
+---
+
+11. THINKING / RESEARCH MODES
+
+The chat may expose common user-facing modes such as:
+
+Thinking
+├── Minimal
+├── Standard
+└── Deep
+
+and:
+
+Research
+├── Off
+├── Research
+└── Deep Research
+
+These are CNS-level user controls.
+
+The actual implementation may differ between providers.
+
+CNS should translate the requested mode into whatever supported mechanism the selected model/provider exposes.
+
+It must not falsely claim a capability exists.
+
+
+---
+
+12. VOICE / AUDIO / VIDEO
+
+Voice, audio and video capabilities should also be exposed through the same capability system.
+
+For example:
+
+Selected Model
+│
+├── Text       ✓
+├── Reasoning  ✓
+├── Vision     ✓
+├── Audio      ✓
+└── Video      ✗
+
+Unsupported features should appear inactive/dimmed rather than pretending they are available.
+
+If a provider supports a capability, CNS should connect through that provider's supported interface.
+
+
+---
+
+13. 🧩 MEMORY IS NOT THE BRAIN
+
+Memory is a separate CNS subsystem.
+
+The model reasons.
+
+CNS remembers.
+
+This distinction must remain fundamental.
+
+CNS MEMORY
+                   │
+       ┌───────────┼───────────┐
+       │           │           │
+     Model A     Model B     Model C
+       │           │           │
+   temporary    temporary   temporary
+   reasoning    reasoning   reasoning
+
+Changing the model must not erase CNS continuity.
+
+
+---
+
+14. PERSISTENT CNS AWARENESS
+
+CNS should maintain continuity about:
+
+What is currently happening
+
+What has already happened
+
+What still needs to happen
+
+Which project is active
+
+Which workflow is running
+
+Which decisions were made
+
+Relevant historical context
+
+Agent/bot state
+
+Research state
+
+System state
+
+User-approved preferences
+
+Pending work
+
+
+The purpose is not merely to store old conversations.
+
+The goal is:
+
+> CNS should understand its ongoing state and retrieve the relevant information when required.
+
+
+
+
+---
+
+15. MEMORY CONTROL AREA
+
+At architecture level:
+
+🧩 MEMORY
+
+├── Memory Overview
+├── Active / Working Context
+├── Long-Term Memory
+├── Conversation History
+├── Project Memory
+├── Bot / Agent Memory
+├── Research Knowledge
+├── Trading Knowledge
+├── Memory Rules
+├── Search / Retrieval
+├── Import
+├── Export
+├── Retention / Privacy
+└── Advanced Memory Controls
+
+The exact internal memory architecture is deliberately left for the dedicated Memory design chapter.
+
+
+---
+
+16. MODEL REPLACEMENT MUST NOT CAUSE MEMORY SHOCK
+
+Example:
+
+Today:
+CNS + Model A
+
+Tomorrow:
+CNS + Model B
+
+Model B should receive the relevant CNS context, knowledge, rules and state required to continue the work.
+
+The new model should not need to “become” CNS.
+
+It plugs into CNS.
+
+
+---
+
+17. MEMORY IMPORT / EXPORT
+
+Memory must be portable.
+
+Possible purposes:
+
+Backup
+
+Migration
+
+New server
+
+New CNS installation
+
+Disaster recovery
+
+Model transition
+
+Knowledge transfer
+
+
+Conceptually:
+
+CNS Memory
+    ↓
+EXPORT
+    ↓
+Backup / Transfer
+    ↓
+NEW CNS
+    ↓
+IMPORT
+    ↓
+Continuity restored
+
+This also provides a foundation for onboarding future models.
+
+Important distinction:
+
+> Memory transfer is not automatically model training.
+
+
+
+Initially CNS should achieve continuity through memory, context, retrieval and system rules.
+
+Actual model fine-tuning/training can be added later as a separate capability.
+
+
+---
+
+18. 🤖 BOTS — INITIAL CNS SCOPE
+
+CNS initially has four primary trading/investment Bots:
+
+├── Intraday Bot
+├── Swing Bot
+├── Futures & Options Bot
+└── Long-Term Investment Bot
+
+The Bot architecture must remain expandable.
+
+Future areas may introduce additional Bots, for example:
+
+Commodities
+
+Other financial instruments
+
+New strategies
+
+New investment/research domains
+
+
+Therefore:
+
++ Add Bot
+Import Bot
+Export Bot
+Bot Templates
+
+must be supported.
+
+
+---
+
+19. BOT SETTINGS — DO NOT FREEZE PREMATURELY
+
+The complete internal Bot settings should not be invented in this Control Plane document.
+
+When Bot architecture is actually designed, that dedicated chapter must determine the appropriate controls.
+
+Depending on the final Bot architecture, these may include areas such as:
+
+Purpose
+
+Workflow
+
+Behavior
+
+Schedule
+
+Tools
+
+Memory
+
+Permissions
+
+Inputs/outputs
+
+Triggers
+
+Risk controls
+
+Testing
+
+Logs
+
+Performance
+
+
+These are examples, not a frozen specification.
+
+The future Bot implementation must define the actual requirements.
+
+
+---
+
+20. 📊 TRADING
+
+Trading is a major CNS domain and should have its own control area.
+
+At architecture level:
+
+📊 TRADING
+
+├── Strategies
+├── Bots
+├── Backtesting
+├── Paper Trading
+├── Live Trading
+├── Portfolio
+├── Risk
+├── Execution
+├── Market Data
+├── Alerts
+├── Trading Rules
+└── Advanced Trading Controls
+
+The detailed trading architecture will be designed separately.
+
+
+---
+
+21. CRITICAL TRADING PRINCIPLE
+
+LLMs must never become a single point of failure for deterministic trading safety.
+
+The core trading system should independently control:
+
+Market data
+
+Strategy execution
+
+Risk controls
+
+Position limits
+
+Portfolio logic
+
+Order validation
+
+Execution
+
+Kill switch
+
+
+An LLM can analyze, advise or orchestrate where permitted.
+
+It must not be able to bypass CNS safety controls merely because a particular model fails or behaves incorrectly.
+
+
+---
+
+22. 🌐 INTERNET & RESEARCH
+
+Internet access should be a CNS capability, not merely a settings page.
+
+The chat can expose:
+
+🌐 Internet
+
+The user can activate/deactivate it for appropriate tasks.
+
+Underlying configuration can include:
+
+Search
+Web access
+Research providers
+Provider health
+Permissions
+
+Advanced users can configure the actual providers.
+
+The normal user should not need to understand the infrastructure.
+
+
+---
+
+23. 🔌 CONNECTIONS
+
+Connections should be modular.
+
+Examples:
+
+🔌 CONNECTIONS
+
+├── Brokers
+├── Market Data
+├── LLM Providers
+├── Internet / Search
+├── Telegram
+├── GitHub
+├── Databases
+├── Servers
+├── Cloud Services
+└── Other Services
+
+Each connection opens its own control panel.
+
+
+---
+
+24. CONVERSATIONAL CONNECTIONS
+
+CNS should support an easy conversational workflow.
+
+Example:
+
+> User: Connect Broker X.
+
+
+
+CNS:
+
+> Broker X requires these permissions/information.
+
+
+
+User supplies/authorizes them.
+
+CNS performs the setup.
+
+Then:
+
+Broker X
+● CONNECTED
+
+Market Data     ✓
+Account         ✓
+Positions       ✓
+Orders          ⚠
+
+The same principle applies to disconnecting:
+
+> “Disconnect Broker X.”
+
+
+
+CNS performs the controlled removal/disable process and reports the result.
+
+
+---
+
+25. MANUAL CONNECTIONS MUST ALSO EXIST
+
+Conversational setup does not replace traditional configuration.
+
+Advanced users can manually configure:
+
+Endpoint
+
+Authentication
+
+Credentials
+
+Permissions
+
+Model
+
+Runtime
+
+Timeouts
+
+Provider settings
+
+Health checks
+
+Other provider-specific options
+
+
+Thus:
+
+> Easy mode = conversational connection.
+
+
+
+> Advanced mode = manual configuration.
+
+
+
+Both operate the same underlying connection system.
+
+
+---
+
+26. 🧱 EXTENSIONS
+
+CNS should remain complete without external harnesses.
+
+However, the architecture should provide extension points for future external systems.
+
+🧱 EXTENSIONS
+
+├── Plugins
+├── External Harnesses
+├── External Agents
+├── External Platforms
+├── Custom Tools
+└── Future Bodies
+
+An external harness is an optional attachment.
+
+It is not CNS itself and CNS must not depend upon one.
+
+
+---
+
+27. CNS AS LEGO
+
+Every major component should be replaceable or extendable where practical.
+
+CNS CORE
+                 │
+     ┌───────────┼────────────┐
+     │           │            │
+   Brain       Memory       Tools
+     │           │            │
+   Models       State       Connections
+     │
+  ┌──┼────┐
+Local Remote Paid
+
+Adding something new should ideally mean:
+
+> Add a component → register it → expose its capabilities → connect it to the appropriate CNS bus/interface.
+
+
+
+Not:
+
+> Rewrite CNS.
+
+
+
+
+---
+
+28. ⚙ SETTINGS HIERARCHY
+
+The Level-1 settings structure is:
+
+SETTINGS
+
+├── General
+├── Chat
+├── Voice & Video
+│
+├── 🧠 Brain
+├── 🧩 Memory
+├── 🤖 Bots
+├── 📊 Trading
+├── 🌐 Internet & Research
+├── 🔌 Connections
+├── 🧱 Extensions
+├── 🔔 Notifications
+├── 🛡 Safety & Permissions
+│
+└── ⚙ Advanced
+
+This is the navigation skeleton, not the complete implementation specification.
+
+
+---
+
+29. EVERY SECTION HAS ITS OWN INTERNAL SETTINGS
+
+Clicking:
+
+Brain
+
+opens Brain controls.
+
+Clicking:
+
+Memory
+
+opens Memory controls.
+
+Clicking:
+
+Bots
+
+opens the Bot Control Center.
+
+Clicking an individual Bot opens that Bot's detailed configuration.
+
+Clicking:
+
+Broker X
+
+opens Broker X's configuration.
+
+Therefore:
+
+LEVEL 1
+   ↓
+SUBSYSTEM
+   ↓
+COMPONENT
+   ↓
+COMPONENT-SPECIFIC SETTINGS
+
+This hierarchy should be maintained throughout CNS.
+
+
+---
+
+30. ADVANCED USER PROTECTION
+
+Normal users should not accidentally modify dangerous system components.
+
+Therefore CNS should use progressive exposure:
+
+Normal
+
+View
+
+Select
+
+Activate
+
+Basic configuration
+
+
+Advanced
+
+Modify
+
+Connect/disconnect
+
+Workflow changes
+
+System configuration
+
+
+Developer / Dangerous
+
+Runtime
+
+Database
+
+Environment
+
+Filesystem
+
+Model adapters
+
+Agent internals
+
+Server
+
+Experimental controls
+
+
+Dangerous operations should require confirmation and generate appropriate logs.
+
+
+---
+
+31. SAFE MODE / CHANGE PROTECTION
+
+Before dangerous changes CNS should explain what will happen.
+
+Example:
+
+⚠ SYSTEM PROTECTION
+
+You are changing:
+Live trading permissions.
+
+Current state:
+Live orders enabled.
+
+Potential effect:
+Real orders may be affected.
+
+[Cancel]
+[Review Changes]
+[Continue]
+
+The goal is to make CNS powerful without making accidental clicks dangerous.
+
+
+---
+
+32. CHAT, GUI AND CLI MUST SHARE THE SAME CONTROL LAYER
+
+This is essential.
+
+CHAT ──────────┐
+GUI ───────────┤
+CLI ───────────┼──→ CNS CONTROL INTERFACE
+AGENTS ────────┤
+AUTOMATION ────┘
+                       │
+                       ▼
+                 CNS SUBSYSTEM
+
+If a function can be performed through the GUI, there should be an underlying CNS operation that can also be invoked appropriately through CLI/agents.
+
+The UI should not contain hidden business logic that the CLI cannot access.
+
+
+---
+
+33. CNS LEARNING & SELF-IMPROVEMENT
+
+CNS may accumulate:
+
+Successful workflows
+
+Failed workflows
+
+Experiments
+
+Benchmarks
+
+Provider behavior
+
+Model performance
+
+User corrections
+
+Agent outcomes
+
+Research results
+
+System events
+
+
+But CNS should not arbitrarily rewrite itself.
+
+The preferred improvement cycle is:
+
+OBSERVE
+   ↓
+IDENTIFY POSSIBLE IMPROVEMENT
+   ↓
+EXPERIMENT
+   ↓
+TEST
+   ↓
+VALIDATE
+   ↓
+PROPOSE
+   ↓
+CNS GOVERNANCE
+   ↓
+APPLY
+
+This is particularly important for trading systems.
+
+
+---
+
+34. BRAIN / MODEL FAILURE AND FALLBACK
+
+If a selected model becomes unavailable:
+
+Current Model
+     ↓
+Failure
+     ↓
+Another approved home
+     ↓
+Another compatible model
+     ↓
+Approved stronger model
+     ↓
+Paid model if policy permits
+
+CNS should be aware of:
+
+Loading
+
+Ready
+
+Busy
+
+Queued
+
+Waiting
+
+Failed
+
+Rate-limited
+
+Quota exhausted
+
+Unavailable
+
+Cooldown
+
+Active
+
+
+For local models, resource state can include RAM/VRAM/loading status.
+
+For remote models, provider availability/quota/rate-limit state can be tracked.
+
+
+---
+
+35. NOTIFICATION / ALERT SYSTEM
+
+CNS should be able to notify the user about meaningful system events.
+
+Examples:
+
+Local model failed
+
+Model loading failed
+
+Remote provider unavailable
+
+Free quota exhausted
+
+Automatic fallback occurred
+
+Connection failed
+
+Important Bot failure
+
+Critical trading/system event
+
+Health-check failure
+
+
+Telegram or another notification provider can be connected through the Connections system.
+
+
+---
+
+36. FINAL CONTROL-PLANE PRINCIPLE
+
+CNS should feel simple from the outside while remaining extremely modular underneath.
+
+USER
+                       │
+              CHAT / VOICE / GUI
+                       │
+                 CNS CONTROL
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+      BRAIN          MEMORY          TOOLS
+        │              │              │
+     Models         CNS State      Connections
+        │              │              │
+        └──────────────┼──────────────┘
+                       │
+                  CNS CORE
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+      BOTS          TRADING       EXTENSIONS
+
+The fundamental separation is:
+
+Models think.
+
+Memory remembers.
+
+Tools provide capabilities.
+
+Bots perform assigned work.
+
+Trading engines execute deterministic financial logic.
+
+Connections connect outside systems.
+
+Agents perform workflows.
+
+CNS coordinates and governs everything.
+
+The user remains in control.
+
+
+---
+
+37. FINAL IMPLEMENTATION RULE
+
+> Build the control-plane interfaces and subsystem boundaries first. Do not prematurely hard-code the detailed internal settings of future subsystems. When each subsystem is implemented, create its own detailed specification and connect it to the established CNS control plane.
+
+
+
+This allows CNS to grow from:
+
+four trading Bots → additional financial Bots → new models → new providers → new tools → new external systems
+
+without redesigning the foundation.
+
+
+---
+
+FINAL ARCHITECTURAL IDEA
+
+> CNS should be a complete system by itself, but never a closed system.
+
+
+
+It should be possible to:
+
+replace the brain,
+
+add another brain,
+
+change model homes,
+
+add capabilities,
+
+add Bots,
+
+connect brokers,
+
+connect market-data providers,
+
+connect external services,
+
+add future harnesses,
+
+migrate memory,
+
+use CLI,
+
+use GUI,
+
+use chat,
+
+use voice,
+
+
+without rebuilding CNS from scratch.
+
+The model is replaceable.
+
+The provider is replaceable.
+
+The Bot is replaceable.
+
+The connection is replaceable.
+
+The interface is replaceable.
+
+The memory remains CNS's continuity.
+
+The control plane remains the common nervous system.
+
+This is the version I would save as the final Control Plane / Head / Brain / Settings architecture log.
+
+foot note :::   Implementation Note — Network vs. Web/Research: User-facing Web/Research controls must not disable CNS's underlying network connectivity. CNS requires network access for brokers, APIs, model providers, databases, notifications, external services and other authorized connections. These controls only determine whether a particular task/response may invoke web/research capabilities.
