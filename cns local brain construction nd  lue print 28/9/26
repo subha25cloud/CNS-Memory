@@ -1,0 +1,838 @@
+😂 You're right, bro. I misunderstood the purpose of the log.
+
+You don't want a DOCX. You want the actual final architecture log written here in the chat, so you can review it, copy it, and manually put it into the CNS GitHub repository.
+
+Let's do it properly.
+
+CNS — LOCAL LLM PATH ARCHITECTURE
+
+Final Architecture Log
+
+Status: LOCKED — Architecture Design Phase
+
+
+---
+
+1. Core Decision
+
+CNS will not be architecturally tied to any particular LLM family.
+
+Qwen, DeepSeek, GLM, Kimi, Mistral, Gemma, or future open models are all interchangeable model candidates.
+
+CNS must be designed around a model-agnostic Local Model Bus.
+
+> Build the road, not the vehicle.
+
+
+
+The model can change without redesigning CNS.
+
+
+---
+
+2. CNS Local Model Highway
+
+The fundamental path is:
+
+CNS
+ │
+ ▼
+Local Model Bus
+ │
+ ▼
+Model Registry
+ │
+ ▼
+Model / Capability Router
+ │
+ ▼
+Model Manager
+ │
+ ▼
+Runtime Adapter
+ │
+ ▼
+CPU / RAM / GPU
+ │
+ ▼
+Selected Local Model
+
+Every compatible local model must enter CNS through this path.
+
+
+---
+
+3. Model Registry
+
+CNS maintains a registry describing every local model available to it.
+
+Each model entry should contain information such as:
+
+Model Family
+Model Name
+Version
+Quantization
+Model Size
+Runtime Compatibility
+RAM Requirement
+VRAM Requirement
+CPU Requirement
+Context Capability
+Reasoning Capability
+Tool Calling
+Structured Output
+Vision / Multimodal Capability
+Current Health
+Preferred Tasks
+
+The registry is metadata, not the model itself.
+
+This allows CNS to decide:
+
+> "Which model can perform this task on the hardware currently available?"
+
+
+
+instead of hard-coding a model name.
+
+
+---
+
+4. Local Model Warehouse
+
+The CNS server will contain a local model library.
+
+The model files live on the server's NVMe/SSD storage.
+
+Example:
+
+/models/
+
+    qwen/
+        model-A-Q4
+        model-B-Q5
+
+    deepseek/
+        model-A-Q4
+        model-B-Q8
+
+    glm/
+        model-A-Q4
+
+    future-model/
+        ...
+
+Multiple quantized models can therefore be installed on the same server.
+
+Important distinction
+
+SSD / NVMe
+    =
+Model Warehouse
+
+RAM
+    =
+Active Workspace
+
+We can have many models stored on disk while only loading the model(s) needed at that moment into RAM.
+
+
+---
+
+5. Model Manager
+
+The Model Manager controls which local model is actually loaded.
+
+Example:
+
+User:
+"Use local DeepSeek."
+        │
+        ▼
+Model Manager
+        │
+        ├── Is DeepSeek installed?
+        │
+        ├── Does it fit available resources?
+        │
+        ├── Which quantization?
+        │
+        └── Which runtime?
+        │
+        ▼
+Load model
+        │
+        ▼
+Run task
+
+If another model is already occupying RAM, the manager can unload it when appropriate.
+
+Therefore:
+
+> Installed does not mean permanently loaded.
+
+
+
+
+---
+
+6. Three Universal Model-Switching Paths
+
+This is one of the most important CNS design decisions.
+
+PATH A — Same model, different compute home
+
+Model X
+   │
+   ├── Home A
+   ├── Home B
+   ├── Home C
+   └── Local Home
+
+Example:
+
+Qwen
+ │
+ ├── Provider A ❌ quota
+ ├── Provider B ✅
+ └── Local fallback
+
+The model remains Qwen.
+
+Only the compute location changes.
+
+
+---
+
+PATH B — Same family, different version / size / quantization
+
+Model Family X
+      │
+      ├── Version A
+      ├── Version B
+      ├── Larger model
+      ├── Smaller model
+      └── Different quantization
+
+Example:
+
+Qwen large model
+      ↓ unavailable
+Qwen smaller model
+      ↓
+Qwen local quantized model
+
+The model family remains the same.
+
+
+---
+
+PATH C — Different model family
+
+Model Family A
+      ↓ unavailable / unsuitable
+Model Family B
+      ↓
+Model Family C
+
+Example:
+
+Qwen
+ ↓
+DeepSeek
+ ↓
+GLM
+
+This happens according to CNS's capability and policy rules.
+
+
+---
+
+7. Chat-Controlled Model Selection
+
+The model path must be controllable through normal CNS chat.
+
+Examples:
+
+"Use local Qwen."
+
+"Use local DeepSeek."
+
+"Use the best available local model."
+
+"Use only local models."
+
+"Don't use paid models."
+
+"Switch the local brain to DeepSeek."
+
+"Use whatever local model is best for this task."
+
+CNS should translate these instructions into Model Manager / Router operations.
+
+The user should not need to manually edit configuration files every time they want to change models.
+
+
+---
+
+8. Automatic Model Selection
+
+If the user doesn't specify a model, CNS should select one automatically.
+
+Selection should consider:
+
+Task
+ ↓
+Required reasoning
+ ↓
+Context requirement
+ ↓
+Tool requirements
+ ↓
+Latency requirement
+ ↓
+Hardware availability
+ ↓
+Model health
+ ↓
+Privacy policy
+ ↓
+Cost policy
+ ↓
+Available model
+
+Therefore CNS does not need a permanent rule such as:
+
+> "Qwen is always the best."
+
+
+
+Instead:
+
+> Use the best available model that satisfies the task and current policy.
+
+
+
+
+---
+
+9. Regular Background Agents
+
+Local models should be the preferred option for routine CNS work.
+
+Examples:
+
+Health checking
+Memory maintenance
+Log analysis
+File organization
+Agent status checking
+Routine summaries
+Background orchestration
+Non-critical coding
+Housekeeping
+
+The general path:
+
+Background Agent
+       ↓
+Local Model Bus
+       ↓
+Suitable local model
+       ↓
+Task
+
+This keeps routine CNS activity inexpensive and reduces unnecessary remote API usage.
+
+
+---
+
+10. Research Mode
+
+Research can use a layered strategy.
+
+Research Task
+     │
+     ▼
+Local Model
+     │
+     ├── sufficient → continue
+     │
+     └── insufficient
+             ↓
+       approved remote/free model
+             ↓
+       paid model if policy allows
+
+The local model can handle reasoning, organization, summarization, preprocessing, and other appropriate work.
+
+External search/data tools remain separate from the model itself.
+
+
+---
+
+11. Live Trading Mode
+
+This requires a stricter architecture.
+
+The LLM must not become the single point of failure for trading execution.
+
+The core remains:
+
+Market Data
+    ↓
+Strategy Engine
+    ↓
+Risk Engine
+    ↓
+Portfolio Engine
+    ↓
+Execution Engine
+    ↓
+Broker
+
+LLMs can assist with:
+
+Analysis
+Research
+Reasoning
+Interpretation
+Scenario analysis
+Explanations
+
+But:
+
+LLM failure
+     ≠
+Trading system failure
+
+And an LLM must not bypass deterministic risk controls.
+
+
+---
+
+12. Local Model Failure
+
+If a local model crashes, CNS itself must continue running.
+
+Possible fallback:
+
+Local Model A
+      ↓
+failed
+      ↓
+Local Model B
+      ↓
+failed
+      ↓
+Approved remote/free model
+      ↓
+Approved paid model
+
+The exact fallback order is controlled by policy.
+
+For live trading, deterministic safety systems remain independent.
+
+
+---
+
+13. Runtime Abstraction
+
+CNS should not permanently depend on one inference runtime.
+
+Possible runtimes include:
+
+llama.cpp
+vLLM
+SGLang
+Ollama
+Future compatible runtimes
+
+The runtime sits underneath the CNS Model Bus.
+
+Architecture:
+
+CNS
+ ↓
+Model Bus
+ ↓
+Model Adapter
+ ↓
+Runtime Adapter
+ ↓
+llama.cpp / vLLM / SGLang / etc.
+ ↓
+Hardware
+
+Therefore changing the runtime should not require changing CNS's core architecture.
+
+
+---
+
+14. Quantization Is a First-Class Capability
+
+Quantization must be treated as part of the deployment system.
+
+CNS should understand variants such as:
+
+Q4
+Q5
+Q6
+Q8
+FP8
+...
+
+The registry should record the resource requirements of each variant.
+
+For example:
+
+Model X
+ ├── Q4 → low resource
+ ├── Q5 → medium resource
+ ├── Q6 → higher resource
+ └── Q8 → higher quality/resource requirement
+
+CNS can select the appropriate version based on available hardware and task requirements.
+
+
+---
+
+15. 32 GB CNS Server
+
+Initial local-model infrastructure target:
+
+~32 GB RAM
+Suitable CPU
+Adequate NVMe storage
+Linux server
+
+The purpose of the 32 GB server is:
+
+CNS Core
++
+Database
++
+Memory
++
+Agents
++
+Model Manager
++
+Multiple stored local models
++
+Currently active model
+
+It does not mean every installed model must run simultaneously.
+
+The server can store multiple models and dynamically load the appropriate one.
+
+
+---
+
+16. Model vs Compute Home
+
+CNS must permanently distinguish these two concepts.
+
+MODEL
+
+The intelligence/model family:
+
+Qwen
+DeepSeek
+GLM
+Kimi
+Mistral
+Gemma
+Future Model
+
+COMPUTE HOME
+
+Where that model is actually executed:
+
+Local CNS server
+Remote GPU
+Cloud provider
+Free inference provider
+Paid API
+Future compute home
+
+Therefore:
+
+> Model ≠ Compute Home.
+
+
+
+A single logical model can have multiple compute homes.
+
+
+---
+
+17. Provider Failover
+
+If remote models are eventually used, CNS should maintain a Compute Home Registry.
+
+Example:
+
+Model: Qwen
+
+Home A
+Status: healthy
+Quota: available
+
+Home B
+Status: rate limited
+
+Home C
+Status: healthy
+
+Local
+Status: healthy
+
+If Home A reaches its limit:
+
+Home A ❌
+     ↓
+Home C ✅
+
+The CNS brain's memory, identity and state do not move.
+
+Only execution moves.
+
+
+---
+
+18. Future Model Addition
+
+Adding a new model should require approximately:
+
+1. Register model
+2. Register version
+3. Register quantization
+4. Register hardware requirements
+5. Register runtime
+6. Register capabilities
+7. Add adapter only if necessary
+
+It must not require redesigning:
+
+CNS Core
+Memory
+Agents
+Trading Engine
+Portfolio Engine
+UI
+Database
+Workflow System
+
+
+---
+
+19. Model-Agnostic Rule
+
+This is a hard architectural rule:
+
+> CNS must never be structurally dependent on Qwen, DeepSeek, or any other individual model.
+
+
+
+Models are replaceable.
+
+Model versions are replaceable.
+
+Quantizations are replaceable.
+
+Runtimes are replaceable.
+
+Compute homes are replaceable.
+
+The CNS core remains stable.
+
+
+---
+
+20. The "Best Available" Rule
+
+When the user says:
+
+> "Use the best available local model."
+
+
+
+CNS should not blindly select a hard-coded model.
+
+It should evaluate:
+
+Available models
+      ↓
+Task requirements
+      ↓
+Capabilities
+      ↓
+Hardware
+      ↓
+Performance
+      ↓
+Latency
+      ↓
+Current health
+      ↓
+User policy
+      ↓
+Select model
+
+This allows CNS to automatically adapt as better models become available.
+
+
+---
+
+21. The Three-Level Model Supply System
+
+The long-term local model system becomes:
+
+CNS LOCAL MODEL BUS
+                         │
+          ┌──────────────┼──────────────┐
+          │              │              │
+       SAME MODEL     SAME FAMILY    DIFFERENT FAMILY
+       DIFFERENT      DIFFERENT      ALTERNATIVE
+       HOME           VERSION
+          │              │              │
+          ▼              ▼              ▼
+       Qwen A          Qwen 3.x       DeepSeek
+       Qwen B          Qwen small     GLM
+       Qwen Local      Qwen Q4        Kimi
+                                      etc.
+
+This is the reusable road.
+
+
+---
+
+22. Paid Models Are a Later Phase
+
+The current engineering focus is:
+
+> LOCAL MODEL INFRASTRUCTURE FIRST.
+
+
+
+Paid providers will be designed later.
+
+However, the local architecture must expose a clean interface so that paid models can eventually connect to the broader CNS Model/Brain Bus.
+
+Therefore:
+
+LOCAL
+   │
+   ├── Qwen
+   ├── DeepSeek
+   ├── GLM
+   └── Future models
+
+REMOTE FREE
+   │
+   └── later
+
+PAID
+   │
+   └── later
+
+All eventually meet at the broader CNS model interface.
+
+
+---
+
+23. Implementation Order
+
+PHASE 1
+
+Build the Local Model Bus and standard internal interface.
+
+PHASE 2
+
+Build the Model Registry.
+
+PHASE 3
+
+Build the Model Manager.
+
+PHASE 4
+
+Provision the approximately 32 GB RAM CNS server and model warehouse.
+
+PHASE 5
+
+Install multiple quantized local models.
+
+PHASE 6
+
+Connect the appropriate local inference runtimes.
+
+PHASE 7
+
+Benchmark models on the actual CNS server.
+
+PHASE 8
+
+Implement chat-controlled model switching.
+
+PHASE 9
+
+Implement automatic capability/resource-based model selection.
+
+PHASE 10
+
+Implement local model failure and fallback.
+
+PHASE 11
+
+Later add remote/free compute homes.
+
+PHASE 12
+
+Later build the paid-provider layer.
+
+
+---
+
+24. Final CNS Principle
+
+BUILD THE ROAD, NOT THE VEHICLE.
+
+We are not building:
+
+> "The Qwen system."
+
+
+
+We are building:
+
+> "The CNS Local Model Infrastructure."
+
+
+
+Qwen can be one vehicle.
+
+DeepSeek can be another.
+
+GLM can be another.
+
+A future model can become another.
+
+A model can be replaced without rebuilding the road.
+
+A quantization can be replaced without rebuilding the road.
+
+A runtime can be replaced without rebuilding the road.
+
+A compute server can be replaced without rebuilding the road.
+
+And eventually, when you say in CNS chat:
+
+> "Use whatever model is best for this job."
+
+
+
+CNS should be able to make that decision itself according to the rules and available resources.
+
+This is the architecture we should put into the CNS repository as the foundation for local LLM infrastructure.
