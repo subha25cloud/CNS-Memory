@@ -1,0 +1,1613 @@
+Absolutely. Save this one. This is the cleaned, corrected 3A baseline—not the earlier drafts.
+
+CNS — LOG 3A
+
+FOUNDATION & RUNTIME FABRIC
+
+Engineering Construction Baseline V1.0
+
+Status: ENGINEERING BASELINE — REVIEWED
+Relationship: Built from Log 1 Constitution + Log 2 Capability & Intelligence Construction
+Purpose: Define the resilient runtime foundation on which the complete CNS ecosystem will be constructed.
+
+
+---
+
+3A.1 — Construction Objective
+
+The CNS foundation must support a system that can:
+
+coordinate many heterogeneous resources;
+
+survive individual component failures;
+
+replace components without redesigning CNS;
+
+preserve important execution history;
+
+recover interrupted work;
+
+maintain provenance and evidence;
+
+learn from outcomes;
+
+discover capability gaps;
+
+safely expand into new domains;
+
+protect critical financial operations;
+
+continuously evolve without becoming structurally unstable.
+
+
+The foundation therefore optimizes for:
+
+RELIABILITY
++ REPLACEABILITY
++ OBSERVABILITY
++ RECOVERABILITY
++ TRACEABILITY
++ EXTENSIBILITY
+
+Fundamental rule
+
+> CNS must be modular without becoming fragile. A replaceable component must never become a single uncontrolled point of failure for the ecosystem.
+
+
+
+
+---
+
+3A.2 — CNS Runtime as the Backbone
+
+The CNS Runtime is the common execution fabric.
+
+CNS
+                          │
+                 ┌────────▼────────┐
+                 │  RUNTIME FABRIC │
+                 └────────┬────────┘
+                          │
+       ┌──────────────────┼──────────────────┐
+       ▼                  ▼                  ▼
+     STATE              EVENTS             CONTROL
+       │                  │                  │
+       └──────────────────┼──────────────────┘
+                          │
+                     ORCHESTRATION
+                          │
+                        INTENT
+                          │
+                         WORK
+                          │
+                    CAPABILITY
+                          │
+                        METHOD
+                          │
+                       RESOURCE
+                          │
+                      EXECUTION
+                          │
+                    VERIFICATION
+                          │
+                       ACTION
+                          │
+                       OUTCOME
+                          │
+                 STATE + EXPERIENCE
+                          │
+                  ECOSYSTEM LEARNING
+
+The Runtime is not the financial brain.
+
+It provides the machinery through which the brain, workers, models, engines, memory and execution systems operate.
+
+
+---
+
+3A.3 — Four Fundamental Objects
+
+CNS explicitly separates:
+
+Intent
+
+What are we trying to achieve?
+
+Work
+
+What must be done?
+
+Capability
+
+What ability is required?
+
+Resource
+
+What actual component can provide that ability?
+
+Therefore:
+
+INTENT
+  ↓
+WORK
+  ↓
+REQUIRED CAPABILITIES
+  ↓
+METHODS
+  ↓
+AVAILABLE RESOURCES
+  ↓
+EXECUTION
+
+This separation prevents the architecture from becoming tied to any particular agent, model or technology.
+
+
+---
+
+3A.4 — Intent Model
+
+Intent represents the purpose and decision context behind work.
+
+Intent {
+
+    intent_id
+
+    goal
+    objective
+    decision_context
+
+    constraints[]
+
+    authority_required
+    consequence_level
+
+    time_horizon
+    deadline
+
+    evidence_requirements[]
+
+    success_criteria[]
+    stop_conditions[]
+
+    assumptions[]
+
+    uncertainty_tolerance
+
+    provenance
+}
+
+Example:
+
+Goal:
+Evaluate Company X.
+
+Objective:
+Determine whether allocating capital improves expected
+risk-adjusted portfolio outcome.
+
+Constraints:
+Capital, horizon, liquidity, portfolio exposure.
+
+Evidence:
+Financials, business, management, industry,
+valuation, competitors, risks, contradictions.
+
+Stop:
+Evidence is sufficient OR additional investigation
+has insufficient expected value.
+
+Intent is not itself a decision.
+
+It defines what the system is trying to accomplish.
+
+
+---
+
+3A.5 — Work Model
+
+Intent produces one or more WorkItems.
+
+WorkItem {
+
+    work_id
+    intent_id
+    parent_id
+
+    goal
+    task_type
+
+    required_capabilities[]
+    candidate_methods[]
+
+    inputs[]
+    context_refs[]
+
+    dependencies[]
+
+    authority
+
+    deadline
+    cost_budget
+    latency_budget
+
+    completion_criteria[]
+    stop_conditions[]
+
+    assigned_resource
+
+    evidence_refs[]
+    output_refs[]
+
+    status
+    health
+    failure_state
+
+    provenance
+}
+
+A WorkItem may become a dependency graph when decomposition provides measurable benefit.
+
+Decomposition is not automatic.
+
+
+---
+
+3A.6 — Capability Model
+
+A Capability describes an ability available to CNS.
+
+Capability {
+
+    capability_id
+    version
+
+    purpose
+
+    input_schema
+    output_schema
+
+    preconditions[]
+    postconditions[]
+
+    authority_required
+
+    quality_metrics[]
+    reliability_metrics[]
+
+    latency_profile
+    cost_profile
+
+    failure_modes[]
+
+    verification_method
+
+    fallback
+
+    security_policy
+}
+
+Examples:
+
+financial_analysis
+market_regime_detection
+fraud_detection
+forecasting
+backtesting
+portfolio_optimization
+evidence_verification
+order_validation
+market_data_retrieval
+
+A capability does not prescribe its implementation.
+
+
+---
+
+3A.7 — Method Model
+
+A Capability may be implemented through multiple methods.
+
+Capability
+     ↓
+Method
+     ↓
+Resource
+
+Example:
+
+financial_analysis
+       ↓
+cash-flow consistency analysis
+       ↓
+financial analysis engine
+
+or:
+
+financial_analysis
+       ↓
+forensic investigation
+       ↓
+research agent + tools + model
+
+MethodDescriptor {
+
+    method_id
+    capability_id
+
+    procedure
+
+    assumptions[]
+
+    required_inputs[]
+    expected_outputs[]
+
+    evidence_requirements[]
+
+    suitable_conditions[]
+    unsuitable_conditions[]
+
+    computational_cost
+
+    historical_performance
+
+    failure_modes[]
+}
+
+This gives CNS a future mechanism for learning:
+
+> which method works best under which conditions.
+
+
+
+
+---
+
+3A.8 — Resource Model
+
+A Resource is an actual executable component.
+
+ResourceDescriptor {
+
+    resource_id
+    resource_type
+    version
+
+    capabilities[]
+    methods[]
+
+    input_schema
+    output_schema
+
+    quality
+    reliability
+
+    latency
+    cost
+
+    health
+    availability
+
+    privacy_class
+
+    hardware_requirements
+
+    authority_scope
+
+    failure_modes[]
+}
+
+Resources can include:
+
+4 trading/investment bots
+7 ML systems
+LLMs
+local models
+remote models
+agents
+sub-agents
+research engines
+backtest engines
+risk engines
+data providers
+execution systems
+deterministic functions
+human approval
+
+The Runtime does not depend on their internal implementation.
+
+
+---
+
+3A.9 — Module Boundary
+
+Major CNS capabilities operate behind explicit module boundaries.
+
+Module {
+
+    module_id
+    version
+
+    provides[]
+    requires[]
+
+    capabilities[]
+
+    dependencies[]
+
+    configuration_schema
+
+    authority_scope
+
+    lifecycle
+
+    health
+
+    compatibility
+
+    failure_boundary
+
+    observability
+}
+
+A module may be:
+
+registered
+activated
+paused
+degraded
+replaced
+retired
+
+without changing the CNS identity.
+
+
+---
+
+3A.10 — Modularity and Resilience Invariant
+
+> Modularity must increase replaceability without decreasing system integrity.
+
+
+
+Every module requires:
+
+explicit interface
+dependency declaration
+authority boundary
+health state
+timeout
+resource limit
+cancellation
+failure handling
+recovery strategy
+version
+compatibility
+observability
+safe shutdown
+
+A module cannot disappear while CNS continues assuming that its capability is healthy.
+
+
+---
+
+3A.11 — Failure Isolation
+
+Failures are contained at the lowest meaningful level.
+
+ML failure
+   ↓
+ML resource degraded
+
+not:
+
+ML failure
+   ↓
+research failure
+   ↓
+CNS failure
+
+Similarly:
+
+agent failure
+→ affected task
+
+task failure
+→ affected work
+
+work failure
+→ affected intent
+
+Failure propagates upward only when a higher-level invariant is genuinely compromised.
+
+
+---
+
+3A.12 — Capability-Aware Degradation
+
+CNS does not blindly keep operating when a critical capability disappears.
+
+FAILURE
+   ↓
+IDENTIFY LOST CAPABILITY
+   ↓
+IS IT REQUIRED?
+   ├── NO → continue degraded
+   └── YES
+        ↓
+     fallback?
+      ├── YES → switch
+      └── NO → stop affected operation
+
+Example:
+
+Research model unavailable
+→ alternate model selected
+
+but:
+
+Risk engine unavailable
+→ live trading blocked
+
+
+---
+
+3A.13 — Event Fabric
+
+Important CNS state transitions are represented by typed events.
+
+CnsEvent {
+
+    event_id
+    event_type
+    event_version
+
+    timestamp
+    sequence
+
+    ecosystem_id
+
+    intent_id
+    work_id
+    task_id
+    resource_id
+
+    parent_event_id
+    causation_id
+    correlation_id
+
+    actor
+    authority
+
+    payload
+
+    input_refs[]
+    output_refs[]
+
+    provenance
+
+    state_before_ref
+    state_after_ref
+
+    security_class
+}
+
+Events record what happened.
+
+They are not themselves current state.
+
+
+---
+
+3A.14 — Durable and Live Event Planes
+
+CNS explicitly separates event durability.
+
+Durable events
+
+Must survive restart:
+
+decisions
+orders
+risk events
+security events
+configuration changes
+major failures
+important evidence
+learning outcomes
+system changes
+
+Operational durable events
+
+Retained according to policy:
+
+work transitions
+task transitions
+resource health
+model calls
+research activity
+
+Live/ephemeral events
+
+Normally not permanently stored:
+
+token streaming
+UI updates
+heartbeats
+temporary intermediate signals
+
+This prevents the event system from becoming an uncontrolled storage dump.
+
+
+---
+
+3A.15 — State Model
+
+State answers:
+
+> What is true now?
+
+
+
+State is derived and maintained through controlled projections.
+
+EVENT
+  ↓
+VALIDATE
+  ↓
+STATE PROJECTOR
+  ↓
+CURRENT STATE
+
+Example:
+
+resource/degraded
+        ↓
+ResourceState
+health = DEGRADED
+availability = false
+
+Historical events remain immutable.
+
+
+---
+
+3A.16 — State Ownership
+
+Each important state has one authoritative owner.
+
+Bot health
+→ Resource subsystem
+
+Task status
+→ Work subsystem
+
+Portfolio exposure
+→ Portfolio subsystem
+
+Order status
+→ Execution subsystem
+
+Model availability
+→ Model subsystem
+
+Long-term knowledge
+→ Memory subsystem
+
+Other subsystems may read state but cannot silently mutate another subsystem's authoritative state.
+
+
+---
+
+3A.17 — Source-of-Truth Classification
+
+Every important state value identifies its truth source.
+
+CNS-owned
+External authoritative
+Derived projection
+Cached observation
+Estimated/inferred
+
+Examples:
+
+Broker order status
+→ external authoritative
+
+CNS task status
+→ CNS authoritative
+
+Portfolio risk estimate
+→ CNS-derived
+
+Market quote
+→ selected market-data source
+
+Cached company information
+→ cached observation
+
+This prevents hidden synchronization assumptions.
+
+
+---
+
+3A.18 — Persistence Boundary
+
+The Runtime does not directly depend on a specific storage technology.
+
+CNS Runtime
+      ↓
+Persistence Interface
+      ↓
+Storage Implementation
+
+The implementation may later use different databases, event stores or storage technologies without changing the Runtime contract.
+
+Persistence must support, where required:
+
+durable events
+state snapshots/checkpoints
+provenance
+recovery
+replay
+versioning
+
+
+---
+
+3A.19 — Command vs Event
+
+CNS distinguishes:
+
+COMMAND
+"What should happen?"
+
+EVENT
+"What actually happened?"
+
+Example:
+
+EXECUTE_ORDER
+
+does not mean:
+
+ORDER_EXECUTED
+
+because execution may fail.
+
+Correct flow:
+
+COMMAND
+ ↓
+AUTHORIZATION
+ ↓
+VALIDATION
+ ↓
+EXECUTION
+ ↓
+SUCCESS → EVENT
+FAILURE → FAILURE EVENT
+
+
+---
+
+3A.20 — Idempotency
+
+Every consequential external command receives a unique idempotency key.
+
+CommandRecord {
+
+    command_id
+    idempotency_key
+
+    command_type
+    target_resource
+
+    parameters_hash
+
+    status
+
+    result_ref
+
+    created_at
+    completed_at
+}
+
+If CNS loses a response and retries:
+
+same idempotency key
+        ↓
+execution history checked
+        ↓
+already executed?
+ ├── YES → reconcile / return known result
+ └── NO → execute
+
+CNS does not assume external systems provide exactly-once execution.
+
+Instead it uses:
+
+unique command identity
++
+idempotency
++
+durable execution records
++
+external reconciliation
+
+
+---
+
+3A.21 — Reconciliation
+
+External reality may differ from CNS's last known state.
+
+Therefore:
+
+LOCAL CNS STATE
+       ↕
+EXTERNAL SYSTEM
+       ↓
+RECONCILIATION
+       ↓
+CORRECTED CNS STATE
+
+Examples:
+
+broker order status
+cloud resource status
+market-data provider status
+payment/external transaction status
+
+After uncertainty or restart, CNS verifies reality instead of assuming.
+
+
+---
+
+3A.22 — Consistency and Transaction Boundaries
+
+CNS does not impose one consistency model on the entire ecosystem.
+
+Each subsystem defines whether a transition requires:
+
+atomicity
+ordering
+eventual consistency
+reconciliation
+
+Critical financial operations receive stricter guarantees.
+
+Example:
+
+ORDER
+ ↓
+EXTERNAL EXECUTION RESULT
+ ↓
+EXECUTION EVENT
+ ↓
+PORTFOLIO UPDATE
+ ↓
+RISK STATE UPDATE
+
+The implementation must define the consistency boundary for this sequence.
+
+
+---
+
+3A.23 — Work State Machine
+
+CREATED
+   ↓
+READY
+   ↓
+ASSIGNED
+   ↓
+RUNNING
+   │
+   ├── WAITING
+   ├── BLOCKED
+   ├── PAUSED
+   ├── FAILED
+   │     ↓
+   │  RETRY / REASSIGN / REPLAN
+   │
+   └── COMPLETED
+
+Terminal states:
+
+COMPLETED
+FAILED_FINAL
+CANCELLED
+EXPIRED
+
+No task can silently become completed without completion evidence.
+
+
+---
+
+3A.24 — Work Lease
+
+A resource receives temporary ownership of execution.
+
+Lease {
+
+    lease_id
+    work_id
+    task_id
+    resource_id
+
+    issued_at
+    expires_at
+
+    attempt
+}
+
+If the worker disappears:
+
+lease expires
+ ↓
+task becomes recoverable
+ ↓
+CNS decides:
+retry
+reassign
+replan
+cancel
+
+
+---
+
+3A.25 — Checkpoint and Resume
+
+Long-running work can be checkpointed.
+
+Checkpoint {
+
+    checkpoint_id
+    work_id
+
+    task_states[]
+    completed_tasks[]
+    active_tasks[]
+    pending_tasks[]
+
+    outputs[]
+    evidence_refs[]
+
+    resource_assignments[]
+
+    decision_context
+
+    schema_version
+    created_at
+}
+
+Recovery:
+
+SERVER FAILURE
+ ↓
+RESTART
+ ↓
+LOAD LAST VALID CHECKPOINT
+ ↓
+REPLAY REQUIRED EVENTS
+ ↓
+VERIFY EXTERNAL STATE
+ ↓
+RESUME
+
+
+---
+
+3A.26 — State Projection Versioning
+
+State reconstruction depends on versioned projection logic.
+
+Projection {
+
+    projection_id
+    version
+
+    input_event_schema
+    output_state_schema
+}
+
+This allows historical state to remain reproducible even after the implementation evolves.
+
+
+---
+
+3A.27 — Orchestration Boundary
+
+The Runtime provides execution machinery.
+
+The Orchestration Controller decides:
+
+Should work be decomposed?
+
+Which capabilities are required?
+
+Which methods are suitable?
+
+Which resources should be used?
+
+Which tasks can run in parallel?
+
+Which tasks depend on others?
+
+Is additional investigation required?
+
+When is the global objective satisfied?
+
+Possible execution forms:
+
+deterministic operation
+one resource
+parallel specialists
+competing analyses
+hierarchical workers
+sub-agent
+no additional worker
+
+No permanent swarm is assumed.
+
+
+---
+
+3A.28 — Stop Conditions
+
+CNS must know when additional work is no longer justified.
+
+Research may stop when:
+
+evidence is sufficient
+OR
+expected value of additional information is too low
+OR
+uncertainty is irreducible
+OR
+budget exhausted
+OR
+deadline reached
+OR
+required resource unavailable
+OR
+decision is no longer actionable
+OR
+risk boundary reached
+
+
+---
+
+3A.29 — Evidence Lineage
+
+Material conclusions must remain traceable.
+
+SOURCE
+ ↓
+EVIDENCE
+ ↓
+ANALYSIS
+ ↓
+HYPOTHESIS
+ ↓
+SYNTHESIS
+ ↓
+DECISION
+
+Repeated agreement between models does not automatically increase evidence quality.
+
+
+---
+
+3A.30 — Uncertainty Lineage
+
+Uncertainty must propagate through the decision process.
+
+Evidence uncertainty
+       ↓
+Analysis uncertainty
+       ↓
+Hypothesis uncertainty
+       ↓
+Decision uncertainty
+
+The system must prevent:
+
+weak evidence
+ ↓
+strong-looking conclusion
+
+without a defensible basis.
+
+
+---
+
+3A.31 — Assumption Registry
+
+Important decisions maintain explicit assumptions.
+
+Assumption {
+
+    assumption_id
+
+    statement
+
+    supporting_evidence[]
+
+    dependent_decisions[]
+
+    validity_conditions[]
+
+    invalidation_triggers[]
+
+    current_status
+
+    last_verified
+}
+
+If an important assumption changes:
+
+ASSUMPTION INVALIDATED
+        ↓
+DEPENDENT DECISIONS IDENTIFIED
+        ↓
+REASSESSMENT
+
+This is how CNS keeps old decisions connected to changing reality.
+
+
+---
+
+3A.32 — Temporal Provenance
+
+Important evidence records:
+
+observed_at
+available_at
+effective_at
+source_id
+source_version
+
+Therefore CNS can distinguish:
+
+"What was true?"
+from
+"What was known at the time?"
+
+This protects against historical information leakage.
+
+
+---
+
+3A.33 — Capability Gap Detection
+
+If CNS requires a capability for which no suitable resource exists:
+
+required capability
+        ↓
+no suitable resource
+        ↓
+CAPABILITY GAP
+
+The gap becomes an explicit research/improvement target.
+
+Capability Gap
+ ↓
+Mechanism research
+ ↓
+Prototype
+ ↓
+Benchmark
+ ↓
+Security test
+ ↓
+Register capability
+
+The Runtime therefore supports future CNS expansion without hard-coding today's capability set.
+
+
+---
+
+3A.34 — Resource Health
+
+Resources maintain observable health states:
+
+HEALTHY
+DEGRADED
+UNAVAILABLE
+QUARANTINED
+RECOVERING
+RETIRED
+
+Health may consider:
+
+failure rate
+latency
+schema errors
+quality
+drift
+availability
+resource pressure
+recent outcomes
+
+Resource self-reported confidence is not sufficient evidence of health.
+
+
+---
+
+3A.35 — Failure Classification
+
+Failures are classified before recovery.
+
+TRANSIENT
+RESOURCE
+DATA
+LOGIC
+AUTHORITY
+RISK
+SYSTEM
+SECURITY
+UNKNOWN
+
+Recovery may include:
+
+retry
+fallback
+reassign
+replan
+quarantine
+reconcile
+stop
+human escalation
+
+Unknown failures are not blindly retried indefinitely.
+
+
+---
+
+3A.36 — Security and Blast Radius
+
+A module receives bounded:
+
+authority
+data access
+resource access
+execution scope
+
+A defective module must not automatically be able to:
+
+modify arbitrary state
+execute arbitrary commands
+access unrelated secrets
+bypass risk controls
+modify CNS constitution
+approve its own deployment
+
+This makes modularity safe.
+
+
+---
+
+3A.37 — Tool Execution Boundary
+
+Every consequential tool call passes through:
+
+REQUEST
+ ↓
+IDENTITY
+ ↓
+CAPABILITY
+ ↓
+RESOURCE
+ ↓
+AUTHORITY
+ ↓
+POLICY
+ ↓
+SCHEMA VALIDATION
+ ↓
+RISK CHECK
+ ↓
+PRE-EXECUTION
+ ↓
+EXECUTION
+ ↓
+RESULT VALIDATION
+ ↓
+PROVENANCE
+ ↓
+EVENT
+ ↓
+POST-EXECUTION
+
+Financial execution additionally requires:
+
+market state
+risk state
+portfolio state
+execution constraints
+broker/external state
+
+
+---
+
+3A.38 — Financial Safety Boundary
+
+The live trading path remains deterministic and independently protected:
+
+MARKET DATA
+    ↓
+FEATURES
+    ↓
+STRATEGY
+    ↓
+RISK
+    ↓
+ORDER VALIDATION
+    ↓
+EXECUTION
+
+LLMs and agents may:
+
+research
+analyse
+propose
+challenge
+explain
+discover
+
+but cannot bypass:
+
+risk
+authority
+validation
+execution controls
+
+This remains a permanent Log 1 invariant.
+
+
+---
+
+3A.39 — Ecosystem Learning Hook
+
+The Runtime records structured experience:
+
+CONTEXT
+ ↓
+INTENT
+ ↓
+METHOD
+ ↓
+RESOURCE
+ ↓
+EXECUTION
+ ↓
+RESULT
+ ↓
+OUTCOME
+ ↓
+EXPECTED vs ACTUAL
+ ↓
+PERFORMANCE
+ ↓
+LEARNING
+
+This allows CNS to eventually learn:
+
+> Which methods, resources and combinations perform best under particular conditions.
+
+
+
+The exact learning algorithms are deliberately not frozen here.
+
+
+---
+
+3A.40 — Replay
+
+CNS must support reconstruction of previous execution:
+
+EVENT HISTORY
++
+PROJECTION VERSION
++
+SCHEMA VERSION
++
+PROVENANCE
+        ↓
+RECONSTRUCTED STATE
+
+Replay must answer:
+
+What happened?
+
+What did CNS know?
+
+Which evidence was available?
+
+Which resource acted?
+
+What assumptions existed?
+
+What decision was made?
+
+What was expected?
+
+What actually happened?
+
+
+---
+
+3A.41 — Stable Interface / Replaceable Implementation
+
+The core follows:
+
+STABLE CONTRACT
+      ↓
+REPLACEABLE IMPLEMENTATION
+      ↓
+MEASUREMENT
+      ↓
+FAILURE / NEW EVIDENCE
+      ↓
+REPLACEMENT OR IMPROVEMENT
+      ↓
+SAME CONTRACT
+
+CNS does not freeze uncertain technology choices into permanent architecture.
+
+
+---
+
+3A.42 — Runtime Interface
+
+Conceptually:
+
+trait CnsRuntime {
+
+    register_module(...)
+    unregister_module(...)
+
+    register_capability(...)
+    register_method(...)
+    register_resource(...)
+
+    create_intent(...)
+    create_work(...)
+    submit_task(...)
+
+    emit_event(...)
+    read_state(...)
+
+    execute_command(...)
+
+    checkpoint(...)
+    resume(...)
+
+    reconcile(...)
+    cancel(...)
+
+    replay(...)
+    inspect(...)
+}
+
+The implementation behind these interfaces remains replaceable.
+
+
+---
+
+3A.43 — Explicit Non-Assumptions
+
+3A does not assume:
+
+one permanent brain
+one permanent LLM
+one agent framework
+one memory implementation
+one database
+one orchestration algorithm
+one ML architecture
+one learning algorithm
+one market representation
+one cloud provider
+one execution provider
+
+These belong to later construction layers.
+
+
+---
+
+3A.44 — 3A Acceptance Requirements
+
+3A is considered technically acceptable only when the implementation can demonstrate:
+
+CORE-001
+replace a module without redesigning consumers
+
+CORE-002
+recover from module failure
+
+CORE-003
+recover interrupted work
+
+CORE-004
+reconstruct state from durable history
+
+CORE-005
+replay historical execution
+
+CORE-006
+prevent unauthorized execution
+
+CORE-007
+prevent duplicate consequential commands
+
+CORE-008
+reconcile uncertain external outcomes
+
+CORE-009
+preserve evidence provenance
+
+CORE-010
+preserve temporal information boundaries
+
+CORE-011
+continue safely under non-critical resource failure
+
+CORE-012
+block operations when critical capability is unavailable
+
+CORE-013
+detect capability gaps
+
+CORE-014
+maintain bounded module blast radius
+
+CORE-015
+demonstrate trading-path independence from LLM availability
+
+
+---
+
+3A.45 — Final 3A Construction Principle
+
+CNS is not being built as a collection of permanently fixed technologies.
+
+It is being built as a stable ecosystem capable of replacing, testing, learning from and improving its own internal mechanisms.
+
+The Runtime therefore provides:
+
+CONTROL
+STATE
+EVENTS
+WORK
+CAPABILITIES
+METHODS
+RESOURCES
+AUTHORITY
+RECOVERY
+PROVENANCE
+REPLAY
+
+while later CNS layers provide:
+
+BRAIN
+AGENTS
+BOTS
+ML
+MEMORY
+RESEARCH
+VERIFICATION
+DECISION
+SELF-IMPROVEMENT
+EXECUTION
+
+The architecture must allow those higher layers to become dramatically more capable without requiring the foundation to be rebuilt.
+
+Core principle
+
+> Build the foundation strong enough that CNS can change what is inside it without losing what CNS is.
+
+
+
+STATUS: CNS LOG 3A — ENGINEERING BASELINE V1.0 — READY TO SAVE.
