@@ -1,0 +1,1953 @@
+Yes bro. Now we have the exact master text, so I can do this properly without reconstructing anything from memory.
+
+I have integrated the proofreading corrections directly into the document below. I have not changed the architecture. This is the version to save.
+
+
+---
+
+CNS — LOG 3G
+
+Financial & Market Operating Fabric
+
+Engineering Construction Specification — V1.1 FINAL
+
+STATUS: FINAL / CHECKED / FROZEN
+
+
+---
+
+0. PURPOSE
+
+3G is the financial operating machinery of CNS.
+
+It converts:
+
+MARKET WORLD
+    ↓
+MARKET DATA
+    ↓
+MARKET STATE
+    ↓
+STRATEGIES / BOTS / ML
+    ↓
+PORTFOLIO
+    ↓
+RISK
+    ↓
+ORDER
+    ↓
+EXECUTION
+    ↓
+ACCOUNTING / FINANCIAL STATE
+    ↓
+OUTCOME
+
+into one coherent, auditable financial operating system.
+
+3G must support:
+
+investing
+
+trading
+
+portfolio management
+
+risk management
+
+market-state operation
+
+backtesting
+
+forward/walk-forward execution environments
+
+replay
+
+simulation
+
+paper trading
+
+live execution
+
+financial accounting
+
+reconciliation
+
+strategy deployment
+
+financial failure isolation and containment
+
+
+3G does not replace 3B, 3C, 3D, 3E or 3F. Those boundaries remain intact.
+
+
+---
+
+1. 3G BOUNDARY
+
+3G owns
+
+Market-data operating contract
+
+Market normalization
+
+Market-state representation
+
+Instrument identity
+
+Corporate-action handling
+
+Strategy runtime boundary
+
+Bot financial operation
+
+Portfolio state
+
+Capital state
+
+Risk controls
+
+Capital/risk reservation
+
+Order lifecycle
+
+Execution lifecycle
+
+Account isolation
+
+Financial ledger
+
+P&L
+
+Costs
+
+Reconciliation
+
+Backtest execution
+
+Forward-test execution
+
+Replay execution
+
+Simulation execution
+
+Paper trading
+
+Live-trading boundary
+
+Financial observability
+
+Financial failure isolation and containment
+
+
+3G does NOT own
+
+Brain reasoning              → 3B
+Work orchestration           → 3C
+Resource lifecycle           → 3D
+Long-term memory             → 3E
+Research verification        → 3F
+Global learning              → 3H
+Security/governance          → 3I
+Final CNS authority          → CNS
+
+
+---
+
+2. CORE FINANCIAL PRINCIPLE
+
+The financial hot path must not depend on an LLM.
+
+LLM unavailable
+LLM wrong
+LLM slow
+LLM replaced
+LLM provider unavailable
+        ↓
+must NOT automatically compromise
+the financial safety path
+
+Critical path:
+
+MARKET DATA
+→ VALIDATION
+→ MARKET STATE
+→ STRATEGY
+→ PORTFOLIO IMPACT
+→ RISK
+→ ORDER VALIDATION
+→ EXECUTION
+→ ACCOUNTING
+→ STATE UPDATE
+
+Intelligence can supervise and improve this process, but financial safety remains independently enforceable.
+
+
+---
+
+3. FINANCIAL STATE
+
+3G maintains a canonical financial state.
+
+FinancialState {
+    account_state
+    cash
+    buying_power
+    margin
+    positions[]
+    pending_orders[]
+    filled_orders[]
+    exposure
+    realized_pnl
+    unrealized_pnl
+    fees
+    taxes
+    financing_cost
+    risk_state
+    strategy_allocations[]
+    portfolio_state
+    provider_state
+    timestamp
+    source_versions[]
+}
+
+Financial state must be reconstructable and reconcilable.
+
+
+---
+
+4. ACCOUNT AND ENVIRONMENT ISOLATION
+
+CNS must never accidentally mix financial environments.
+
+CNS
+ ↓
+Portfolio
+ ↓
+Account
+ ↓
+Execution Provider
+
+Account:
+
+Account {
+    account_id
+    environment
+    provider_id
+    base_currency
+    permissions
+    capital_state
+    positions
+    orders
+    risk_limits
+}
+
+Possible environments:
+
+BACKTEST
+SIMULATION
+REPLAY
+PAPER
+LIVE
+
+They must have hard state boundaries.
+
+A paper account cannot accidentally submit to a live broker.
+
+A backtest position cannot accidentally become a live position.
+
+
+---
+
+5. MARKET DATA FABRIC
+
+External Provider
+      ↓
+Provider Adapter
+      ↓
+Validation
+      ↓
+Normalization
+      ↓
+Timestamp / Sequence Check
+      ↓
+Canonical Market Event
+      ↓
+Market State
+
+3D owns provider resources.
+
+3G defines the financial operating contract required from them.
+
+
+---
+
+6. CANONICAL MARKET EVENT
+
+MarketEvent {
+    instrument_id
+    venue
+    event_type
+    timestamp_event
+    timestamp_received
+    sequence
+    price
+    quantity
+    bid
+    ask
+    bid_size
+    ask_size
+    volume
+    source_id
+    source_version
+    quality_flags[]
+}
+
+Asset classes may require additional fields.
+
+The architecture must not assume every market provides every field.
+
+
+---
+
+7. DATA QUALITY AND FRESHNESS GATE
+
+Valid data is not necessarily fresh data.
+
+Therefore:
+
+RECEIVE
+ ↓
+VALIDATE
+ ↓
+CHECK TIMESTAMP
+ ↓
+CHECK SEQUENCE
+ ↓
+CHECK DUPLICATES
+ ↓
+CHECK RANGE
+ ↓
+CHECK SOURCE HEALTH
+ ↓
+CHECK FRESHNESS
+ ↓
+ACCEPT / RESTRICT / QUARANTINE
+
+States:
+
+FRESH
+DELAYED
+STALE
+INVALID
+UNKNOWN
+
+Example:
+
+10:00 price received
+current time = 10:08
+
+The price may be valid but unsafe for a live decision.
+
+Live execution must have configurable freshness limits.
+
+Freshness thresholds are policy/configuration dependent and may differ between research, paper, and live execution.
+
+
+---
+
+8. INSTRUMENT MASTER
+
+3G maintains a canonical identity for financial instruments.
+
+Instrument {
+    instrument_id
+    asset_class
+    exchange
+    venue
+    symbol
+    security_identifier
+    currency
+    listing_status
+    trading_status
+    metadata_version
+}
+
+This prevents symbol changes and provider-specific identifiers from corrupting financial state.
+
+
+---
+
+9. CORPORATE ACTION AUTHORITY
+
+Corporate actions must be represented explicitly.
+
+Examples:
+
+split
+
+bonus
+
+dividend
+
+rights issue
+
+merger
+
+demerger
+
+delisting
+
+listing
+
+symbol change
+
+conversion
+
+
+Corporate actions affect:
+
+quantity
+
+cost basis
+
+historical price interpretation
+
+P&L
+
+portfolio state
+
+research data
+
+
+Therefore they must be durable financial events, not hidden transformations.
+
+Corporate actions must be timestamped/effective-dated so historical replay uses the action only when it was actually effective/knowable.
+
+
+---
+
+10. RAW VS ADJUSTED DATA
+
+CNS must distinguish:
+
+RAW MARKET DATA
+
+from:
+
+ADJUSTED RESEARCH DATA
+
+and:
+
+ACTUAL EXECUTABLE MARKET DATA
+
+They are not interchangeable.
+
+Historical research may require adjusted prices.
+
+Execution must represent actual tradable conditions.
+
+
+---
+
+11. MARKET STATE
+
+MarketState {
+    prices
+    liquidity
+    volatility
+    volume
+    spreads
+    correlations
+    momentum
+    regime
+    session_state
+    data_quality
+    timestamp
+}
+
+Feature generation can be supplied by qualified resources from 3D.
+
+3G owns the financial state boundary.
+
+
+---
+
+12. MARKET REGIME
+
+3G must support regime-aware operation.
+
+Possible regimes include:
+
+trending
+
+ranging
+
+high volatility
+
+low volatility
+
+crisis
+
+illiquid
+
+unknown
+
+
+These are examples, not permanent CNS classifications.
+
+Regime detection may come from:
+
+deterministic rules
+
+statistical models
+
+ML
+
+other qualified resources
+
+
+
+---
+
+13. STRATEGY CONTRACT
+
+Strategy {
+    strategy_id
+    version
+    market_scope
+    timeframe
+    required_inputs[]
+    signal_definition
+    position_logic
+    exit_logic
+    risk_requirements
+    capital_requirements
+    execution_requirements
+    expected_behavior
+    failure_modes[]
+    validity_conditions[]
+    performance_ref
+    health
+}
+
+A strategy is not merely a buy/sell rule.
+
+It must define its operational assumptions and validity conditions.
+
+
+---
+
+14. BOT FINANCIAL CONTRACT
+
+The initial four bots remain:
+
+BOT-01
+BOT-02
+BOT-03
+BOT-04
+
+They are initial resources, not architecture limits.
+
+A bot can produce:
+
+Signal
+PositionTarget
+OrderIntent
+NoAction
+
+But:
+
+> Signal ≠ Order
+
+
+
+A bot cannot bypass portfolio or risk controls.
+
+
+---
+
+15. SIGNAL → ORDER PIPELINE
+
+SIGNAL
+ ↓
+POSITION INTENT
+ ↓
+PORTFOLIO IMPACT
+ ↓
+RISK
+ ↓
+CAPITAL / RISK RESERVATION
+ ↓
+ORDER INTENT
+ ↓
+ORDER VALIDATION
+ ↓
+EXECUTION
+
+This is a hard financial boundary.
+
+
+---
+
+16. PORTFOLIO ENGINE
+
+Portfolio state includes:
+
+positions
+
+cash
+
+exposure
+
+sector exposure
+
+asset exposure
+
+strategy exposure
+
+correlation
+
+concentration
+
+drawdown
+
+margin
+
+liquidity
+
+capital allocation
+
+
+Portfolio decisions must consider the whole portfolio, not isolated strategy performance.
+
+
+---
+
+17. STRATEGY CONFLICT
+
+Example:
+
+BOT-01 → BUY
+BOT-02 → SELL
+BOT-03 → BUY
+
+3G must combine their financial consequences before execution.
+
+It evaluates:
+
+net exposure
+
+strategy conflict
+
+correlation
+
+capital competition
+
+risk
+
+
+It must not blindly execute every individual strategy independently.
+
+
+---
+
+18. RISK ENGINE
+
+PROPOSED ACTION
+ ↓
+POSITION IMPACT
+ ↓
+PORTFOLIO IMPACT
+ ↓
+RISK LIMITS
+ ↓
+LIQUIDITY
+ ↓
+DRAWDOWN
+ ↓
+CONCENTRATION
+ ↓
+SCENARIO / STRESS
+ ↓
+APPROVE / MODIFY / REDUCE / REJECT
+
+Risk remains independent from strategy preference.
+
+A profitable strategy can still be rejected because the portfolio cannot safely absorb the position.
+
+
+---
+
+19. RISK DIMENSIONS
+
+3G supports:
+
+market risk
+
+liquidity risk
+
+concentration risk
+
+volatility risk
+
+gap risk
+
+execution risk
+
+model risk
+
+strategy risk
+
+correlation risk
+
+counterparty/provider risk
+
+operational risk
+
+tail risk
+
+
+Additional dimensions can be added without changing the architecture.
+
+
+---
+
+20. PRE-TRADE / POST-TRADE / CONTINUOUS RISK
+
+Risk occurs at three stages.
+
+Pre-trade
+
+Should this order be allowed?
+
+Post-trade
+
+What did the actual fill do to the portfolio?
+
+Continuous
+
+Is the portfolio still within acceptable risk after market movement?
+
+Therefore:
+
+PRE-TRADE
+    ↓
+EXECUTION
+    ↓
+POST-TRADE
+    ↓
+CONTINUOUS MONITORING
+
+
+---
+
+21. CAPITAL / RISK RESERVATION
+
+This is mandatory for concurrent strategies.
+
+Example:
+
+Available capital = ₹7 lakh
+
+BOT-01 requests ₹5 lakh
+BOT-02 requests ₹5 lakh
+
+Both cannot independently pass a simple availability check.
+
+3G must atomically reserve resources:
+
+AVAILABLE
+ ↓
+RESERVE
+ ↓
+ORDER
+ ↓
+FILL / CANCEL
+ ↓
+CONSUME OR RELEASE
+
+Reservation may cover:
+
+cash
+
+margin
+
+risk budget
+
+position limit
+
+liquidity budget
+
+
+Reservation must be concurrency-safe.
+
+
+---
+
+22. ORDER INTENT
+
+OrderIntent {
+    intent_id
+    strategy_id
+    instrument_id
+    side
+    quantity
+    order_type
+    price_constraints
+    time_constraints
+    reason_ref
+    risk_result
+    authority_scope
+    idempotency_key
+    timestamp
+}
+
+No execution provider receives an order before required validation.
+
+
+---
+
+23. ORDER VALIDATION
+
+OrderIntent
+ ↓
+Schema validation
+ ↓
+Account validation
+ ↓
+Position validation
+ ↓
+Capital validation
+ ↓
+Risk validation
+ ↓
+Authority validation
+ ↓
+Market condition validation
+ ↓
+Provider validation
+ ↓
+Duplicate check
+ ↓
+Execution
+
+
+---
+
+24. IDEMPOTENCY
+
+Every executable action receives an idempotency key.
+
+same request
++
+same idempotency key
+        ↓
+duplicate detected
+        ↓
+do not blindly execute twice
+
+This protects against:
+
+retries
+
+crashes
+
+network duplication
+
+provider timeout ambiguity
+
+
+
+---
+
+25. ORDER LIFECYCLE
+
+CREATED
+ ↓
+VALIDATING
+ ↓
+APPROVED
+ ↓
+SUBMITTED
+ ↓
+ACKNOWLEDGED
+ ↓
+PARTIALLY_FILLED
+ ↓
+FILLED
+
+Alternative states:
+
+REJECTED
+CANCEL_REQUESTED
+CANCELLED
+EXPIRED
+FAILED
+UNKNOWN
+
+
+---
+
+26. PARTIAL FILL / CANCEL-REPLACE
+
+Execution must track:
+
+filled_quantity
+remaining_quantity
+average_fill_price
+execution_attempt
+cancel_replace_version
+
+Example:
+
+100 shares requested
+ ↓
+40 filled
+ ↓
+60 remaining
+ ↓
+risk state updated
+ ↓
+cancel / replace / continue
+
+A partial fill is a new financial state, not merely an intermediate message.
+
+
+---
+
+27. UNKNOWN EXECUTION STATE
+
+Critical rule:
+
+UNKNOWN
+≠
+FILLED
+≠
+FAILED
+
+If broker/execution-provider response is uncertain:
+
+QUERY PROVIDER
+ ↓
+RECONCILE
+ ↓
+UPDATE CANONICAL STATE
+
+Never blindly retry an unknown order.
+
+
+---
+
+28. EXECUTION RECONCILIATION
+
+INTERNAL STATE
+       ↕
+EXTERNAL PROVIDER
+       ↓
+COMPARE
+       ↓
+MATCH
+OR
+DISCREPANCY
+       ↓
+INVESTIGATE
+       ↓
+CORRECT
+       ↓
+RECORD
+
+This is mandatory for live operation.
+
+
+---
+
+29. FINANCIAL LEDGER / ACCOUNTING AUTHORITY
+
+This is the authoritative record of financial events.
+
+FinancialEvent {
+    event_id
+    account_id
+    instrument_id?
+    event_type
+    quantity?
+    price?
+    amount
+    currency
+    fees[]
+    tax[]
+    source
+    timestamp
+    provenance
+    idempotency_key
+}
+
+Events may include:
+
+trade
+
+fee
+
+tax
+
+dividend
+
+corporate_action
+
+deposit
+
+withdrawal
+
+financing
+
+adjustment
+
+cash movement
+
+
+Financial state is reconstructed from durable financial events and reconciled against external account state; P&L is calculated from financial events together with the applicable valuation/market data and cost records.
+
+
+---
+
+30. P&L
+
+P&L must distinguish:
+
+realized P&L
+
+unrealized P&L
+
+fees
+
+taxes
+
+slippage
+
+financing
+
+other costs
+
+
+Research must support:
+
+gross performance
+
+net performance
+
+
+They must never be silently conflated.
+
+
+---
+
+31. LIQUIDITY AND CAPACITY
+
+The system must distinguish:
+
+THEORETICAL POSITION
+
+from:
+
+EXECUTABLE POSITION
+
+A strategy may theoretically request a large position while actual market liquidity makes that position impractical.
+
+Capacity evaluation considers:
+
+volume
+
+spread
+
+depth
+
+expected impact
+
+order size
+
+market participation
+
+time-to-execute
+
+
+
+---
+
+32. PAPER TRADING
+
+Paper trading should reuse the financial lifecycle wherever possible:
+
+signal
+ → portfolio
+ → risk
+ → order validation
+ → simulated execution
+ → accounting
+ → P&L
+
+The execution backend differs.
+
+
+---
+
+33. BACKTEST
+
+Historical Data
+ ↓
+Replay Clock
+ ↓
+Market State
+ ↓
+Strategy
+ ↓
+Portfolio
+ ↓
+Risk
+ ↓
+Order Simulation
+ ↓
+Accounting
+ ↓
+P&L
+
+3G performs the financial process.
+
+3F evaluates whether the resulting research evidence is trustworthy.
+
+
+---
+
+34. FORWARD / WALK-FORWARD
+
+3G provides the financial execution environment.
+
+3F owns the experimental methodology and acceptance criteria.
+
+Therefore:
+
+3G = execution environment
+3F = research evaluation
+
+
+---
+
+35. REPLAY
+
+Historical replay reconstructs the financial process using a historical information boundary.
+
+historical time
+ ↓
+available market information
+ ↓
+available CNS state
+ ↓
+strategy
+ ↓
+risk
+ ↓
+execution
+ ↓
+outcome
+
+Future information must remain inaccessible.
+
+
+---
+
+36. REPLAY CLOCK
+
+ReplayClock {
+    current_time
+    source_time
+    speed
+    mode
+}
+
+Historical systems must not accidentally use current real-world time as decision information.
+
+
+---
+
+37. SIMULATION
+
+Simulation may alter controlled environmental parameters:
+
+slippage
+
+latency
+
+spread
+
+liquidity
+
+volatility
+
+market gaps
+
+execution failures
+
+provider failures
+
+
+The same financial machinery measures consequences.
+
+
+---
+
+38. RESEARCH → LIVE PROGRESSION
+
+No strategy should jump directly from idea to live capital.
+
+Preferred progression:
+
+IDEA
+ ↓
+RESEARCH
+ ↓
+BACKTEST
+ ↓
+OOS
+ ↓
+WALK-FORWARD
+ ↓
+STRESS
+ ↓
+REPLAY
+ ↓
+PAPER
+ ↓
+CONTROLLED ELIGIBILITY
+ ↓
+CANARY
+ ↓
+LIVE
+
+3F determines whether evidence justifies progression.
+
+3G executes the financial environment.
+
+
+---
+
+39. DEPLOYMENT STATES
+
+RESEARCH
+VALIDATING
+PAPER
+ELIGIBLE
+CANARY
+LIVE
+RESTRICTED
+SUSPENDED
+RETIRED
+
+Promotion is explicit.
+
+No silent promotion.
+
+
+---
+
+40. FINANCIAL SAFE STATES
+
+NORMAL
+DEGRADED
+RESTRICTED
+PAPER_ONLY
+HALTED
+RECONCILIATION_REQUIRED
+EMERGENCY_STOP
+
+A failure in one component should not unnecessarily destroy the whole CNS, but financial safety can force restricted operation.
+
+Safe-state transitions must lead to the configured safe/restricted financial state appropriate to the detected failure and policy.
+
+
+---
+
+41. EMERGENCY STOP
+
+Emergency stop must not depend on sophisticated LLM reasoning.
+
+Possible triggers:
+
+risk breach
+
+unexpected position
+
+provider inconsistency
+
+execution anomaly
+
+data corruption
+
+duplicate-order detection
+
+loss threshold
+
+system integrity failure
+
+human command
+
+
+Result:
+
+transition to the configured safe/restricted financial state
+
+
+---
+
+42. STRATEGY HEALTH
+
+3G measures:
+
+signal frequency
+
+latency
+
+drawdown
+
+error rate
+
+execution quality
+
+slippage
+
+regime behavior
+
+data dependency
+
+recent deviation
+
+
+3H later uses these observations for ecosystem learning and adaptation.
+
+
+---
+
+43. FINANCIAL EVENT STREAM
+
+Important events are durable:
+
+market event
+
+signal
+
+risk decision
+
+order intent
+
+order submission
+
+execution
+
+position change
+
+financial event
+
+P&L change
+
+reconciliation
+
+halt
+
+resume
+
+strategy promotion
+
+strategy suspension
+
+
+3A provides the event infrastructure.
+
+3G defines financial events.
+
+
+---
+
+44. FAILURE / RECOVERY
+
+Provider failure
+
+provider failure
+ ↓
+3D resource health
+ ↓
+alternate qualified provider
+ ↓
+data validation
+ ↓
+resume
+
+If no trustworthy provider exists:
+
+SAFE / RESTRICTED STATE
+
+No guessing.
+
+System crash
+
+restart
+ ↓
+reconstruct durable state
+ ↓
+query external provider
+ ↓
+reconcile
+ ↓
+resume only if reconciliation and safety gates pass
+
+
+---
+
+45. WHOLE-ECOSYSTEM FINANCIAL LOOP
+
+MARKET
+ ↓
+DATA
+ ↓
+STATE
+ ↓
+BOTS / ML / STRATEGIES
+ ↓
+PORTFOLIO
+ ↓
+RISK
+ ↓
+EXECUTION
+ ↓
+ACCOUNTING
+ ↓
+OUTCOME
+ ↓
+3F
+ ↓
+3E
+ ↓
+3H
+ ↓
+BETTER FUTURE OPERATION
+
+This is the financial part of the CNS learning organism.
+
+
+---
+
+46. CROSS-LAYER INTEGRATION CONTRACTS
+
+3B → 3G
+
+3B may reason about an opportunity.
+
+3G determines:
+
+position
+
+capital
+
+exposure
+
+risk
+
+execution feasibility
+
+
+3C → 3G
+
+3C organizes work.
+
+3G enforces financial operating constraints.
+
+3D → 3G
+
+3D provides qualified:
+
+bots
+
+ML
+
+data providers
+
+execution providers
+
+engines
+
+tools
+
+
+3G defines how they participate financially.
+
+3E ↔ 3G
+
+3G produces real financial experience.
+
+3E preserves validated long-term experience.
+
+3F ↔ 3G
+
+3G produces financial results.
+
+3F evaluates their evidentiary meaning.
+
+Neither replaces the other.
+
+
+---
+
+47. FINANCIAL HARD INVARIANTS
+
+These are condensed from the previous draft.
+
+1. No valid risk state → no live order.
+
+
+2. Untrusted or stale market data → no blind live execution.
+
+
+3. Unknown execution state → reconcile before assumption or retry.
+
+
+4. No required authority → no execution.
+
+
+5. Internal financial state must be reconcilable with provider state.
+
+
+6. No bot/model/agent/LLM may bypass financial safety controls.
+
+
+7. Financial environments must remain isolated.
+
+
+8. Duplicate execution must be prevented through idempotency.
+
+
+9. Capital/risk reservation must be atomic under concurrency.
+
+
+10. Financial events must be durable enough to reconstruct state.
+
+
+
+
+---
+
+48. IMPLEMENTATION SHAPE
+
+We do not need dozens of microservices.
+
+Logical modules:
+
+financial/
+    market/
+    instruments/
+    corporate_actions/
+    features/
+    regime/
+    strategy/
+    portfolio/
+    capital/
+    risk/
+    orders/
+    execution/
+    accounting/
+    reconciliation/
+    pnl/
+    simulation/
+    backtest/
+    replay/
+    paper/
+    deployment/
+
+These are logical boundaries.
+
+They do not automatically become separate processes.
+
+
+---
+
+49. CORE INTERFACES
+
+trait MarketDataEngine {
+    subscribe(...)
+    receive(...)
+    validate(...)
+    normalize(...)
+    state(...)
+}
+
+trait StrategyRuntime {
+    evaluate(...)
+    signal(...)
+    position_target(...)
+    health(...)
+}
+
+trait PortfolioEngine {
+    state(...)
+    exposure(...)
+    allocation(...)
+    impact(...)
+}
+
+trait RiskEngine {
+    evaluate(...)
+    limits(...)
+    reserve_capacity(...)
+    approve(...)
+    reject(...)
+}
+
+trait ExecutionEngine {
+    validate(...)
+    submit(...)
+    cancel(...)
+    replace(...)
+    reconcile(...)
+    status(...)
+}
+
+trait FinancialLedger {
+    append(...)
+    query(...)
+    reconcile(...)
+    reconstruct(...)
+}
+
+trait FinancialSimulation {
+    run_backtest(...)
+    run_forward(...)
+    run_replay(...)
+    run_simulation(...)
+    run_paper(...)
+}
+
+
+---
+
+50. ACCEPTANCE TESTS
+
+3G must pass at minimum:
+
+FIN-001   ingest market event
+FIN-002   reject malformed data
+FIN-003   normalize providers
+FIN-004   detect duplicate event
+FIN-005   maintain market state
+FIN-006   maintain regime state
+FIN-007   maintain instrument identity
+FIN-008   process corporate action
+FIN-009   distinguish raw/adjusted/executable data
+FIN-010   detect stale data
+FIN-011   execute strategy contract
+FIN-012   separate signal from order
+FIN-013   calculate portfolio exposure
+FIN-014   resolve conflicting strategy exposure
+FIN-015   apply pre-trade risk
+FIN-016   apply post-trade risk
+FIN-017   apply continuous risk
+FIN-018   reserve capital atomically
+FIN-019   reserve risk atomically
+FIN-020   reject invalid order
+FIN-021   generate idempotent order
+FIN-022   prevent duplicate order
+FIN-023   maintain order lifecycle
+FIN-024   handle partial fill
+FIN-025   handle cancel/replace
+FIN-026   reconcile unknown execution
+FIN-027   maintain position state
+FIN-028   maintain financial ledger
+FIN-029   calculate realized P&L
+FIN-030   calculate unrealized P&L
+FIN-031   include costs
+FIN-032   isolate accounts
+FIN-033   isolate paper/live environments
+FIN-034   execute paper mode
+FIN-035   execute replay
+FIN-036   execute backtest
+FIN-037   execute forward test
+FIN-038   execute simulation
+FIN-039   preserve historical clock
+FIN-040   prevent future-data access
+FIN-041   handle provider failure
+FIN-042   switch qualified provider
+FIN-043   enter safe financial state
+FIN-044   execute emergency stop
+FIN-045   reconcile internal/external state
+FIN-046   prevent unauthorized live execution
+FIN-047   prevent strategy bypass of risk
+FIN-048   support strategy suspension
+FIN-049   support controlled promotion
+FIN-050   record financial events
+FIN-051   recover state after crash
+FIN-052   expose expected-vs-actual financial outcome data for 3F evaluation
+FIN-053   expose outcomes to 3F
+FIN-054   preserve experience inputs for 3E
+FIN-055   support multiple bots
+FIN-056   maintain portfolio-level risk
+FIN-057   operate safely without LLM
+FIN-058   isolate failure of a non-critical resource
+
+
+---
+
+51. PERFORMANCE MEASURES
+
+3G itself must be measurable.
+
+market-data latency
+
+data freshness
+
+data error rate
+
+strategy latency
+
+risk evaluation latency
+
+order validation latency
+
+execution latency
+
+slippage
+
+fill quality
+
+reconciliation accuracy
+
+duplicate-order rate
+
+financial-state accuracy
+
+P&L accuracy
+
+capital utilization
+
+risk utilization
+
+portfolio drawdown
+
+strategy capacity
+
+system availability
+
+recovery time
+
+
+
+---
+
+52. EXPLICIT NON-ASSUMPTIONS
+
+3G does not assume:
+
+more data = better trading
+
+more bots = better portfolio
+
+more strategies = better returns
+
+highest backtest return = best strategy
+
+backtest = proof
+
+paper = live
+
+one broker = permanent
+
+one data provider = permanent
+
+LLM = execution authority
+
+signal = order
+
+profit = correct process
+
+historical regime = future regime
+
+high confidence = certainty
+
+more complexity = better system
+
+microservices = better architecture
+
+
+
+---
+
+53. FINAL 3G ARCHITECTURE
+
+MARKET WORLD
+                              │
+                              ▼
+                        MARKET DATA
+                              │
+                              ▼
+                  DATA QUALITY / FRESHNESS
+                              │
+                              ▼
+              INSTRUMENT / CORPORATE ACTION
+                              │
+                              ▼
+                         MARKET STATE
+                              │
+                              ▼
+                   STRATEGIES / BOTS / ML
+                              │
+                              ▼
+                       POSITION INTENT
+                              │
+                              ▼
+                          PORTFOLIO
+                              │
+                              ▼
+                     CAPITAL RESERVATION
+                              │
+                              ▼
+                            RISK
+                              │
+                              ▼
+                       ORDER INTENT
+                              │
+                              ▼
+                     ORDER VALIDATION
+                              │
+                              ▼
+                         EXECUTION
+                              │
+                   ┌──────────┴──────────┐
+                   ▼                     ▼
+             PROVIDER STATE           LEDGER
+                   │                     │
+                   └──────────┬──────────┘
+                              ▼
+                       RECONCILIATION
+                              │
+                              ▼
+                       FINANCIAL STATE
+                              │
+                              ▼
+                             P&L
+                              │
+                              ▼
+                           OUTCOME
+                              │
+                    ┌─────────┴─────────┐
+                    ▼                   ▼
+                   3F                  3E
+             verification          experience
+
+
+---
+
+54. FINAL CHECKER ATTACK
+
+I attacked V1.1 specifically for the dangerous failure modes.
+
+Can a bot bypass risk?
+
+No.
+
+Can two bots overspend available capital?
+
+Atomic reservation prevents it.
+
+Can broker state silently diverge from CNS?
+
+Reconciliation is mandatory.
+
+Can duplicate orders happen after retry?
+
+Idempotency + reconciliation.
+
+Can stale data trigger live execution?
+
+Freshness gate.
+
+Can corporate actions corrupt historical research?
+
+Instrument/corporate-action authority plus effective dating.
+
+Can paper state leak into live?
+
+Account/environment isolation.
+
+Can partial fills create incorrect portfolio state?
+
+Explicit partial-fill state + reconciliation.
+
+Can 3G become another research system?
+
+No. 3F owns evaluation.
+
+Can 3G become another resource manager?
+
+No. 3D owns resources.
+
+Can 3G become another brain?
+
+No. 3B owns cognition.
+
+Can an LLM become a single point of financial failure?
+
+No.
+
+Did we create another unnecessary log?
+
+No.
+
+Did we leave obvious financial-operating machinery outside 3G?
+
+No material gap found.
+
+
+---
+
+🟢 FINAL MANAGER DECISION
+
+3G V1.1 — FINAL / CHECKED / FROZEN
+
+This is the corrected master version to save.
+
+The corrections were genuinely necessary, especially:
+
+Financial Ledger
+
+Instrument / Corporate Actions
+
+Account Isolation
+
+Atomic Capital Reservation
+
+Stale-Data Protection
+
+Partial-Fill Mechanics
+
+Post-Trade / Continuous Risk
+
+Liquidity / Capacity
+
+Effective-dated corporate actions
+
+Financial-state reconstruction/reconciliation
+
+Crash-recovery safety gate
+
+
+And I deliberately did not add new logs for these. They belong inside 3G.
+
+So our frozen construction line is now:
+
+1    Constitution                         ✅
+2    Capability Intelligence              ✅
+3A   Foundation / Runtime                 ✅
+3B   Brain / Cognition                    ✅
+3C   Work / Orchestration                 ✅
+3D   Resource Fabric                      ✅
+3E   Memory / Experience                  ✅
+3F   Verification / Research / Decision   ✅
+3G   Financial / Market Operating         ✅
+
+Next genuine boundary: 3H — Learning / Adaptation / Health / Recovery
+
+3G is now the corrected master. Save this one, bro.
