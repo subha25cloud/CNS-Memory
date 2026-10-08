@@ -1,0 +1,1606 @@
+CNS — LOG 3I
+
+Security, Governance, Human Control & Final Integration Fabric
+
+Engineering Construction Specification — V1.1 FINAL
+
+Status: FINAL / CHECKED / RECTIFIED / FROZEN
+
+
+---
+
+0. Authority and Boundary
+
+Log 1 remains the constitutional authority.
+
+Log 2 remains the capability and mechanism research authority.
+
+Logs 3A–3H remain the detailed engineering authorities for their respective domains.
+
+3I owns:
+
+Security
+
+Governance
+
+Human control
+
+Authority enforcement
+
+Security monitoring and incident handling
+
+Cross-layer integration
+
+System-wide invariants
+
+Final integration/release gates
+
+
+3I does not become a second CNS brain, universal verifier, or replacement for another engineering volume.
+
+The purpose of 3I is to ensure that independently constructed CNS subsystems can operate together without violating security, authority, safety, governance, or system-wide invariants.
+
+
+---
+
+1. 3I Responsibilities
+
+3I is responsible for:
+
+1. Identity and authentication
+
+
+2. Authorization
+
+
+3. Least-authority enforcement
+
+
+4. Scoped capability and action authority
+
+
+5. Human approval and control
+
+
+6. Emergency human control
+
+
+7. Governance policies
+
+
+8. Versioned and testable governance rules
+
+
+9. Context-aware authority decisions
+
+
+10. Sensitive-data protection
+
+
+11. Secret management
+
+
+12. Data-flow control
+
+
+13. Tool security
+
+
+14. Model security
+
+
+15. Plugin/extension security
+
+
+16. Resource security
+
+
+17. Isolation and sandboxing
+
+
+18. Blast-radius control
+
+
+19. Security monitoring
+
+
+20. Security events and incidents
+
+
+21. Governance audit
+
+
+22. Security provenance
+
+
+23. Change authority
+
+
+24. Deployment governance
+
+
+25. Extension/plugin qualification
+
+
+26. Cross-layer integration checking
+
+
+27. System-wide invariant checking
+
+
+28. Final integration acceptance
+
+
+29. Release/deployment gates
+
+
+30. Emergency security controls
+
+
+
+3I governs how the ecosystem interacts safely.
+
+It does not own every mechanism inside the ecosystem.
+
+
+---
+
+2. Explicit Non-Responsibilities
+
+3I does not replace the responsibilities of other CNS volumes.
+
+3A
+
+Owns:
+
+runtime foundation
+
+core contracts
+
+events
+
+persistence
+
+synchronization
+
+authoritative state
+
+runtime lifecycle
+
+
+3B
+
+Owns:
+
+cognition
+
+cognitive state
+
+reasoning
+
+hypothesis generation
+
+investigation
+
+prediction
+
+cognitive branching
+
+self-model
+
+
+3C
+
+Owns:
+
+work decomposition
+
+work graph
+
+scheduling
+
+dependencies
+
+workers
+
+supervision
+
+replanning
+
+orchestration
+
+
+3D
+
+Owns:
+
+resource registry
+
+resource qualification
+
+resource lifecycle
+
+resource health
+
+resource replacement
+
+
+3E
+
+Owns:
+
+memory
+
+experience
+
+historical knowledge
+
+temporal memory
+
+retrieval
+
+consolidation
+
+memory provenance
+
+
+3F
+
+Owns:
+
+research
+
+evidence verification
+
+adversarial evaluation
+
+decision evaluation
+
+confidence/calibration
+
+decision-readiness
+
+
+3G
+
+Owns:
+
+learning
+
+adaptation
+
+controlled self-improvement
+
+recovery learning
+
+champion/challenger
+
+adaptation validation
+
+
+3I
+
+3I governs security, authority and safe interaction between all of them.
+
+
+---
+
+3. Corrected Integration Ownership
+
+A critical correction has been made here.
+
+3I must not become the universal authority that declares every subsystem internally correct.
+
+Each subsystem must validate its own mechanisms.
+
+The architecture is:
+
+LOCAL VALIDATION
+
+3A validates runtime/contracts
+        ↓
+3B validates cognition
+        ↓
+3C validates work/orchestration
+        ↓
+3D validates resources
+        ↓
+3E validates memory
+        ↓
+3F validates verification/research
+        ↓
+3G validates learning/adaptation
+
+        ↓
+
+3I CROSS-LAYER INTEGRATION
+
+        ↓
+
+Check:
+
+Authority boundaries
+Data-flow boundaries
+State ownership
+Event consistency
+Failure isolation
+Security invariants
+Financial boundary
+Human-control boundary
+Version compatibility
+Deployment compatibility
+
+        ↓
+
+ACCEPT / REJECT / OPEN
+
+Therefore:
+
+> Subsystems prove their local correctness. 3I checks whether they operate safely together.
+
+
+
+3I owns integration correctness, not the internal correctness of every subsystem.
+
+
+---
+
+4. Security Architecture
+
+Security is a capability composed of multiple mechanisms and resources, not one security model.
+
+Possible security resources include:
+
+static analysis
+
+dependency analysis
+
+vulnerability intelligence
+
+runtime monitoring
+
+authorization
+
+audit controls
+
+security workflows
+
+security scanners
+
+specialized security reasoning resources
+
+configuration integrity checks
+
+filesystem/code integrity checks
+
+network/security monitoring
+
+
+No single Security LLM is the whole security system.
+
+Security mechanisms include:
+
+identity
+
+authentication
+
+authorization
+
+least privilege
+
+authority levels
+
+scoped permissions
+
+context-bound authority
+
+prompt/instruction integrity
+
+prompt-injection resistance
+
+tool authorization
+
+model/resource isolation
+
+data classification
+
+data-flow control
+
+secret management
+
+secret leak prevention
+
+memory security
+
+user/account isolation
+
+environment isolation
+
+sandboxing
+
+blast-radius control
+
+plugin/extension security
+
+supply-chain trust
+
+dependency trust
+
+composed-authority analysis
+
+privilege-escalation detection
+
+
+
+---
+
+5. Authority Model
+
+Authority must be explicit and scoped.
+
+No:
+
+model
+
+agent
+
+bot
+
+tool
+
+plugin
+
+resource
+
+external service
+
+
+may grant itself authority.
+
+A conceptual authority structure is:
+
+AuthorityContext {
+    principal
+    role
+    scopes[]
+    work_id
+    task_id
+    purpose
+    expiry
+    policy_version
+}
+
+Authority evaluation:
+
+validate(
+    action,
+    context,
+    resource,
+    state
+)
+        ↓
+ALLOW
+DENY
+ESCALATE
+
+Authority should consider:
+
+who is requesting
+
+what they are requesting
+
+why
+
+which task it belongs to
+
+what resource is being used
+
+what data is involved
+
+what side effects exist
+
+current system state
+
+applicable policy
+
+authority scope
+
+expiry
+
+consequence
+
+
+
+---
+
+6. Human Control
+
+Human authority remains fundamental.
+
+However, human control must be technically meaningful rather than merely a button saying “approve.”
+
+For actions exceeding configured autonomous authority:
+
+ACTION REQUEST
+      ↓
+AUTHORITY CHECK
+      ↓
+INSUFFICIENT AUTHORITY
+      ↓
+HUMAN ESCALATION
+      ↓
+HUMAN DECISION
+      ↓
+AUTHORITY VALIDATION
+      ↓
+ACTION / DENIAL
+
+An escalation should contain:
+
+Escalation {
+    reason
+    blocked_action
+    evidence_refs[]
+    uncertainty
+    policy_rule
+    alternatives[]
+    recommended_next_step
+    expiry
+}
+
+The human should understand:
+
+what CNS wants to do
+
+why
+
+what evidence supports it
+
+what uncertainty exists
+
+what alternatives exist
+
+what happens if nothing is done
+
+what authority is required
+
+
+Critical boundary
+
+> Human authority is highest within the permitted operational boundary, but a human command does not authorize violation of immutable CNS safety/security constraints.
+
+
+
+This prevents the dangerous interpretation that:
+
+> “Human authority means the user can bypass everything.”
+
+
+
+They cannot.
+
+
+---
+
+7. Financial Boundary
+
+3I and 3G have deliberately separate responsibilities.
+
+3I owns:
+
+security
+
+authorization
+
+identity
+
+permission
+
+data protection
+
+security blocking
+
+authority around financial operations
+
+
+3G owns:
+
+financial safety
+
+financial state
+
+risk controls
+
+order validation
+
+execution
+
+reconciliation
+
+financial failure handling
+
+
+Therefore:
+
+3I
+SECURITY + AUTHORITY
+       ↓
+3G
+FINANCIAL SAFETY + EXECUTION
+
+3I cannot replace 3G financial mechanisms.
+
+3G cannot bypass 3I security and authority controls.
+
+
+---
+
+8. Security Failure Isolation and Containment
+
+This is another important correction.
+
+A security failure must not automatically mean that the entire CNS shuts down.
+
+First determine:
+
+what failed
+
+where it failed
+
+what authority was exposed
+
+what data was exposed
+
+what resources were affected
+
+what dependencies exist
+
+what the blast radius is
+
+
+The preferred response is:
+
+DETECT
+  ↓
+CLASSIFY
+  ↓
+DETERMINE BLAST RADIUS
+  ↓
+ISOLATE AFFECTED RESOURCE / BOUNDARY
+  ↓
+PRESERVE EVIDENCE
+  ↓
+REVOKE / REDUCE AUTHORITY IF REQUIRED
+  ↓
+CONTINUE SAFE UNRELATED OPERATION WHEN POSSIBLE
+  ↓
+RECOVER / PATCH / REPLACE
+  ↓
+VERIFY
+  ↓
+RESTORE AUTHORITY
+
+This follows the CNS constitutional principle:
+
+> Protection without paralysis.
+
+
+
+However, if a critical security or safety invariant is compromised:
+
+CRITICAL INVARIANT COMPROMISED
+        ↓
+SAFE STATE
+        ↓
+FAIL-CLOSED WHERE REQUIRED
+        ↓
+HUMAN ESCALATION WHERE REQUIRED
+
+The system therefore does not:
+
+blindly continue, or
+
+unnecessarily destroy the entire ecosystem.
+
+
+It contains the problem according to its actual blast radius.
+
+
+---
+
+9. Security Observability and Provenance
+
+Security-sensitive operations must be observable and attributable.
+
+Relevant information includes:
+
+operation start
+
+operation completion
+
+principal
+
+authority context
+
+resource
+
+resource version
+
+input references
+
+version references
+
+policy version
+
+execution metrics
+
+outputs
+
+evidence references
+
+verification result
+
+state transition
+
+retries
+
+failures
+
+human interventions
+
+stale-data events
+
+security events
+
+incident identifiers
+
+authority changes
+
+deployment decisions
+
+
+Important security events must become durable CNS evidence according to the applicable event/state contracts.
+
+
+---
+
+10. Plugin / Extension Security
+
+A plugin or extension is a controlled resource/provider mechanism.
+
+It is not another CNS brain.
+
+Extension path:
+
+EXTENSION
+   ↓
+REGISTER
+   ↓
+CONTRACT VALIDATION
+   ↓
+CAPABILITY VALIDATION
+   ↓
+SECURITY / AUTHORITY CHECK
+   ↓
+HEALTH
+   ↓
+BENCHMARK
+   ↓
+ACTIVATE
+   ↓
+MONITOR
+   ↓
+DISABLE / REPLACE
+
+A plugin cannot acquire additional authority merely by declaring additional capabilities.
+
+Authority must be independently granted by CNS policy.
+
+
+---
+
+11. Model and Tool Security
+
+Models are resources.
+
+Their outputs are not automatically trusted.
+
+Therefore:
+
+MODEL OUTPUT
+     ↓
+INTERPRET
+     ↓
+VALIDATE
+     ↓
+AUTHORIZE IF ACTION REQUIRED
+     ↓
+EXECUTE
+
+Important rules:
+
+model output cannot redefine CNS policy
+
+prompts cannot silently redefine authority
+
+external instructions cannot elevate privilege
+
+tool calls require independent authorization
+
+tool side effects must obey their contract
+
+sensitive information is exposed only when permitted
+
+model reasoning cannot directly deploy privileged changes
+
+changing the model must not change CNS authority
+
+
+
+---
+
+12. Prompt / Instruction Integrity
+
+CNS must distinguish between:
+
+SYSTEM / CONSTITUTIONAL POLICY
+        ↓
+GOVERNANCE POLICY
+        ↓
+AUTHORIZED TASK
+        ↓
+RESOURCE INSTRUCTIONS
+        ↓
+UNTRUSTED EXTERNAL CONTENT
+
+External content can provide information.
+
+It cannot automatically become authority.
+
+Examples include:
+
+web pages
+
+documents
+
+emails
+
+market reports
+
+tool output
+
+retrieved memory
+
+model-generated text
+
+plugin output
+
+
+A malicious instruction embedded inside such content must not silently become a CNS command.
+
+
+---
+
+13. Data Classification and Flow Control
+
+Data should be classified according to sensitivity and permitted use.
+
+Conceptually:
+
+DATA
+ ↓
+CLASSIFY
+ ↓
+CHECK PURPOSE
+ ↓
+CHECK AUTHORITY
+ ↓
+CHECK DESTINATION
+ ↓
+ALLOW / TRANSFORM / DENY
+
+This applies to:
+
+user data
+
+financial information
+
+credentials
+
+secrets
+
+memory
+
+provider information
+
+proprietary research
+
+model prompts
+
+tool outputs
+
+logs
+
+security evidence
+
+
+
+---
+
+14. Change and Deployment Governance
+
+CNS must not allow a reasoning resource to modify itself directly in production.
+
+Change authority remains controlled.
+
+Relevant relationship:
+
+3G
+LEARNING / ADAPTATION
+       ↓
+PROPOSED CHANGE
+       ↓
+3F WHERE RESEARCH / VERIFICATION IS REQUIRED
+       ↓
+3I SECURITY + AUTHORITY + DEPLOYMENT GOVERNANCE
+       ↓
+CONTROLLED DEPLOYMENT
+
+Deployment flow:
+
+NEW VERSION
+      ↓
+CONTROLLED EXPOSURE
+      ↓
+COMPARE
+      ↓
+SAFETY / AUTHORITY / PERFORMANCE CHECK
+      ↓
+EXPAND / HOLD / ROLLBACK
+
+A failed candidate cannot silently become the active implementation.
+
+
+---
+
+15. Deployment Classes
+
+RESEARCH
+
+Untrusted experimentation.
+
+No production authority.
+
+SHADOW
+
+Observe behavior without meaningful side effects.
+
+CANARY
+
+Controlled exposure.
+
+Strict monitoring.
+
+Limited authority.
+
+Rollback available.
+
+PRODUCTION
+
+Approved operational version.
+
+Continuous monitoring.
+
+CRITICAL TRADING
+
+Strictest environment.
+
+Deterministic safeguards.
+
+Financial safety controls.
+
+Execution-state reconciliation.
+
+No dependency on LLM correctness or availability.
+
+
+---
+
+16. Cross-Layer Integration Contract
+
+3I must verify system-wide invariants.
+
+Authority
+
+No subsystem can silently acquire another subsystem's authority.
+
+State
+
+Authoritative state must have a defined owner.
+
+Security
+
+Security-sensitive state changes must be attributable and auditable.
+
+Data
+
+Data crossing trust boundaries must be classified and policy-checked.
+
+Financial safety
+
+Financial safety controls cannot be bypassed through intelligence resources.
+
+LLM independence
+
+LLM/model availability cannot become a hidden dependency of the critical trading safety path.
+
+Provider replacement
+
+Replacing a resource/provider cannot silently change:
+
+authority
+
+historical truth
+
+governance
+
+safety constraints
+
+
+Failure isolation
+
+Failure in one resource must not silently corrupt unrelated resources.
+
+Version compatibility
+
+Incompatible versions must be detected before activation.
+
+Human approval
+
+Human approval must be:
+
+authentic
+
+attributable
+
+policy-valid
+
+applicable to the requested action
+
+within its validity period
+
+
+Security evidence
+
+Security incidents must preserve sufficient evidence for investigation and learning.
+
+Event integrity
+
+Required cross-layer events must remain replayable/reconcilable where applicable.
+
+
+---
+
+17. Cross-Layer Integration Process
+
+The integration process is:
+
+LOCAL CONTRACT / UNIT VALIDATION
+        ↓
+INTEGRATION TEST
+        ↓
+FAILURE DRILL
+        ↓
+SECURITY TEST
+        ↓
+AUTHORITY TEST
+        ↓
+PERFORMANCE TEST
+        ↓
+REPLAY / REPRODUCIBILITY
+        ↓
+CROSS-LAYER INVARIANT CHECK
+        ↓
+CANARY WHERE APPLICABLE
+        ↓
+ACCEPT / REJECT / OPEN
+
+OPEN
+
+means:
+
+> Evidence is insufficient.
+
+
+
+It does not mean:
+
+> “We don't know, but deploy anyway.”
+
+
+
+
+---
+
+18. Failure and Incident Response
+
+Security incident response:
+
+DETECT
+ ↓
+CLASSIFY
+ ↓
+CONTAIN
+ ↓
+PRESERVE EVIDENCE
+ ↓
+REVOKE / REDUCE AUTHORITY
+ ↓
+RECOVER / REPLACE
+ ↓
+VERIFY
+ ↓
+RESTORE
+ ↓
+RECORD LESSON
+
+Recovery execution remains owned by the responsible subsystem.
+
+3I governs the security and authority conditions surrounding recovery.
+
+3I does not steal recovery ownership from the responsible subsystem.
+
+The result is also available for learning through the appropriate 3G mechanisms.
+
+
+---
+
+19. Acceptance Tests — INT-001 to INT-042
+
+INT-001
+
+Protected operations require authentication.
+
+INT-002
+
+Unauthorized actions are denied.
+
+INT-003
+
+Insufficient authority escalates rather than silently executing.
+
+INT-004
+
+A worker cannot grant itself authority.
+
+INT-005
+
+Model output cannot override policy.
+
+INT-006
+
+Tool calls require independent authorization.
+
+INT-007
+
+Prompt injection cannot redefine authority.
+
+INT-008
+
+Secret exposure is blocked by data-flow policy.
+
+INT-009
+
+Sensitive memory access respects scope.
+
+INT-010
+
+User/account isolation is enforced.
+
+INT-011
+
+Environment isolation prevents cross-environment contamination.
+
+INT-012
+
+An invalid plugin contract is rejected.
+
+INT-013
+
+An unauthorized plugin capability claim is rejected.
+
+INT-014
+
+An extension cannot escalate privilege after activation.
+
+INT-015
+
+Security/dependency failure produces appropriate quarantine.
+
+INT-016
+
+Security events are durably attributable.
+
+INT-017
+
+The audit trail survives restart.
+
+INT-018
+
+Human approval is attributable and policy-valid.
+
+INT-019
+
+Expired approval is rejected.
+
+INT-020
+
+Duplicate/fake approval cannot authorize another action.
+
+INT-021
+
+Emergency stop blocks applicable side effects.
+
+INT-022
+
+Security incidents preserve evidence.
+
+INT-023
+
+An affected resource can be isolated without unnecessary ecosystem shutdown.
+
+INT-024
+
+Critical invariant compromise enters a safe state.
+
+INT-025
+
+Unaffected safe operations can continue after a localized security failure when appropriate.
+
+INT-026
+
+Financial action cannot bypass 3G financial safety controls.
+
+INT-027
+
+A 3I security block cannot corrupt 3G financial state.
+
+INT-028
+
+Model-provider replacement preserves authority policy.
+
+INT-029
+
+Resource replacement preserves security classification.
+
+INT-030
+
+Version-incompatible components are blocked before activation.
+
+INT-031
+
+Cross-layer state-ownership conflicts are detected.
+
+INT-032
+
+Unauthorized state mutation is detected.
+
+INT-033
+
+Event/replay inconsistency is detected.
+
+INT-034
+
+Failure in one subsystem does not silently grant authority elsewhere.
+
+INT-035
+
+Composed permissions are evaluated for privilege escalation.
+
+INT-036
+
+A deployment candidate cannot skip a required security gate.
+
+INT-037
+
+Rollback revokes candidate authority where required.
+
+INT-038
+
+Canary expansion requires safety, authority and performance checks.
+
+INT-039
+
+Local subsystem validation remains distinct from 3I integration acceptance.
+
+INT-040
+
+Cross-layer integration failure returns REJECT or OPEN, never silent success.
+
+INT-041
+
+Full-system integration preserves human-control invariants.
+
+INT-042
+
+The final integration gate is reproducible, auditable and versioned.
+
+
+---
+
+20. Security and Integration Metrics
+
+3I should measure at least:
+
+unauthorized-action block rate
+
+false-denial rate
+
+privilege-escalation detection rate
+
+security detection latency
+
+containment latency
+
+blast-radius size
+
+audit completeness
+
+approval validity
+
+policy evaluation latency
+
+integration failure detection rate
+
+cross-layer invariant coverage
+
+rollback success rate
+
+security regression rate
+
+availability of safe unrelated operations during localized incidents
+
+
+Metrics are used to improve the system rather than to create a meaningless single “security score.”
+
+
+---
+
+21. Implementation Shape
+
+3I should be implemented as a governed security/authority/integration layer over the existing CNS contracts.
+
+It should not replace those contracts.
+
+Conceptual interfaces include:
+
+Identity
+Authentication
+Authorization
+AuthorityContext
+PolicyEvaluation
+ApprovalValidation
+SecurityEvent
+IncidentLifecycle
+ExtensionQualification
+IntegrationCheck
+DeploymentGate
+EmergencyControl
+
+Each interface should remain replaceable behind stable CNS contracts.
+
+Implementation must preserve:
+
+STABLE OUTSIDE
+FLEXIBLE INSIDE
+
+
+---
+
+22. Cross-Log Boundary Map
+
+3A
+
+Provides runtime/state/event substrate.
+
+3I governs security and authority around it.
+
+3B
+
+Provides cognition.
+
+3I ensures reasoning resources cannot self-authorize.
+
+3C
+
+Provides work control.
+
+3I checks worker authority and trust-boundary crossings.
+
+3D
+
+Owns resource lifecycle.
+
+3I governs security qualification and authority.
+
+3E
+
+Owns memory.
+
+3I protects access, provenance and sensitive-data boundaries.
+
+3F
+
+Owns verification/research.
+
+3I governs security and integration constraints surrounding deployment.
+
+3G
+
+Owns learning/adaptation/recovery learning.
+
+3I governs security and change authority.
+
+Financial operating layer
+
+Owns financial safety and execution.
+
+3I owns security/authorization surrounding those operations.
+
+
+---
+
+23. Explicit Non-Assumptions
+
+3I does not assume:
+
+3I is a universal verifier.
+
+3I is a second brain.
+
+Security is one Security LLM.
+
+Human control means unrestricted bypass of immutable safety/security constraints.
+
+Every security incident requires whole-system shutdown.
+
+More security components automatically mean better security.
+
+A plugin is trusted merely because it is installed.
+
+Local tests prove cross-layer correctness.
+
+Cross-layer acceptance replaces subsystem acceptance.
+
+Security policy can be safely hard-coded forever.
+
+Every security decision requires an LLM.
+
+Every security event requires human intervention.
+
+Every failure should trigger a global restart.
+
+
+Deterministic controls remain preferred where sufficient.
+
+
+---
+
+24. Final Architecture Statement
+
+CNS remains one coherent governing ecosystem.
+
+3I protects its boundaries, governs authority, protects people/data/resources, handles security governance, preserves human control, and checks that independently validated subsystems can operate together without violating system-wide invariants.
+
+The corrected core principle is:
+
+> SUBSYSTEMS OWN THEIR MECHANISMS.
+3I GOVERNS THEIR SAFE INTERACTION.
+
+
+
+This preserves:
+
+modular ownership
+
+authority isolation
+
+security
+
+human control
+
+financial safety
+
+replaceability
+
+failure containment
+
+future expansion
+
+whole-system integration
+
+
+without turning 3I into a hidden second CNS.
+
+
+---
+
+25. Final Checker Result
+
+The previous 3I builder version contained a real boundary weakness:
+
+> Its “final integration” responsibility could be interpreted as making 3I the universal correctness authority for every subsystem.
+
+
+
+That was corrected.
+
+The corrected version explicitly establishes:
+
+LOCAL CORRECTNESS
+       ↓
+OWNED BY EACH SUBSYSTEM
+       ↓
+3I
+       ↓
+CROSS-LAYER SAFETY / AUTHORITY / SECURITY / INTEGRATION
+       ↓
+FINAL INTEGRATION GATE
+
+A second issue was clarified:
+
+SECURITY FAILURE
+≠
+AUTOMATIC TOTAL CNS SHUTDOWN
+
+Instead:
+
+DETECT
+→ CLASSIFY
+→ CONTAIN
+→ PRESERVE EVIDENCE
+→ RECOVER
+→ VERIFY
+→ RESTORE
+
+unless a critical invariant requires a safe/failed-closed state.
+
+A third issue was clarified:
+
+HUMAN AUTHORITY
+≠
+UNRESTRICTED SAFETY BYPASS
+
+Human authority remains fundamental, but immutable safety/security boundaries remain enforced.
+
+
+---
+
+26. Status
+
+CNS LOG 3I V1.1 — FINAL / CHECKED / RECTIFIED / FROZEN
+
+Checker conclusion:
+
+Material issue found in previous 3I boundary definition: YES
+
+Correction required: YES
+
+Correction integrated: YES
+
+Original CNS architecture broken: NO
+
+New subsystem required: NO
+
+3J required: NO
+
+Further structural change justified now: NO
+
+
+Final decision:
+
+> FREEZE 3I V1.1.
+
+
+
+Any future change to 3I should now require implementation evidence, a demonstrated failure, a genuine security discovery, or another concrete engineering reason—not simply a desire to make the architecture more complicated.
