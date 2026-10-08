@@ -15,6 +15,14 @@ Log 1 remains the constitutional authority.
 
 Log 2 remains the capability and mechanism research authority.
 
+
+
+
+
+Footnote — Security Red-Team / Adversarial Testing
+
+CNS shall support an independently bounded and authorized security-testing capability capable of ethically testing CNS and its components in controlled environments to identify vulnerabilities, privilege-escalation paths, data-exposure risks, malicious-input weaknesses, sandbox/isolation failures, supply-chain weaknesses, and other security defects. Findings shall produce reproducible evidence and enter a remediation → patch → retest → regression-validation cycle. The security-testing capability shall not possess unrestricted authority to modify or deploy CNS; its testing authority remains governed by 3I security, authorization, and human-control boundaries.
+
 Logs 3A–3H remain the detailed engineering authorities for their respective domains.
 
 3I owns:
