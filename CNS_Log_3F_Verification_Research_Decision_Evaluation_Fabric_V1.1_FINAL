@@ -1,0 +1,2775 @@
+Worked for 8s
+
+CNS — LOG 3F
+
+Verification, Research & Decision Evaluation Fabric
+
+Engineering Construction Specification — V1.1 FINAL
+
+Status: FINAL / CHECKED / FREEZE
+Position: 3F sits between CNS cognition/work and final decision authority.
+
+> 3B thinks. 3C organizes. 3D supplies resources. 3E remembers. 3F researches, verifies, challenges and evaluates decision readiness. CNS decides.
+
+
+
+I rebuilt 3F rather than simply patching the previous version. The previous ~85–90% is retained, but the architecture is now explicitly opportunity-centric, consequence-scaled and anti-paralysis.
+
+
+---
+
+0. THE PURPOSE OF 3F
+
+3F exists because CNS cannot simply:
+
+> “Think something → believe it → act.”
+
+
+
+Nor should CNS become:
+
+> “Nothing is certain → therefore never act.”
+
+
+
+3F is the system that determines:
+
+> What do we actually know? What might be true? What evidence supports it? What contradicts it? How robust is it? What remains unknown? How much investigation is justified? And is the evidence sufficient for the intended decision?
+
+
+
+The fundamental distinction is:
+
+3B → THINK
+3F → RESEARCH + VERIFY + CHALLENGE + EVALUATE
+CNS → DECIDE
+
+3F therefore does not own the final decision.
+
+It produces a trustworthy decision-evaluation state for CNS.
+
+
+---
+
+1. THE CHARACTER 3F MUST GIVE CNS
+
+3F must preserve the character established in Log 1.
+
+CNS is intended to be:
+
+aggressive in opportunity pursuit
+
+disciplined in execution
+
+extremely sensitive to unusual signals
+
+fast when speed matters
+
+skeptical when evidence is weak
+
+capable of deep investigation
+
+capable of acting under uncertainty
+
+resistant to false confidence
+
+resistant to paralysis
+
+capable of finding asymmetric opportunities
+
+capable of rejecting bad opportunities quickly
+
+capable of investigating promising unknowns cheaply
+
+capable of learning from both success and failure.
+
+
+Therefore:
+
+> 3F is not a conservative gatekeeper.
+
+
+
+It is an intelligence amplifier and truth-seeking mechanism.
+
+Its job is not to reduce the number of actions.
+
+Its job is to improve the quality of the actions CNS chooses.
+
+
+---
+
+2. 3F BOUNDARY
+
+3F owns:
+
+Research
+Verification
+Evidence
+Contradiction analysis
+Adversarial challenge
+Statistical validation
+Robustness testing
+Experiment evaluation
+Opportunity evaluation
+Asymmetry analysis
+Confidence/calibration
+Decision-readiness evaluation
+Research stopping
+Evidence sufficiency
+Research reproducibility
+Post-decision evaluation
+
+3F does not own:
+
+Final CNS authority
+Work decomposition
+Agent spawning
+Resource lifecycle
+Memory ownership
+Model selection
+Trading execution
+Portfolio authority
+Risk authority
+User authority
+
+Those remain with the appropriate layers.
+
+
+---
+
+3. THE COMPLETE 3F POSITION
+
+┌───────────────────┐
+                 │       3B          │
+                 │ Brain / Cognition │
+                 └─────────┬─────────┘
+                           │
+                           ▼
+                  hypothesis / claim
+                           │
+                           ▼
+                 ┌───────────────────┐
+                 │       3F          │
+                 │ Research          │
+                 │ Verification      │
+                 │ Challenge         │
+                 │ Evaluation        │
+                 └─────────┬─────────┘
+                           │
+             evidence / uncertainty / readiness
+                           │
+                           ▼
+                 ┌───────────────────┐
+                 │       CNS         │
+                 │ Global Decision   │
+                 └─────────┬─────────┘
+                           │
+                           ▼
+                        ACTION
+                           │
+                           ▼
+                       OUTCOME
+                           │
+                           ▼
+                 ┌───────────────────┐
+                 │       3E          │
+                 │ Experience/Mem.   │
+                 └───────────────────┘
+
+And when research itself requires work:
+
+3F identifies research requirement
+        ↓
+3C organizes the work
+        ↓
+3D provides resources
+        ↓
+3F evaluates results
+
+This boundary is critical.
+
+
+---
+
+4. THE MASTER 3F LOOP
+
+The old verification-only loop is replaced by a broader CNS-compatible loop:
+
+DISCOVER
+   ↓
+UNDERSTAND
+   ↓
+FRAME
+   ↓
+RESEARCH
+   ↓
+VERIFY
+   ↓
+CHALLENGE
+   ↓
+MEASURE UPSIDE / DOWNSIDE
+   ↓
+CALIBRATE
+   ↓
+ROBUSTNESS CHECK
+   ↓
+DECISION-READINESS
+   ↓
+ACT / PAPER / SIMULATE / SMALL TEST / WAIT / RESEARCH / REJECT
+   ↓
+OUTCOME
+   ↓
+COMPARE EXPECTED vs ACTUAL
+   ↓
+LEARN
+   ↓
+3E EXPERIENCE
+
+This is now the central 3F architecture.
+
+
+---
+
+5. RESEARCH ≠ VERIFICATION ≠ DECISION EVALUATION
+
+This separation is mandatory.
+
+Research asks:
+
+> What is true?
+
+
+
+and:
+
+> What might be true?
+
+
+
+and:
+
+> What could happen?
+
+
+
+Verification asks:
+
+> Can we trust this result sufficiently for the intended use?
+
+
+
+Decision evaluation asks:
+
+> Given what we currently know, is acting better than waiting, investigating, testing, or doing something else?
+
+
+
+Therefore:
+
+RESEARCH
+   ↓
+VERIFICATION
+   ↓
+DECISION EVALUATION
+   ↓
+CNS DECISION
+
+Not:
+
+RESEARCH → AUTOMATIC ACTION
+
+
+---
+
+6. OPPORTUNITY EVALUATION
+
+This is the major correction from V1.0.
+
+CNS must not only verify things somebody already believes.
+
+It must discover and evaluate opportunities.
+
+Example:
+
+Unusual stock behavior detected
+        ↓
+Is it real?
+        ↓
+Why is it happening?
+        ↓
+What mechanism could explain it?
+        ↓
+Has this happened historically?
+        ↓
+Under what conditions?
+        ↓
+What happened afterward?
+        ↓
+What could invalidate the thesis?
+        ↓
+What is the upside?
+        ↓
+What is the downside?
+        ↓
+What is the asymmetry?
+        ↓
+Can CNS exploit it?
+
+Opportunity object:
+
+Opportunity {
+    opportunity_id
+    discovery_source
+    subject
+    thesis
+    mechanism
+    catalyst
+    historical_precedent[]
+    current_conditions[]
+    upside
+    downside
+    asymmetry
+    time_horizon
+    exploitability
+    invalidation_conditions[]
+    evidence_refs[]
+    contradiction_refs[]
+    uncertainty
+    confidence
+    research_priority
+    readiness
+    status
+}
+
+
+---
+
+7. ASYMMETRY ENGINE
+
+CNS must explicitly search for situations where:
+
+Potential upside >> credible downside
+
+But it must not confuse theoretical upside with exploitable upside.
+
+3F evaluates:
+
+Potential upside
+      ↓
+Probability
+      ↓
+Time required
+      ↓
+Capital required
+      ↓
+Liquidity
+      ↓
+Execution feasibility
+      ↓
+Downside
+      ↓
+Probability of downside
+      ↓
+Irreversibility
+      ↓
+Asymmetry
+
+Conceptually:
+
+\[
+Asymmetry =
+\frac{Expected\ Upside}{Expected\ Downside}
+\]
+
+But this is not sufficient by itself.
+
+A better decision representation is:
+
+\[
+EU(a)=\sum_i P(O_i|E,S)U(O_i)
+\]
+
+then:
+
+\[
+DecisionScore(a)
+=
+EU(a)
+-\lambda Risk(a)
+-\mu Uncertainty(a)
+-\nu Cost(a)
+\]
+
+subject to:
+
+authority
+liquidity
+execution constraints
+risk limits
+evidence requirements
+freshness
+capital constraints
+
+The weights are policy parameters, not universal constants.
+
+
+---
+
+8. CONSEQUENCE-SCALED VERIFICATION
+
+One of the most important mechanisms in final 3F.
+
+Verification effort must scale with consequence and uncertainty.
+
+Conceptually:
+
+\[
+VerificationEffort
+\propto
+Consequence \times Uncertainty
+\]
+
+with additional constraints:
+
+time
+cost
+freshness
+availability
+reversibility
+
+Low consequence
+
+Use:
+
+cheap deterministic checks
+
+Medium consequence
+
+Use:
+
+specialist verification
++
+independent evidence
++
+contradiction search
+
+High consequence
+
+Use:
+
+independent analysis
++
+adversarial challenge
++
+quantitative validation
++
+robustness
++
+scenario analysis
++
+strong provenance
++
+human escalation where required
+
+This prevents both:
+
+recklessness
+
+and
+
+verification paralysis.
+
+
+---
+
+9. FASTEST RELIABLE UNCERTAINTY RESOLUTION
+
+Unknown information is not automatically a reason to stop.
+
+The mechanism is:
+
+UNKNOWN
+ ↓
+What information would resolve it?
+ ↓
+How much would knowing it change the decision?
+ ↓
+Value of Information
+ ↓
+What is the cheapest reliable test?
+ ↓
+Run test
+ ↓
+Update belief
+ ↓
+Re-evaluate
+
+This operationalizes VOI.
+
+\[
+VOI =
+ExpectedValue_{with\ Information}
+-
+ExpectedValue_{without\ Information}
+\]
+
+If VOI is tiny:
+
+> stop researching.
+
+
+
+If VOI is high:
+
+> investigate.
+
+
+
+If a cheap experiment resolves the uncertainty:
+
+> run it.
+
+
+
+If uncertainty is unavoidable:
+
+> incorporate it into the decision.
+
+
+
+
+---
+
+10. ANTI-PARALYSIS RULE
+
+Permanent 3F rule:
+
+> Uncertainty must trigger proportionate investigation, not automatic conservatism.
+
+
+
+Examples:
+
+High uncertainty + high consequence
+
+INVESTIGATE
+
+High uncertainty + low consequence
+
+CHEAP EXPERIMENT
+
+Strong evidence + favorable asymmetry
+
+PURSUE WITHIN AUTHORITY
+
+Strong evidence against
+
+REJECT QUICKLY
+
+Novel opportunity + limited evidence
+
+DO NOT AUTOMATICALLY REJECT
+→ EARLY OPPORTUNITY
+→ RESEARCH / PAPER / SIMULATE / SMALL TEST
+
+This is how CNS keeps its cheetah + fox character.
+
+
+---
+
+11. CLAIM OBJECT
+
+Claim {
+    claim_id
+    claim_type
+    statement
+    subject
+    scope
+    time_range
+
+    evidence_refs[]
+    supporting_refs[]
+    contradicting_refs[]
+
+    assumptions[]
+    dependencies[]
+
+    method_ref?
+    experiment_ref?
+
+    confidence
+    calibration_ref?
+
+    validity_conditions[]
+    limitations[]
+
+    status
+    provenance
+    version
+}
+
+A claim without provenance is not trusted as equivalent to a verified claim.
+
+
+---
+
+12. EVIDENCE OBJECT
+
+Evidence {
+    evidence_id
+
+    type
+    source_ref
+
+    provenance
+    observation_time
+    acquisition_time
+
+    content_ref
+    reliability
+
+    independence_group
+
+    temporal_validity
+
+    transformation_history[]
+
+    supports_claims[]
+    contradicts_claims[]
+
+    verification_status
+}
+
+The system must distinguish:
+
+source
+observation
+interpretation
+derived conclusion
+
+They are not the same thing.
+
+
+---
+
+13. EVIDENCE HIERARCHY
+
+Evidence quality is multidimensional.
+
+3F evaluates:
+
+Directness
+Reliability
+Independence
+Freshness
+Temporal validity
+Completeness
+Reproducibility
+Measurement quality
+Transformation history
+Conflict
+
+A large number of correlated sources does not automatically mean independent confirmation.
+
+
+---
+
+14. INDEPENDENT VERIFICATION
+
+3F must detect false independence.
+
+Example:
+
+100 websites
+      ↓
+all copied the same press release
+
+That is effectively:
+
+1 source
+
+Therefore every evidence item may have:
+
+independence_group
+
+Evidence from the same underlying origin can be grouped.
+
+
+---
+
+15. CONTRADICTION ENGINE
+
+Contradictions are not averaged away.
+
+When:
+
+Evidence A → supports
+Evidence B → contradicts
+
+3F creates:
+
+CONTRADICTION
+
+and asks:
+
+Are they actually inconsistent?
+      ↓
+Different time?
+Different scope?
+Different definition?
+Different source quality?
+Different measurement?
+Actual contradiction?
+
+If genuine:
+
+INVESTIGATION_REQUIRED
+
+This is critical for forensic research.
+
+
+---
+
+16. VERIFICATION STATES
+
+DISCOVERED
+      ↓
+FRAMED
+      ↓
+RESEARCHING
+      ↓
+EVIDENCE_COLLECTED
+      ↓
+VERIFICATION_RUNNING
+      ↓
+CHALLENGED
+      ↓
+CONTESTED / OPEN / VERIFIED
+
+Decision-oriented outcomes:
+
+REJECTED
+LOW_VALUE
+INSUFFICIENT
+CONTESTED
+OPEN
+EARLY_OPPORTUNITY
+RESEARCH_WORTHY
+READY_WITH_LIMITATIONS
+READY
+HIGH_CONVICTION_READY
+
+Important:
+
+> HIGH_CONVICTION_READY is not certainty.
+
+
+
+It means unusually strong evidence under current conditions.
+
+
+---
+
+17. DECISION READINESS ≠ RECOMMENDATION
+
+This distinction is permanent.
+
+3F can say:
+
+READY
+
+without saying:
+
+BUY
+
+Because:
+
+3F = evidence/readiness
+CNS = global decision
+
+A decision can depend on:
+
+portfolio exposure
+
+liquidity
+
+capital
+
+competing opportunities
+
+current market regime
+
+user authority
+
+risk budget
+
+other CNS tasks.
+
+
+Therefore:
+
+DecisionReadiness ≠ Decision
+
+
+---
+
+18. DECISION READINESS OBJECT
+
+DecisionReadiness {
+    evidence_sufficiency
+    verification_status
+
+    confidence
+    calibration
+
+    contradiction_status
+    uncertainty
+
+    upside
+    downside
+    asymmetry
+
+    robustness
+    freshness
+    reversibility
+
+    authority_status
+
+    missing_requirements[]
+
+    supported_action_modes[]
+
+    readiness
+}
+
+Supported action modes may include:
+
+ACT
+WAIT
+RESEARCH
+PAPER_TEST
+SIMULATE
+SMALL_EXPOSURE
+MONITOR
+REJECT
+
+3F recommends readiness/action modes, but CNS owns final authority.
+
+
+---
+
+19. MECHANISM VS STATISTICAL EVIDENCE
+
+A strategy can backtest beautifully while having no durable mechanism.
+
+Therefore every important research result receives two separate assessments:
+
+MECHANISTIC SUPPORT
+
+and:
+
+EMPIRICAL SUPPORT
+
+Possible states:
+
+BOTH
+MECHANISTICALLY_SUPPORTED
+EMPIRICALLY_SUPPORTED
+NEITHER
+UNKNOWN
+
+This prevents:
+
+> “It worked historically, therefore it must work.”
+
+
+
+from becoming a CNS assumption.
+
+
+---
+
+20. RESEARCH LABORATORY
+
+Core research loop:
+
+HYPOTHESIS
+ ↓
+DATA CONTRACT
+ ↓
+BASELINE
+ ↓
+CANDIDATE
+ ↓
+FIT / BUILD
+ ↓
+VALIDATE
+ ↓
+OUT-OF-SAMPLE
+ ↓
+WALK-FORWARD
+ ↓
+REGIME SLICES
+ ↓
+COST / STRESS
+ ↓
+ADVERSARIAL TEST
+ ↓
+ABLATION
+ ↓
+REPLAY / PAPER
+ ↓
+DECISION
+
+Possible outcomes:
+
+ACCEPT
+REVISE
+REJECT
+OPEN
+RESEARCH_FURTHER
+
+
+---
+
+21. EXPERIMENT OBJECT
+
+Experiment {
+    experiment_id
+
+    hypothesis
+
+    data_version
+    data_contract
+
+    code_version
+    environment_version
+    configuration
+
+    baseline_id
+    candidate_id
+
+    train_period
+    validation_period
+    test_period
+
+    regime_slices[]
+
+    metrics[]
+    costs[]
+    failures[]
+
+    statistical_tests[]
+    robustness_tests[]
+    adversarial_tests[]
+    ablations[]
+
+    reproducibility_hash
+
+    mechanistic_assessment
+    empirical_assessment
+
+    decision
+    limitations[]
+
+    evidence_refs[]
+}
+
+
+---
+
+22. BASELINE REQUIREMENT
+
+No meaningful candidate should be evaluated in isolation.
+
+3F requires an appropriate baseline.
+
+Examples:
+
+buy-and-hold
+simple rule
+randomized baseline
+previous champion
+naive forecast
+existing strategy
+
+The correct baseline depends on the research question.
+
+The question is:
+
+> Did the candidate actually add value?
+
+
+
+
+---
+
+23. BACKTEST VERIFICATION
+
+Backtesting is evidence.
+
+It is not proof.
+
+3F checks:
+
+data integrity
+look-ahead bias
+survivorship bias
+selection bias
+corporate actions
+delistings
+missing data
+timestamp correctness
+execution assumptions
+transaction costs
+slippage
+liquidity
+position constraints
+capacity
+out-of-sample performance
+walk-forward behavior
+regime behavior
+drawdowns
+failure conditions
+
+A backtest that ignores realistic execution conditions is not equivalent to live evidence.
+
+
+---
+
+24. FORWARD / WALK-FORWARD TESTING
+
+3F treats forward testing separately from ordinary historical backtesting.
+
+Concept:
+
+TRAIN
+  ↓
+TEST ON UNSEEN PERIOD
+  ↓
+MOVE WINDOW
+  ↓
+RETRAIN / REFIT
+  ↓
+TEST NEXT UNSEEN PERIOD
+  ↓
+REPEAT
+
+This tests whether the strategy survives changing information conditions.
+
+It is especially useful for adaptive systems.
+
+
+---
+
+25. REPLAY VERIFICATION
+
+Replay reconstructs a historical event stream as if CNS were operating at that point in time.
+
+Critical rule:
+
+> CNS must only use information that would have been available at the simulated decision time.
+
+
+
+Therefore:
+
+Historical timestamp
+      ↓
+Available data
+      ↓
+Available memory snapshot
+      ↓
+Available model version
+      ↓
+Available policy version
+      ↓
+Decision
+      ↓
+Outcome
+
+Future information must remain inaccessible.
+
+This connects directly to 3E's temporal memory architecture.
+
+
+---
+
+26. SIMULATION
+
+Simulation explores possible futures or controlled synthetic environments.
+
+Examples:
+
+market stress
+liquidity shock
+volatility expansion
+gap
+slippage increase
+execution failure
+provider outage
+model failure
+correlated positions
+extreme drawdown
+
+Simulation answers:
+
+> “What could happen under controlled conditions?”
+
+
+
+It does not prove that reality will follow the simulation.
+
+
+---
+
+27. PAPER TRADING
+
+Paper trading is an intermediate evidence layer.
+
+It tests:
+
+real-time data
+real-time timing
+signal generation
+decision latency
+execution logic
+order assumptions
+state transitions
+operational stability
+strategy behavior
+
+But paper trading still differs from real capital because:
+
+market impact
+slippage
+psychological pressure
+actual liquidity
+real execution
+capital constraints
+
+may differ.
+
+Therefore:
+
+BACKTEST
+≠
+FORWARD TEST
+≠
+REPLAY
+≠
+SIMULATION
+≠
+PAPER
+≠
+LIVE
+
+3F keeps these evidence types distinct.
+
+
+---
+
+28. STATISTICAL DISCIPLINE
+
+3F explicitly checks:
+
+multiple testing
+data snooping
+overfitting
+selection bias
+survivorship bias
+look-ahead bias
+parameter mining
+regime selection
+p-hacking
+false discovery
+small sample problems
+non-stationarity
+
+No single statistical metric determines acceptance.
+
+
+---
+
+29. CALIBRATION
+
+When CNS predicts probability, 3F evaluates whether those probabilities deserve trust.
+
+Brier score:
+
+\[
+Brier =
+\frac{1}{N}
+\sum_{i=1}^{N}(p_i-o_i)^2
+\]
+
+where:
+
+p_i = predicted probability
+o_i = actual outcome
+
+Calibration must be evaluated across:
+
+time
+market regime
+strategy
+model
+confidence range
+resource
+task type
+
+A model that says “90%” and succeeds 55% of the time is not a 90% model.
+
+
+---
+
+30. ROBUSTNESS
+
+A result is stronger when it survives reasonable changes.
+
+3F tests:
+
+parameter perturbation
+time-window changes
+cost assumptions
+slippage
+execution assumptions
+market regimes
+data variations
+feature removal
+model variations
+random seeds
+sample splits
+stress scenarios
+
+The goal is not:
+
+> “Make the backtest survive everything.”
+
+
+
+The goal is:
+
+> Understand where the result survives and where it fails.
+
+
+
+
+---
+
+31. ABLATION
+
+Ablation asks:
+
+> “Which component actually creates the result?”
+
+
+
+Example:
+
+Full system
+   ↓
+remove feature A
+   ↓
+measure
+
+remove feature B
+   ↓
+measure
+
+remove model X
+   ↓
+measure
+
+This prevents CNS from carrying unnecessary complexity.
+
+It directly supports the Log 2 principle:
+
+> complexity must earn its place.
+
+
+
+
+---
+
+32. CHAMPION VS CANDIDATE
+
+Every production-worthy research component can have:
+
+CHAMPION
+CANDIDATE
+
+Candidate must beat or materially improve the champion under predefined criteria.
+
+Then:
+
+Candidate
+ ↓
+Shadow
+ ↓
+Canary
+ ↓
+Promotion
+
+or:
+
+Candidate
+ ↓
+Reject
+ ↓
+Keep evidence
+
+This connects to controlled self-improvement.
+
+
+---
+
+33. REPRODUCIBILITY
+
+Every significant experiment must preserve enough information to reproduce it.
+
+At minimum:
+
+data version
+code version
+model version
+configuration
+environment
+random seed where applicable
+baseline
+metrics
+cost assumptions
+test periods
+results
+limitations
+
+A result that cannot be reconstructed should have reduced evidentiary status.
+
+
+---
+
+34. OPPORTUNITY RESEARCH PRIORITY
+
+Not every interesting possibility deserves equal research.
+
+Research priority can consider:
+
+potential upside
+asymmetry
+probability
+uncertainty
+consequence
+time sensitivity
+VOI
+research cost
+exploitability
+competitive advantage
+
+Conceptually:
+
+\[
+ResearchPriority
+\sim
+\frac{PotentialValue \times VOI \times TimeSensitivity}
+{ResearchCost + CoordinationCost}
+\]
+
+This is an architectural heuristic, not a sacred formula.
+
+
+---
+
+35. NOVEL OPPORTUNITY PROTOCOL
+
+This is extremely important for CNS.
+
+Suppose CNS detects:
+
+> something unusual that has little historical precedent.
+
+
+
+A conservative system might say:
+
+No historical proof → reject.
+
+CNS should instead do:
+
+Novel signal
+ ↓
+Reality check
+ ↓
+Mechanism check
+ ↓
+Evidence search
+ ↓
+Contradiction search
+ ↓
+Asymmetry analysis
+ ↓
+Can it be tested cheaply?
+       ↓
+YES → experiment
+NO  → deeper research
+ ↓
+EARLY_OPPORTUNITY
+ ↓
+paper / simulation / small controlled test
+ ↓
+learn
+
+This allows CNS to hunt for things conventional systems may miss.
+
+
+---
+
+36. MINIMUM SUFFICIENT VERIFICATION
+
+3F must continuously ask:
+
+> What is the minimum evidence required for this particular decision?
+
+
+
+Not:
+
+> “What is the maximum amount of research we can perform?”
+
+
+
+This is fundamental to CNS speed.
+
+
+---
+
+37. STOPPING RULE
+
+Research must have stopping conditions.
+
+Possible stopping reasons:
+
+Question resolved
+Evidence overwhelmingly supports
+Evidence overwhelmingly contradicts
+VOI too low
+Research cost too high
+Time sensitivity exceeded
+Opportunity disappeared
+Required data unavailable
+Contradiction cannot be resolved
+Risk exceeds authority
+
+No endless research loop.
+
+
+---
+
+38. DECISION EVALUATION
+
+3F compares available choices.
+
+Not only:
+
+ACT
+
+but:
+
+ACT
+WAIT
+RESEARCH
+SIMULATE
+PAPER
+SMALL TEST
+MONITOR
+REJECT
+
+For each:
+
+expected outcomes
+probabilities
+upside
+downside
+uncertainty
+cost
+time
+reversibility
+risk
+information gained
+
+This is much more intelligent than binary approval/rejection.
+
+
+---
+
+39. ALTERNATIVE ANALYSIS
+
+Every important decision should ask:
+
+> What if the best action is not the obvious action?
+
+
+
+For example:
+
+A = invest now
+B = wait
+C = investigate
+D = paper trade
+E = invest smaller
+F = choose another opportunity
+
+CNS should compare alternatives rather than verify one preferred answer.
+
+This reduces confirmation bias.
+
+
+---
+
+40. DISSENT / MINORITY EVIDENCE
+
+If most resources say:
+
+YES
+
+but one credible independent resource says:
+
+NO
+
+3F must preserve the dissent.
+
+It must not simply average the opinions.
+
+The minority evidence becomes:
+
+investigation target
+
+especially if the dissent concerns:
+
+fraud
+liquidity
+risk
+model failure
+data integrity
+structural change
+
+
+---
+
+41. VERIFICATION INDEPENDENCE
+
+3F must avoid:
+
+same model
+same data
+same reasoning chain
+same assumptions
+
+being presented as independent confirmation.
+
+For important decisions, independent verification should differ in at least some relevant dimension:
+
+resource
+method
+data source
+model
+reasoning path
+assumption set
+
+
+---
+
+42. DECISION CONSEQUENCE MATRIX
+
+Conceptual matrix:
+
+Uncertainty	Consequence	3F response
+
+Low	Low	Fast check
+Low	High	Strong verification
+High	Low	Cheap experiment
+High	High	Deep investigation
+Novel	Low	Explore
+Novel	High	Research + controlled test
+Strong evidence	Favorable asymmetry	Pursue within authority
+Strong evidence against	Any	Reject rapidly
+
+
+This is the anti-paralysis architecture.
+
+
+---
+
+43. POST-DECISION EVALUATION
+
+3F does not disappear after CNS decides.
+
+It records:
+
+What did we believe?
+Why?
+Probability?
+Expected outcome?
+Expected downside?
+Expected upside?
+What actually happened?
+
+Then:
+
+EXPECTED
+vs
+ACTUAL
+
+Difference becomes error information.
+
+
+---
+
+44. ERROR ATTRIBUTION
+
+When a prediction fails, 3F should not simply say:
+
+> “Model was wrong.”
+
+
+
+Possible causes:
+
+bad data
+bad feature
+bad assumption
+wrong regime
+model error
+calibration error
+execution error
+research error
+verification error
+orchestration error
+memory error
+unexpected event
+structural change
+
+This is crucial.
+
+Otherwise CNS could “learn” the wrong lesson.
+
+
+---
+
+45. 3F → 3E LEARNING LOOP
+
+Research
+ ↓
+Decision
+ ↓
+Outcome
+ ↓
+Expected vs Actual
+ ↓
+Error attribution
+ ↓
+Lesson candidate
+ ↓
+3E validation
+ ↓
+Experience
+ ↓
+Knowledge
+
+3F generates evidence about what happened.
+
+3E owns durable experience.
+
+
+---
+
+46. 3F → 3B
+
+3B generates:
+
+hypotheses
+questions
+plans
+predictions
+
+3F returns:
+
+verified evidence
+contradictions
+uncertainty
+calibration
+research results
+decision readiness
+
+Therefore:
+
+3B → 3F
+3F → 3B
+
+This creates an iterative cognitive loop.
+
+
+---
+
+47. 3F → 3C
+
+3F may determine:
+
+Need financial research
+Need competitor analysis
+Need historical replay
+Need independent valuation
+Need fraud check
+Need stress test
+
+But 3F does not create/manage the work graph itself.
+
+It sends the requirement to 3C.
+
+3F:
+"Research requirement identified."
+
+3C:
+"How should this work be decomposed and assigned?"
+
+3D:
+"What resources can execute it?"
+
+3F:
+"Are the results sufficient?"
+
+Clean boundary.
+
+
+---
+
+48. 3F → 3D
+
+3F may require:
+
+statistical engine
+backtest engine
+ML model
+LLM
+data provider
+verification tool
+simulation engine
+human
+
+3D supplies qualified resources.
+
+3F does not own their lifecycle.
+
+
+---
+
+49. 3F → 3E
+
+3F writes only appropriate knowledge through the memory authority established in 3E.
+
+Important information:
+
+research result
+verified claim
+failed hypothesis
+calibration evidence
+decision outcome
+failure mode
+historical precedent
+contradiction
+research limitation
+
+Temporal snapshots remain mandatory.
+
+
+---
+
+50. RESEARCH LEDGER
+
+Every significant research decision produces a durable ledger entry.
+
+decision_id
+date
+problem
+opportunity
+capability
+hypothesis
+mechanism
+candidates
+baseline
+experiment
+data_version
+model_version
+configuration
+metrics
+failures
+contradictions
+statistical_tests
+robustness
+security
+cost
+latency
+result
+decision
+reason
+limitations
+next_experiment
+provenance
+
+This becomes part of CNS's institutional memory.
+
+
+---
+
+51. RESEARCH SECURITY
+
+Research systems can create serious vulnerabilities.
+
+3F must protect against:
+
+data poisoning
+future-data leakage
+tampered datasets
+fake evidence
+malicious tools
+result manipulation
+experiment configuration tampering
+credential leakage
+untrusted code
+unsafe external execution
+
+Research output cannot automatically gain execution authority.
+
+
+---
+
+52. DATA CONTAMINATION DEFENSE
+
+Especially important for financial research.
+
+3F must distinguish:
+
+historical information available at T
+
+from:
+
+information learned after T
+
+For historical simulation:
+
+KnowledgeSnapshot
++
+data version
++
+memory cutoff
++
+model version
++
+policy version
+
+must define the information boundary.
+
+This connects directly to 3E.
+
+
+---
+
+53. FAILURE STATES
+
+3F must explicitly represent:
+
+INSUFFICIENT_DATA
+CONTRADICTORY_EVIDENCE
+STALE_EVIDENCE
+LOW_SOURCE_RELIABILITY
+RESEARCH_TIMEOUT
+NON_REPRODUCIBLE
+STATISTICAL_WEAKNESS
+ROBUSTNESS_FAILURE
+ADVERSARIAL_FAILURE
+DATA_CONTAMINATION
+LOOKAHEAD_DETECTED
+EXECUTION_ASSUMPTION_INVALID
+MODEL_DRIFT
+REGIME_BREAK
+UNKNOWN_FAILURE
+
+Failure is information.
+
+
+---
+
+54. FAILURE RECOVERY
+
+When verification fails:
+
+Classify failure
+ ↓
+Preserve evidence
+ ↓
+Determine blast radius
+ ↓
+Invalidate affected conclusion
+ ↓
+Create research requirement
+ ↓
+Re-run only necessary work
+ ↓
+Re-evaluate
+
+Do not silently continue using contaminated results.
+
+
+---
+
+55. RESEARCH REUSE
+
+If CNS already performed valid research:
+
+reuse result
+
+when:
+
+same question
+same relevant data
+same temporal validity
+same assumptions
+same model/configuration
+result still fresh
+no invalidating event
+
+Otherwise:
+
+revalidate
+
+This prevents repeated expensive research.
+
+
+---
+
+56. COGNITIVE BRANCHING
+
+3F may support multiple competing hypotheses:
+
+H1
+H2
+H3
+H4
+
+instead of forcing early commitment.
+
+Each receives:
+
+evidence
+contradictions
+probability
+failure conditions
+VOI
+research requirements
+
+CNS can later eliminate branches.
+
+This is superior to premature certainty.
+
+
+---
+
+57. HIGH-CONVICTION READY
+
+This state is reserved for unusually strong cases.
+
+Requirements may include:
+
+strong evidence
+independent confirmation
+good provenance
+low unresolved contradiction
+good calibration
+robustness
+appropriate historical/OOS evidence
+favorable asymmetry
+acceptable downside
+fresh information
+clear invalidation conditions
+execution feasibility
+
+But:
+
+> HIGH_CONVICTION_READY never bypasses risk, authority or CNS decision control.
+
+
+
+
+---
+
+58. CRITICAL TRADING BOUNDARY
+
+3F must never become a single point of failure for live trading.
+
+Live hot path remains:
+
+MARKET DATA
+ ↓
+FEATURES
+ ↓
+STRATEGY
+ ↓
+RISK
+ ↓
+ORDER VALIDATION
+ ↓
+EXECUTION
+
+3F can:
+
+research strategy
+verify strategy
+evaluate regime
+detect degradation
+recommend suspension
+evaluate changes
+
+But the live deterministic safety architecture remains independent.
+
+
+---
+
+59. HUMAN ESCALATION
+
+Some situations require human authority.
+
+3F may return:
+
+HUMAN_REVIEW_REQUIRED
+
+when:
+
+authority insufficient
+consequence extreme
+evidence irreconcilable
+novel risk
+legal/compliance boundary
+capital threshold
+irreversible action
+system uncertainty extreme
+
+This is not failure.
+
+It is controlled escalation.
+
+
+---
+
+60. CORE INTERFACES
+
+Verification
+
+trait VerificationEngine {
+    define_claim(...)
+    collect_evidence(...)
+    verify(...)
+    challenge(...)
+    detect_contradictions(...)
+    assess_uncertainty(...)
+    assess_robustness(...)
+    produce_result(...)
+}
+
+Research
+
+trait ResearchEngine {
+    define_experiment(...)
+    run(...)
+    validate(...)
+    compare_baseline(...)
+    run_oos(...)
+    run_walk_forward(...)
+    run_stress(...)
+    run_ablation(...)
+    evaluate(...)
+}
+
+Decision evaluation
+
+trait DecisionEvaluator {
+    evaluate_options(...)
+    estimate_outcomes(...)
+    assess_asymmetry(...)
+    calculate_voi(...)
+    assess_readiness(...)
+    identify_missing_evidence(...)
+}
+
+Reproducibility
+
+trait ResearchLedger {
+    record(...)
+    retrieve(...)
+    reproduce(...)
+    compare(...)
+}
+
+
+---
+
+61. CORE 3F DATA FLOW
+
+INPUT
+ ↓
+CLAIM / OPPORTUNITY / HYPOTHESIS / RESULT
+ ↓
+FRAME
+ ↓
+EVIDENCE REQUIREMENTS
+ ↓
+RESEARCH
+ ↓
+EVIDENCE
+ ↓
+SOURCE VALIDATION
+ ↓
+INDEPENDENCE
+ ↓
+CONTRADICTION
+ ↓
+QUANTITATIVE TEST
+ ↓
+ROBUSTNESS
+ ↓
+ADVERSARIAL TEST
+ ↓
+CALIBRATION
+ ↓
+UPSIDE / DOWNSIDE / ASYMMETRY
+ ↓
+VOI / UNCERTAINTY
+ ↓
+DECISION READINESS
+ ↓
+CNS
+
+
+---
+
+62. COMPLETE CNS RESEARCH LOOP
+
+This is the final architecture I want frozen:
+
+EVENT / QUESTION / OPPORTUNITY
+                              │
+                              ▼
+                         CNS / 3B
+                       UNDERSTAND
+                              │
+                              ▼
+                           FRAME
+                              │
+                              ▼
+                         RESEARCH
+                              │
+                              ▼
+                           3F
+              ┌───────────────┼───────────────┐
+              │               │               │
+          EVIDENCE        CHALLENGE       EXPERIMENT
+              │               │               │
+              └───────────────┼───────────────┘
+                              ▼
+                       VERIFICATION
+                              │
+                              ▼
+                   UPSIDE / DOWNSIDE
+                              │
+                              ▼
+                         ASYMMETRY
+                              │
+                              ▼
+                      CALIBRATION
+                              │
+                              ▼
+                        ROBUSTNESS
+                              │
+                              ▼
+                     DECISION READINESS
+                              │
+                              ▼
+                           CNS
+                         DECIDES
+                              │
+            ┌─────────────────┼─────────────────┐
+            ▼                 ▼                 ▼
+           ACT              TEST              WAIT
+            │                 │                 │
+            └─────────────────┼─────────────────┘
+                              ▼
+                           OUTCOME
+                              │
+                              ▼
+                     EXPECTED vs ACTUAL
+                              │
+                              ▼
+                       ERROR ATTRIBUTION
+                              │
+                              ▼
+                            3E
+                         EXPERIENCE
+                              │
+                              ▼
+                        FUTURE CNS
+
+That is the heart of 3F.
+
+
+---
+
+63. ACCEPTANCE TESTS
+
+3F must pass at minimum:
+
+VER-001
+
+Can represent a claim with provenance.
+
+VER-002
+
+Can represent supporting and contradicting evidence.
+
+VER-003
+
+Can detect evidence from the same underlying source.
+
+VER-004
+
+Can preserve temporal validity.
+
+VER-005
+
+Can distinguish research from verification.
+
+VER-006
+
+Can perform deterministic fact checks.
+
+VER-007
+
+Can perform independent challenge.
+
+VER-008
+
+Can preserve minority/dissent evidence.
+
+VER-009
+
+Can calculate/track uncertainty.
+
+VER-010
+
+Can evaluate calibration.
+
+VER-011
+
+Can evaluate opportunity rather than only claims.
+
+VER-012
+
+Can calculate/represent upside and downside.
+
+VER-013
+
+Can evaluate asymmetry.
+
+VER-014
+
+Can calculate/estimate VOI.
+
+VER-015
+
+Can choose proportionate verification effort.
+
+VER-016
+
+Can avoid unnecessary research.
+
+VER-017
+
+Can identify when deeper research is justified.
+
+VER-018
+
+Can represent novel opportunities without automatically rejecting them.
+
+VER-019
+
+Can classify early opportunities.
+
+VER-020
+
+Can distinguish readiness from recommendation.
+
+VER-021
+
+Can evaluate ACT vs WAIT vs RESEARCH vs TEST.
+
+VER-022
+
+Can create reproducible experiments.
+
+VER-023
+
+Can enforce baseline comparison.
+
+VER-024
+
+Can detect look-ahead leakage.
+
+VER-025
+
+Can detect survivorship bias.
+
+VER-026
+
+Can perform OOS testing.
+
+VER-027
+
+Can perform walk-forward evaluation.
+
+VER-028
+
+Can perform historical replay.
+
+VER-029
+
+Can perform simulation.
+
+VER-030
+
+Can evaluate paper-trading evidence.
+
+VER-031
+
+Can perform robustness testing.
+
+VER-032
+
+Can perform ablation.
+
+VER-033
+
+Can distinguish mechanistic from empirical support.
+
+VER-034
+
+Can preserve experiment configuration and provenance.
+
+VER-035
+
+Can detect failed research.
+
+VER-036
+
+Can invalidate contaminated conclusions.
+
+VER-037
+
+Can compare champion and candidate.
+
+VER-038
+
+Can evaluate expected vs actual outcomes.
+
+VER-039
+
+Can attribute errors to the correct subsystem.
+
+VER-040
+
+Can produce durable research ledger records.
+
+VER-041
+
+Can feed validated lessons into 3E.
+
+VER-042
+
+Can provide evidence/uncertainty to 3B.
+
+VER-043
+
+Can request work through 3C without taking orchestration ownership.
+
+VER-044
+
+Can use qualified resources from 3D.
+
+VER-045
+
+Cannot bypass CNS decision authority.
+
+VER-046
+
+Cannot directly override risk/execution controls.
+
+VER-047
+
+Cannot treat statistical success as proof.
+
+VER-048
+
+Cannot treat uncertainty as automatic rejection.
+
+VER-049
+
+Cannot allow endless research without stopping conditions.
+
+VER-050
+
+Can preserve a complete replayable research chain.
+
+
+---
+
+64. PERFORMANCE MEASURES
+
+3F itself must be measured.
+
+Important metrics:
+
+verification accuracy
+false acceptance
+false rejection
+contradiction detection rate
+research resolution rate
+time-to-resolution
+research cost
+VOI efficiency
+reproducibility rate
+calibration
+OOS degradation
+robustness
+decision-readiness accuracy
+novel opportunity discovery
+opportunity survival rate
+unnecessary research rate
+research duplication
+post-decision attribution accuracy
+
+A verification system that is “safe” but rejects every opportunity is not successful.
+
+A system that approves everything is also not successful.
+
+
+---
+
+65. 3F SUCCESS CRITERION
+
+The real question is not:
+
+> “Does 3F reject bad ideas?”
+
+
+
+It is:
+
+> Does 3F improve CNS's ability to distinguish valuable opportunities from false opportunities while using the minimum sufficient research required by the consequence and uncertainty?
+
+
+
+That is the correct metric.
+
+
+---
+
+66. EXPLICIT NON-ASSUMPTIONS
+
+3F does not assume:
+
+more evidence = better evidence
+more agents = better verification
+more research = better decisions
+more data = better result
+backtest = proof
+paper trading = live equivalence
+statistical significance = economic significance
+high confidence = correctness
+LLM reasoning = verification
+consensus = truth
+majority vote = correctness
+historical precedent = future guarantee
+novel = bad
+uncertain = reject
+complex = intelligent
+expensive = better
+independent-looking sources = independent evidence
+one model = ground truth
+
+These are all explicitly rejected.
+
+
+---
+
+67. CROSS-LOG COMPATIBILITY CHECK
+
+I checked the final 3F design against the established architecture.
+
+Log 1 — Constitution
+
+Compatible.
+
+It preserves:
+
+calculated aggression
+evidence proportional to consequence
+confidence earned
+unknown ≠ permission to guess
+minimum sufficient intelligence
+human authority
+trading independence
+controlled improvement
+
+Log 2 — Capability Intelligence
+
+Compatible.
+
+It implements:
+
+verification
+research
+adaptive uncertainty resolution
+capability/resource use
+confidence
+contradiction
+experimentation
+learning
+
+without stealing orchestration.
+
+3A — Foundation
+
+Compatible with:
+
+events
+provenance
+state
+replay
+authority
+failure recovery
+idempotency
+evidence lineage
+temporal lineage
+
+3B — Brain
+
+Compatible:
+
+3B hypothesizes
+3F tests/challenges
+3B receives evidence
+
+3C — Work
+
+Compatible:
+
+3F identifies research requirements
+3C organizes the work
+
+3D — Resources
+
+Compatible:
+
+3F requests capability
+3D supplies qualified resource
+
+3E — Memory
+
+Strongly compatible:
+
+3F produces validated experience
+3E stores/consolidates it
+
+Temporal memory and replay are especially important.
+
+
+---
+
+68. FINAL CHECKER ATTACK
+
+I attacked the architecture from four directions.
+
+Attack 1 — Could 3F become too conservative?
+
+Previous V1.0: somewhat possible.
+
+V1.1: corrected through:
+
+opportunity evaluation
+asymmetry
+VOI
+consequence-scaled verification
+early opportunity state
+cheap experiments
+action-mode readiness
+anti-paralysis rule
+
+PASS.
+
+
+---
+
+Attack 2 — Could 3F become another CNS brain?
+
+No.
+
+3F evaluates.
+
+3B reasons.
+
+CNS decides.
+
+PASS.
+
+
+---
+
+Attack 3 — Could 3F become a giant research bureaucracy?
+
+Controlled through:
+
+VOI
+minimum sufficient verification
+research priority
+stopping rules
+reuse
+consequence scaling
+
+PASS.
+
+
+---
+
+Attack 4 — Could 3F miss extraordinary new opportunities?
+
+V1.0 had that weakness.
+
+V1.1 explicitly supports:
+
+novel opportunity
+early opportunity
+mechanism search
+asymmetry
+cheap experimentation
+paper/simulation/small exposure
+
+PASS.
+
+
+---
+
+69. FINAL 3F ARCHITECTURE
+
+The final architecture is therefore:
+
+┌────────────────────────────┐
+                 │            3B              │
+                 │    BRAIN / COGNITION       │
+                 └─────────────┬──────────────┘
+                               │
+                    hypotheses / opportunities
+                               │
+                               ▼
+                 ┌────────────────────────────┐
+                 │            3F              │
+                 │                            │
+                 │  RESEARCH                  │
+                 │  EVIDENCE                  │
+                 │  VERIFICATION              │
+                 │  CONTRADICTION             │
+                 │  ADVERSARIAL TEST          │
+                 │  EXPERIMENTATION            │
+                 │  CALIBRATION               │
+                 │  ROBUSTNESS                │
+                 │  ASYMMETRY                 │
+                 │  VOI                       │
+                 │  DECISION EVALUATION       │
+                 │  READINESS                 │
+                 └─────────────┬──────────────┘
+                               │
+                         evidence state
+                               │
+                               ▼
+                 ┌────────────────────────────┐
+                 │            CNS             │
+                 │      GLOBAL DECISION       │
+                 └─────────────┬──────────────┘
+                               │
+                               ▼
+                          ACTION / WAIT
+                               │
+                               ▼
+                           OUTCOME
+                               │
+                               ▼
+                 ┌────────────────────────────┐
+                 │            3E              │
+                 │ DISTRIBUTED EXPERIENCE     │
+                 └────────────────────────────┘
+
+
+---
+
+70. FINAL PRINCIPLE
+
+The most important line in this Log is:
+
+> 3F must make CNS harder to fool, not harder to act.
+
+
+
+And the second:
+
+> The stronger the consequence and uncertainty, the stronger the verification; the stronger the evidence and asymmetry, the faster CNS should be able to pursue the opportunity within its authority.
+
+
+
+And the third:
+
+> 3F does not decide what CNS should do. It makes the decision space clearer, more measurable, more falsifiable, and more trustworthy.
+
+
+
+
+---
+
+FINAL CHECKER VERDICT
+
+3F V1.1 — FINAL / FREEZE.
+
+I would not make another structural change now.
+
+The previous V1.0 was a strong verification architecture, but it was too easy for it to evolve into a defensive gatekeeper. The final V1.1 fixes that without weakening the verification side.
+
+Now the architecture has the balance we wanted:
+
+SEARCH FOR OPPORTUNITY
+        +
+SEARCH FOR TRUTH
+        +
+ATTACK YOUR OWN BELIEF
+        +
+MEASURE ASYMMETRY
+        +
+RESOLVE IMPORTANT UNKNOWNs FAST
+        +
+VERIFY PROPORTIONALLY
+        +
+DO NOT FEAR NOVELTY
+        +
+DO NOT TRUST EASILY
+        +
+DO NOT RESEARCH FOREVER
+        +
+LET CNS DECIDE
+
+That is much closer to the CNS you originally described: not a timid financial analyst, not a reckless gambler, and not a bureaucracy — an aggressive, evidence-driven opportunity-hunting intelligence system with the discipline to know when it is wrong.
+
+3F is now closed.
