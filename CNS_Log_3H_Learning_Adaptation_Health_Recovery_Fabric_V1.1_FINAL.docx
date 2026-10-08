@@ -1,0 +1,2578 @@
+Worked for 5s
+
+Yes bro. I’m doing it physically now — not just saying I did it.
+
+I have taken the exact 3H V1.1 you pasted and integrated the 7 agreed micro-corrections into their actual sections. I am not changing the architecture or adding new checker findings.
+
+Below is the complete corrected master for manual saving.
+
+
+---
+
+CNS — LOG 3H
+
+Learning, Adaptation, Health & Recovery Fabric
+
+Engineering Construction Specification — V1.1 FINAL
+
+STATUS: FINAL / CHECKED / FROZEN
+
+
+---
+
+0. PURPOSE
+
+3H is the learning, adaptation, health, and recovery-learning machinery of CNS.
+
+Its purpose is to allow the CNS ecosystem to become better through experience without allowing uncontrolled learning to corrupt the system.
+
+3H converts:
+
+OBSERVATION
+    ↓
+OUTCOME
+    ↓
+EXPECTED vs ACTUAL
+    ↓
+ATTRIBUTION
+    ↓
+DIAGNOSIS
+    ↓
+LEARNING CANDIDATE
+    ↓
+EVIDENCE ASSESSMENT
+    ↓
+VALIDATION / VERIFICATION PATH
+    ↓
+ADAPTATION PROPOSAL
+    ↓
+CONTROLLED TESTING
+    ↓
+PROMOTION / REJECTION / ROLLBACK
+    ↓
+MONITORING
+    ↓
+NEXT LEARNING CYCLE
+
+3H must allow CNS to learn about:
+
+markets
+
+strategies
+
+bots
+
+ML systems
+
+agents
+
+models
+
+tools
+
+engines
+
+orchestration
+
+memory usage
+
+decision quality
+
+execution quality
+
+resource reliability
+
+its own weaknesses
+
+its own improvement opportunities
+
+recovery effectiveness
+
+adaptation effectiveness
+
+
+3H is therefore the mechanism through which the whole CNS ecosystem becomes progressively better.
+
+
+---
+
+1. 3H BOUNDARY
+
+3H owns
+
+Outcome learning
+
+Expected-vs-actual analysis
+
+Error attribution
+
+Calibration updates
+
+Performance tracking
+
+Drift detection
+
+Ecosystem health assessment and learning-oriented health analysis
+
+Capability degradation detection
+
+Failure diagnosis
+
+Learning-candidate generation
+
+Learning-evidence assessment
+
+Adaptation proposals
+
+Controlled self-improvement
+
+Champion/challenger comparison
+
+Shadow evaluation
+
+Canary evaluation
+
+Improvement promotion coordination
+
+Improvement rejection
+
+Rollback coordination
+
+Recovery learning
+
+Ecosystem self-model updates
+
+Improvement history
+
+Learning effectiveness measurement
+
+Adaptation stability control
+
+
+3H does NOT own
+
+Memory persistence              → 3E
+Research verification           → 3F
+Work orchestration              → 3C
+Resource lifecycle              → 3D
+Financial safety                → 3G
+Security / governance           → 3I
+Final CNS authority             → CNS
+
+3H learns from these systems.
+
+It does not replace them.
+
+
+---
+
+2. CORE LEARNING PRINCIPLE
+
+CNS must not confuse:
+
+OUTCOME
+
+with:
+
+LESSON
+
+A good outcome does not automatically prove the process was correct.
+
+A bad outcome does not automatically prove the process was wrong.
+
+Therefore:
+
+OUTCOME
+    ↓
+CONTEXT
+    ↓
+EXPECTED RESULT
+    ↓
+ACTUAL RESULT
+    ↓
+ATTRIBUTION
+    ↓
+EVIDENCE
+    ↓
+LEARNING CANDIDATE
+    ↓
+VALIDATION / VERIFICATION PATH
+
+Learning must be evidence-driven.
+
+
+---
+
+3. LEARNING LOOP
+
+The primary 3H learning loop is:
+
+OBSERVE
+    ↓
+MEASURE
+    ↓
+COMPARE EXPECTED vs ACTUAL
+    ↓
+DETECT DEVIATION
+    ↓
+ATTRIBUTE CAUSE
+    ↓
+GENERATE LEARNING CANDIDATE
+    ↓
+ASSESS EVIDENCE STRENGTH
+    ↓
+SELECT VALIDATION / VERIFICATION PATH
+    ↓
+VALIDATE LEARNING
+    ↓
+PROPOSE ADAPTATION
+    ↓
+VALIDATE ADAPTATION
+    ↓
+TEST
+    ↓
+COMPARE AGAINST CHAMPION
+    ↓
+PROMOTE / REJECT
+    ↓
+MONITOR
+    ↓
+LEARN FROM RESULT
+
+This loop is continuous.
+
+Learning validation and adaptation validation are separate stages.
+
+
+---
+
+4. EXPERIENCE INPUT
+
+3H receives validated experience from the ecosystem.
+
+Examples:
+
+Decision
+Action
+Prediction
+Outcome
+Failure
+Recovery
+Strategy performance
+Model prediction
+Agent result
+Execution result
+Research result
+Resource degradation
+System incident
+Human correction
+
+3E remains responsible for long-term experience storage.
+
+3H consumes appropriate experience records and produces learning candidates.
+
+
+---
+
+5. EXPECTED VS ACTUAL
+
+Every meaningful decision should provide an expected outcome where practical.
+
+Example:
+
+EXPECTED
+
+Probability of outcome = 0.70
+Expected return = +8%
+Expected risk = moderate
+Expected execution quality = high
+
+Later:
+
+ACTUAL
+
+Outcome = -4%
+Risk = high
+Execution quality = poor
+
+3H compares them.
+
+The comparison becomes evidence for learning.
+
+
+---
+
+6. OUTCOME ATTRIBUTION
+
+A result may have many possible causes.
+
+Example:
+
+Strategy signal
+      ↓
+Market regime
+      ↓
+Portfolio decision
+      ↓
+Risk adjustment
+      ↓
+Execution
+      ↓
+Market movement
+
+A loss does not automatically mean:
+
+strategy = bad
+
+Possible causes include:
+
+strategy error
+
+regime change
+
+incorrect market state
+
+model error
+
+execution error
+
+data error
+
+liquidity event
+
+risk intervention
+
+unexpected external event
+
+orchestration failure
+
+incorrect assumption
+
+
+3H must attempt causal attribution before creating a strong learning claim.
+
+
+---
+
+7. ATTRIBUTION CONFIDENCE
+
+Learning attribution should carry confidence.
+
+Attribution {
+    cause
+    evidence[]
+    alternative_causes[]
+    confidence
+    unresolved_questions[]
+    temporal_scope
+}
+
+Possible states:
+
+DIRECT
+SUPPORTED
+PLAUSIBLE
+UNCERTAIN
+UNKNOWN
+
+Low-confidence attribution must not automatically trigger structural changes.
+
+
+---
+
+8. LEARNING EVIDENCE PROFILE
+
+A learning candidate must carry an explicit evidence-strength profile.
+
+LearningEvidenceProfile {
+    observation_count
+    independent_observation_count
+    controlled_experiment_count
+    out_of_sample_evidence
+    regime_coverage
+    temporal_coverage
+    source_quality
+    replication_status
+    contradiction_status
+    leakage_status
+    attribution_confidence
+    evidence_strength
+}
+
+Evidence strength may be classified as:
+
+WEAK
+PRELIMINARY
+SUPPORTED
+ROBUST
+
+These labels are not substitutes for quantitative evidence.
+
+They summarize the current evidentiary state.
+
+Important rule:
+
+ONE OBSERVATION
+    ≠
+GENERAL LESSON
+
+Repeated observations do not automatically establish causality.
+
+Independent evidence, controlled testing, appropriate out-of-sample evidence, and regime coverage increase confidence.
+
+3F remains responsible for formal research verification when the learning claim requires research-grade verification.
+
+
+---
+
+9. LEARNING CANDIDATE
+
+A learning candidate is not yet accepted knowledge.
+
+LearningCandidate {
+    candidate_id
+    observation_refs[]
+    experience_refs[]
+    problem
+    hypothesis
+    proposed_lesson
+    affected_capabilities[]
+    affected_resources[]
+    evidence[]
+    evidence_profile
+    attribution
+    expected_benefit
+    expected_risk
+    validation_plan
+    verification_requirement
+    status
+    provenance
+}
+
+Lifecycle:
+
+OBSERVED
+    ↓
+CANDIDATE
+    ↓
+ANALYZING
+    ↓
+EVIDENCE_ASSESSED
+    ↓
+VALIDATING
+    ↓
+SUPPORTED / REJECTED / UNCERTAIN
+    ↓
+ADAPTATION PROPOSED
+
+
+---
+
+10. 3H / 3F VALIDATION BOUNDARY
+
+3H and 3F have different responsibilities.
+
+3H asks:
+
+What did the ecosystem experience?
+
+What appears to have gone wrong or improved?
+
+What lesson might explain it?
+
+Is there enough evidence to justify investigating or changing something?
+
+What is the appropriate validation path?
+
+3F asks:
+
+Is the evidence/research methodology trustworthy enough
+for the claimed conclusion?
+
+Therefore:
+
+3H LEARNING
+    ↓
+CANDIDATE
+    ↓
+EVIDENCE ASSESSMENT
+    ↓
+IF RESEARCH-GRADE VERIFICATION REQUIRED
+    ↓
+3F
+    ↓
+VERIFIED / NOT VERIFIED / OPEN
+
+Not every small operational learning event requires full 3F research.
+
+But 3H must not independently declare a research-grade conclusion when the claim requires 3F verification.
+
+Learning validation determines whether the lesson is sufficiently supported.
+
+Adaptation validation determines whether the proposed change is safe, effective, and acceptable for deployment.
+
+These must not be conflated.
+
+
+---
+
+11. LEARNING AUTHORITY
+
+No single resource may silently rewrite CNS learning.
+
+RESOURCE
+    ↓
+OBSERVATION
+    ↓
+LEARNING CANDIDATE
+    ↓
+EVIDENCE ASSESSMENT
+    ↓
+VALIDATION / VERIFICATION
+    ↓
+3H
+    ↓
+ADAPTATION PROPOSAL
+    ↓
+APPROPRIATE AUTHORITY
+    ↓
+TEST
+    ↓
+PROMOTE
+
+This protects the ecosystem from:
+
+one bad model
+
+one bad trade
+
+one anomalous event
+
+one hallucinated explanation
+
+contaminated data
+
+accidental self-modification
+
+
+
+---
+
+12. CALIBRATION
+
+CNS must measure whether confidence corresponds to reality.
+
+Example:
+
+Prediction confidence = 80%
+Actual success = 52%
+
+This indicates possible miscalibration.
+
+Calibration should be tracked by:
+
+resource
+
+task
+
+market regime
+
+time period
+
+prediction horizon
+
+consequence level
+
+
+Useful metrics include:
+
+\[
+Brier=\frac{1}{N}\sum_{i=1}^{N}(p_i-o_i)^2
+\]
+
+and calibration curves / reliability analysis.
+
+Calibration must not be treated as a permanent property.
+
+It changes with conditions.
+
+
+---
+
+13. RESOURCE PERFORMANCE LEARNING
+
+3H continuously learns how reliable different resources are.
+
+For each resource:
+
+ResourceLearningProfile {
+    resource_id
+    task
+    success_rate
+    calibration
+    latency
+    cost
+    failure_rate
+    drift
+    regime_performance
+    recent_performance
+    historical_performance
+    known_failure_modes[]
+}
+
+This feeds learned evidence back toward resource selection.
+
+3D owns resource selection and lifecycle.
+
+3H supplies learned evidence about resource reliability.
+
+
+---
+
+14. ECOSYSTEM SELF-MODEL
+
+3H maintains the learning side of CNS self-awareness.
+
+The self-model may include:
+
+capabilities
+limitations
+resource_health
+historical_accuracy
+calibration
+known_failure_modes
+current_uncertainties
+active_goals
+recent_decisions
+recent_errors
+improvement_targets
+resource_reliability
+learning_progress
+adaptation_history
+
+This is machine self-modeling.
+
+It does not imply consciousness.
+
+
+---
+
+15. HEALTH MODEL
+
+CNS health is multidimensional.
+
+A resource may be:
+
+AVAILABLE
+
+but unhealthy for a particular task.
+
+Health dimensions include:
+
+availability
+
+correctness
+
+latency
+
+error rate
+
+calibration
+
+drift
+
+resource consumption
+
+dependency health
+
+output quality
+
+recent failures
+
+security state
+
+financial safety state where applicable
+
+
+Health must therefore be represented as structured state rather than one simple boolean.
+
+
+---
+
+16. HEALTH PROFILE
+
+The authoritative health representation is a multidimensional profile.
+
+HealthProfile {
+    availability
+    correctness
+    reliability
+    calibration
+    latency
+    drift
+    dependency_health
+    output_quality
+    recent_failures
+    critical_failure_flags[]
+    task_specific_health[]
+    trend
+    timestamp
+}
+
+An optional summary score may be calculated for dashboards or ranking.
+
+However:
+
+HEALTH SCORE ≠ SAFETY AUTHORITY
+
+A critical failure flag can quarantine a resource regardless of its numerical health score.
+
+No single health number may conceal a critical dimension.
+
+
+---
+
+17. HEALTH STATES
+
+Example:
+
+HEALTHY
+DEGRADED
+UNRELIABLE
+QUARANTINED
+RECOVERING
+
+A resource may also be healthy overall but degraded for one specific capability.
+
+Example:
+
+MODEL-A
+general reasoning → HEALTHY
+financial classification → DEGRADED
+
+
+---
+
+18. DRIFT DETECTION
+
+CNS must detect changes in:
+
+input distributions
+
+output distributions
+
+feature relationships
+
+market regimes
+
+prediction accuracy
+
+calibration
+
+execution behavior
+
+resource performance
+
+latency
+
+failure patterns
+
+
+Conceptually:
+
+BASELINE
+    ↓
+CURRENT OBSERVATION
+    ↓
+COMPARE
+    ↓
+NO MATERIAL DRIFT
+OR
+POSSIBLE DRIFT
+    ↓
+INVESTIGATE
+
+Drift detection must distinguish:
+
+NORMAL VARIATION
+
+from:
+
+MATERIAL CHANGE
+
+
+---
+
+19. MARKET REGIME ADAPTATION
+
+A strategy may work differently under different regimes.
+
+3H must therefore track:
+
+performance × market regime
+
+Example:
+
+Trending       → strong
+Ranging        → weak
+Crisis         → poor
+Unknown        → insufficient evidence
+
+The system should not automatically destroy the strategy.
+
+It may instead:
+
+reduce confidence
+
+restrict deployment
+
+change resource allocation
+
+request research
+
+switch strategy
+
+paper test
+
+monitor
+
+wait
+
+
+The financial safety decision remains in 3G.
+
+
+---
+
+20. ADAPTATION TYPES
+
+Not every learning result requires code modification.
+
+Adaptation may involve:
+
+Type A — Knowledge update
+
+Change what CNS believes.
+
+Type B — Calibration update
+
+Change confidence interpretation.
+
+Type C — Routing update
+
+Change which resource is preferred.
+
+Type D — Parameter update
+
+Change controlled parameters.
+
+Type E — Policy update
+
+Change a non-governance operational policy within allowed boundaries.
+
+Type F — Strategy adaptation
+
+Modify a strategy under research controls.
+
+Type G — Model update
+
+Replace or retrain a model.
+
+Type H — Structural improvement
+
+Change system mechanisms.
+
+Structural changes require the highest validation burden.
+
+
+---
+
+21. ADAPTATION IMPACT CLASSIFICATION
+
+Every material adaptation must be classified before deployment.
+
+LOCAL
+RESOURCE
+CAPABILITY
+CROSS-RESOURCE
+SYSTEM-WIDE
+
+Additional consequence classes:
+
+LOW
+MODERATE
+HIGH
+CRITICAL
+
+Classification considers:
+
+blast radius
+
+reversibility
+
+affected capabilities
+
+financial consequence
+
+security consequence
+
+number of dependent resources
+
+authority scope
+
+uncertainty
+
+
+
+---
+
+22. IMPACT → VALIDATION DEPTH
+
+Validation depth must increase with consequence and uncertainty.
+
+Conceptually:
+
+\[
+ValidationEffort \propto Consequence \times Uncertainty
+\]
+
+Therefore:
+
+LOW IMPACT
+→ lightweight validation
+
+MODERATE IMPACT
+→ stronger testing + observation
+
+HIGH IMPACT
+→ broader testing + replay/shadow + stronger rollback
+
+CRITICAL IMPACT
+→ strongest validation + required authority/approval
+
+A high-blast-radius change must not receive the same validation treatment as a local low-risk change.
+
+
+---
+
+23. ADAPTATION AUTHORITY MATRIX
+
+Adaptation authority is determined by change class and consequence.
+
+Adaptation	Default authority
+
+Non-critical local telemetry adjustment	3H within predefined policy
+Low-risk routing preference	3H within predefined policy
+Calibration update	3H with validation
+Resource preference change	3H + 3D contract/health constraints
+Model replacement	3H + 3D qualification + required validation
+Strategy change	3H + 3F research/verification where applicable + 3G/3I authority as required for deployment
+Financial risk-rule change	3G safety boundary + required 3I authority
+Live financial deployment change	3G + required 3I authority
+Security/governance change	3I
+System-wide structural change	CNS/3I-controlled authority
+
+
+3H may propose changes outside its authority.
+
+It may not silently promote them.
+
+
+---
+
+24. ADAPTATION RISK
+
+Every proposed adaptation has:
+
+benefit
+risk
+scope
+affected_components
+reversibility
+validation_cost
+failure_modes
+authority_requirement
+
+A useful principle:
+
+Expected Improvement
+        >
+Expected Adaptation Risk
+
+is necessary but not sufficient.
+
+Safety, authority, evidence and reversibility must also be satisfied.
+
+
+---
+
+25. CONTROLLED SELF-IMPROVEMENT
+
+The self-improvement pipeline is:
+
+OBSERVE
+    ↓
+DETECT
+    ↓
+DIAGNOSE
+    ↓
+PROPOSE
+    ↓
+IMPACT CLASSIFICATION
+    ↓
+AUTHORITY CHECK
+    ↓
+STATIC CHECK
+    ↓
+SECURITY / GOVERNANCE CHECK
+    ↓
+UNIT TEST
+    ↓
+INTEGRATION TEST
+    ↓
+REGRESSION TEST
+    ↓
+REPLAY / SANDBOX
+    ↓
+CHAMPION COMPARISON
+    ↓
+SHADOW
+    ↓
+CANARY
+    ↓
+PROMOTE / REJECT
+    ↓
+MONITOR
+    ↓
+ROLLBACK IF REQUIRED
+
+3H coordinates the learning/adaptation process.
+
+3I provides final governance/security authority where required.
+
+
+---
+
+26. CHAMPION / CHALLENGER
+
+The current accepted mechanism is:
+
+CHAMPION
+
+The proposed alternative is:
+
+CHALLENGER
+
+The challenger must first operate in controlled conditions.
+
+Possible stages:
+
+OFFLINE
+    ↓
+REPLAY
+    ↓
+SHADOW
+    ↓
+PAPER
+    ↓
+CANARY
+    ↓
+PROMOTION
+
+A challenger does not automatically replace the champion because it performs better on one metric.
+
+
+---
+
+27. MULTI-METRIC IMPROVEMENT
+
+Improvement cannot be judged by one metric alone.
+
+Example:
+
+Return ↑
+Latency ↓
+Risk ↑↑
+Drawdown ↑
+Cost ↑
+
+This is not automatically an improvement.
+
+Evaluation may consider:
+
+accuracy
+
+calibration
+
+robustness
+
+latency
+
+cost
+
+resource consumption
+
+risk
+
+stability
+
+failure rate
+
+recovery behavior
+
+generalization
+
+regime coverage
+
+
+The relevant metrics depend on the capability.
+
+
+---
+
+28. ABLATION / CONTRIBUTION CHECK
+
+When performance improves, CNS should ask:
+
+WHAT ACTUALLY CAUSED THE IMPROVEMENT?
+
+Where practical:
+
+FULL SYSTEM
+    ↓
+REMOVE CHANGE A
+    ↓
+MEASURE
+    ↓
+REMOVE CHANGE B
+    ↓
+MEASURE
+
+This prevents CNS from believing that an irrelevant modification caused an improvement.
+
+
+---
+
+29. LEARNING FROM FAILURE
+
+Failure is not automatically evidence of a bad system.
+
+3H asks:
+
+What failed?
+
+Why?
+
+Was failure expected?
+
+Was the failure preventable?
+
+Was the failure correctly detected?
+
+Did the system respond correctly?
+
+Did recovery work?
+
+What should change?
+
+A failure becomes useful only when the system extracts validated information from it.
+
+
+---
+
+30. FAILURE TAXONOMY
+
+3H should classify failures.
+
+DATA_FAILURE
+MODEL_FAILURE
+STRATEGY_FAILURE
+EXECUTION_FAILURE
+RESOURCE_FAILURE
+ORCHESTRATION_FAILURE
+MEMORY_FAILURE
+VERIFICATION_FAILURE
+CONFIGURATION_FAILURE
+DEPENDENCY_FAILURE
+SECURITY_FAILURE
+HUMAN_INPUT_FAILURE
+UNKNOWN_FAILURE
+
+Multiple causes may coexist.
+
+
+---
+
+31. RECOVERY OWNERSHIP
+
+3H does not become the universal recovery executor.
+
+3H owns:
+
+DETECT PATTERN
+    ↓
+DIAGNOSE
+    ↓
+RECOMMEND / SELECT RECOVERY LEVEL
+    ↓
+LEARN FROM RECOVERY
+
+The responsible subsystem owns actual recovery execution.
+
+Examples:
+
+Runtime failure       → 3A
+Resource failure     → 3D
+Financial failure    → 3G
+Security failure     → 3I
+Work failure         → 3C
+
+3H can coordinate learning across these recovery events, but cannot override their authority boundaries.
+
+
+---
+
+32. RECOVERY LOOP
+
+When failure occurs:
+
+DETECT
+    ↓
+CONTAIN
+    ↓
+CLASSIFY
+    ↓
+PRESERVE EVIDENCE
+    ↓
+RESPONSIBLE SUBSYSTEM RECOVERS
+    ↓
+RECONCILE
+    ↓
+VALIDATE
+    ↓
+RESUME / RESTRICT / RETIRE
+    ↓
+3H LEARNS
+
+3H does not override 3G financial safety controls.
+
+
+---
+
+33. RECOVERY LEVELS
+
+Recovery may occur at different levels.
+
+Level 1 — Retry
+
+Transient failure.
+
+Level 2 — Restart
+
+Process/resource restart.
+
+Level 3 — Reconfigure
+
+Change resource/provider/configuration.
+
+Level 4 — Failover
+
+Move to qualified alternative.
+
+Level 5 — Rollback
+
+Return to last known-good version/state.
+
+Level 6 — Restrict
+
+Reduce capability until evidence supports restoration.
+
+Level 7 — Retire
+
+Remove unsafe or persistently failed mechanism.
+
+The responsible subsystem executes the selected recovery.
+
+
+---
+
+34. LAST-KNOWN-GOOD STATE
+
+CNS must preserve sufficient information to identify the last accepted state.
+
+KnownGoodState {
+    version
+    configuration
+    resource_versions[]
+    policy_version
+    data_version
+    validation_evidence[]
+    timestamp
+}
+
+Rollback must be deterministic where possible.
+
+
+---
+
+35. ADAPTATION VERSIONING
+
+Every accepted adaptation receives:
+
+change_id
+version
+parent_version
+reason
+evidence[]
+validation[]
+affected_components[]
+expected_benefit
+known_risks[]
+deployment_state
+rollback_reference
+provenance
+
+No important adaptation should exist as an untraceable change.
+
+
+---
+
+36. LEARNING PROVENANCE
+
+Every important learning claim should answer:
+
+WHERE DID THIS LESSON COME FROM?
+
+It should connect to:
+
+experiences
+
+decisions
+
+outcomes
+
+experiments
+
+models
+
+data versions
+
+resource versions
+
+validation results
+
+
+3E stores the long-term experience lineage.
+
+3H uses that lineage to justify adaptation.
+
+
+---
+
+37. TEMPORAL LEARNING
+
+CNS must distinguish:
+
+WHAT WAS KNOWN THEN
+
+from:
+
+WHAT WE KNOW NOW
+
+A later outcome must not retroactively make a historical decision appear irrational if the relevant information was unavailable at the time.
+
+This is especially important for:
+
+market decisions
+
+strategy evaluation
+
+resource evaluation
+
+historical replay
+
+self-assessment
+
+
+
+---
+
+38. COUNTERFACTUAL LEARNING
+
+Where practical, CNS should examine:
+
+What happened?
+
+and:
+
+What might have happened if we had acted differently?
+
+Examples:
+
+TAKE TRADE vs DO NOT TAKE TRADE
+USE MODEL-A vs USE MODEL-B
+EXECUTE NOW vs WAIT
+
+Counterfactuals must be labeled as simulated/inferred rather than actual outcomes.
+
+
+---
+
+39. LEARNING BIAS PROTECTION
+
+3H must guard against:
+
+hindsight bias
+
+survivorship bias
+
+selection bias
+
+confirmation bias
+
+data leakage
+
+outcome-only reasoning
+
+overfitting
+
+recency bias
+
+regime confusion
+
+attribution error
+
+
+A lesson that cannot survive these checks should remain uncertain.
+
+
+---
+
+40. CONTINUAL LEARNING
+
+Continual learning does not mean:
+
+EVERY NEW DATA POINT
+        ↓
+CHANGE MODEL
+
+Instead:
+
+NEW EXPERIENCE
+    ↓
+ASSESS VALUE
+    ↓
+DETECT PATTERN
+    ↓
+VALIDATE
+    ↓
+DECIDE WHETHER UPDATE IS JUSTIFIED
+
+Some experience should simply be stored.
+
+Some should change calibration.
+
+Some should trigger research.
+
+Some should change routing.
+
+Some should trigger model retraining.
+
+Some should be rejected.
+
+
+---
+
+41. LEARNING PRIORITY
+
+Not every weakness deserves immediate engineering effort.
+
+Priority can consider:
+
+impact
+frequency
+confidence
+cost
+risk
+reversibility
+affected_capabilities
+future_value
+
+High-impact systemic failures receive higher priority.
+
+
+---
+
+42. CAPABILITY GAP LEARNING
+
+3H can identify:
+
+CURRENT CAPABILITY
+        ↓
+REPEATED FAILURE
+        ↓
+MISSING CAPABILITY
+        ↓
+CAPABILITY GAP
+
+Example:
+
+CNS repeatedly fails because it lacks a reliable specialized capability.
+
+3H should not blindly patch an existing component.
+
+It may produce:
+
+CAPABILITY GAP
+    →
+3C work request
+    →
+3D resource requirement
+    →
+3F research/validation
+    →
+3I governance if required
+
+3H identifies the learning need; other layers build or govern the solution.
+
+
+---
+
+43. RESOURCE DEGRADATION LEARNING
+
+A resource may gradually become less useful.
+
+Example:
+
+Model-A
+
+Month 1 → 91%
+Month 2 → 89%
+Month 3 → 81%
+
+3H should detect the trend.
+
+Possible response:
+
+MONITOR
+    ↓
+BENCHMARK
+    ↓
+CHALLENGE
+    ↓
+RESTRICT
+    ↓
+REPLACE / RETRAIN
+
+3D handles resource lifecycle actions.
+
+
+---
+
+44. ORCHESTRATION LEARNING
+
+3H may learn that CNS repeatedly:
+
+creates unnecessary work
+
+chooses poor resources
+
+duplicates research
+
+creates excessive sub-agents
+
+misses contradictions
+
+waits unnecessarily
+
+uses expensive resources unnecessarily
+
+fails to complete global objectives
+
+
+These become learning signals for 3C.
+
+3H does not itself become the orchestration engine.
+
+
+---
+
+45. MEMORY LEARNING
+
+3H may discover:
+
+retrieval failure
+poor consolidation
+stale knowledge
+contradiction persistence
+wrong memory relevance
+
+These become improvement signals for 3E.
+
+3H does not replace memory storage or consolidation.
+
+
+---
+
+46. FINANCIAL LEARNING BOUNDARY
+
+3H may learn from:
+
+trading outcomes
+
+strategy performance
+
+execution quality
+
+risk events
+
+portfolio behavior
+
+drawdowns
+
+P&L
+
+regime changes
+
+
+But:
+
+LEARNING ≠ FINANCIAL AUTHORITY
+
+3G remains the hard financial safety boundary.
+
+A learned strategy cannot bypass:
+
+risk
+
+capital reservation
+
+order validation
+
+authority
+
+execution controls
+
+
+
+---
+
+47. LEARNING FROM HUMAN FEEDBACK
+
+Human correction can be valuable evidence.
+
+Example:
+
+CNS decision
+    ↓
+human correction
+    ↓
+outcome
+    ↓
+compare
+    ↓
+learning candidate
+
+But one human correction is not automatically universal truth.
+
+It must be interpreted according to:
+
+context
+
+evidence
+
+authority
+
+outcome
+
+repeatability
+
+
+Human authority remains governed by CNS/3I rules.
+
+
+---
+
+48. HEALTH AGGREGATION
+
+3H aggregates health observations from:
+
+bots
+ML models
+LLMs
+agents
+engines
+tools
+data providers
+execution providers
+memory
+orchestration
+financial systems
+research systems
+
+into an ecosystem-level health picture.
+
+Conceptually:
+
+RESOURCE HEALTH
+        ↓
+CAPABILITY HEALTH
+        ↓
+SUBSYSTEM HEALTH
+        ↓
+ECOSYSTEM HEALTH
+
+
+---
+
+49. HEALTH ≠ AVAILABILITY
+
+A system being online does not mean it is healthy.
+
+Example:
+
+MODEL ONLINE
+BUT
+CALIBRATION BAD
+
+Therefore:
+
+availability
++
+correctness
++
+performance
++
+reliability
++
+context suitability
+
+must contribute to health evaluation.
+
+
+---
+
+50. HEALTH TREND
+
+3H should track:
+
+CURRENT
+RECENT
+HISTORICAL
+TREND
+
+Example:
+
+Health = 88
+Trend = declining
+
+A declining trend can trigger investigation before catastrophic failure.
+
+
+---
+
+51. RECOVERY VERIFICATION
+
+Recovery is not complete merely because a process restarted.
+
+After recovery:
+
+RESTART
+    ↓
+HEALTH CHECK
+    ↓
+STATE RECONSTRUCTION
+    ↓
+DEPENDENCY CHECK
+    ↓
+RECONCILIATION
+    ↓
+FUNCTIONAL TEST
+    ↓
+SAFETY CHECK
+    ↓
+RESUME / RESTRICT
+
+The responsible subsystem performs recovery and its applicable safety checks; 3H evaluates the learning/health implications and records the result. Resume authority remains with the responsible subsystem and applicable governance/safety boundaries.
+
+
+---
+
+52. ADAPTATION DEPLOYMENT STATES
+
+PROPOSED
+    ↓
+AUTHORITY_CHECK
+    ↓
+VALIDATING
+    ↓
+SANDBOX
+    ↓
+REPLAY
+    ↓
+SHADOW
+    ↓
+CANARY
+    ↓
+ACTIVE
+
+Alternative:
+
+REJECTED
+ROLLED_BACK
+QUARANTINED
+
+
+---
+
+53. CANARY ADAPTATION
+
+A new mechanism may first receive limited exposure.
+
+Example:
+
+NEW VERSION
+    ↓
+CONTROLLED EXPOSURE
+    ↓
+COMPARE
+    ↓
+SAFETY / AUTHORITY / PERFORMANCE CHECK
+    ↓
+EXPAND / HOLD / ROLLBACK
+
+The exact exposure policy is configuration-dependent.
+
+For financial systems, 3G safety controls remain mandatory.
+
+
+---
+
+54. ADAPTATION STABILITY CONTROLLER
+
+CNS must prevent uncontrolled adaptation churn.
+
+The system should track:
+
+active_adaptations
+recent_changes
+related_change_lineage
+observation_windows
+cooldown_state
+rollback_state
+change_frequency
+
+Rules may include:
+
+minimum observation window before judging an optimization
+
+cooldown period before another related adaptation
+
+maximum concurrent adaptations within a capability
+
+no new optimization while a related change is still unresolved
+
+rollback before introducing a replacement when the current change is unstable
+
+preserve adaptation lineage
+
+
+Conceptually:
+
+CHANGE
+    ↓
+OBSERVE
+    ↓
+SUFFICIENT EVIDENCE?
+    ├── NO → WAIT / MONITOR
+    └── YES
+          ↓
+       EVALUATE
+          ↓
+       NEXT CHANGE
+
+Safety-critical restriction or rollback may bypass normal optimization cooldowns.
+
+
+---
+
+55. STABILITY PROTECTION
+
+A system that changes too frequently cannot establish reliable evidence.
+
+Therefore:
+
+CHANGE
+    ↓
+OBSERVE
+    ↓
+MEASURE
+    ↓
+WAIT FOR SUFFICIENT EVIDENCE
+    ↓
+DECIDE NEXT CHANGE
+
+Unless a safety-critical rollback/restriction is required.
+
+Safety actions may happen immediately.
+
+Performance optimization generally requires evidence.
+
+
+---
+
+56. ADAPTATION BUDGET
+
+CNS should not constantly modify itself.
+
+Excessive adaptation creates instability.
+
+Therefore:
+
+STABILITY
+      +
+IMPROVEMENT
+
+must be balanced.
+
+Adaptation frequency can be limited by:
+
+change budgets
+
+observation windows
+
+validation requirements
+
+cooldown periods
+
+dependency constraints
+
+maximum concurrent adaptations
+
+
+The purpose is controlled evolution, not continuous mutation.
+
+
+---
+
+57. LEARNING BUDGET
+
+Learning consumes:
+
+compute
+
+data
+
+time
+
+experiments
+
+capital exposure
+
+engineering effort
+
+human attention
+
+
+Therefore 3H should prioritize learning opportunities by expected value.
+
+A learning request may be rejected because:
+
+expected benefit < learning cost
+
+or because:
+
+risk > acceptable threshold
+
+
+---
+
+58. SELF-IMPROVEMENT BOUNDARY
+
+3H may propose:
+
+code changes
+
+configuration changes
+
+model changes
+
+routing changes
+
+strategy changes
+
+memory improvements
+
+orchestration improvements
+
+resource changes
+
+
+But it must never assume:
+
+PROPOSED = ACCEPTED
+
+Every material change requires an evidence path appropriate to its consequence.
+
+
+---
+
+59. LEARNING EVENT
+
+A durable learning event may contain:
+
+LearningEvent {
+    event_id
+    source_experience[]
+    observation
+    expected
+    actual
+    deviation
+    attribution
+    evidence_profile
+    learning_candidate
+    validation_result
+    verification_result?
+    adaptation
+    outcome
+    version
+    provenance
+    timestamp
+}
+
+3A provides event infrastructure.
+
+3E preserves long-term experience.
+
+3H defines the learning event semantics.
+
+
+---
+
+60. CROSS-LAYER LEARNING LOOP
+
+3G FINANCIAL OUTCOME
+        ↓
+3F EVALUATION
+        ↓
+3E EXPERIENCE / MEMORY
+        ↓
+3H LEARNING / ADAPTATION
+        ↓
+3C / 3D / 3B / 3G IMPROVEMENT
+        ↓
+NEW OUTCOME
+        ↓
+3H MEASURE AGAIN
+
+This is the ecosystem's improvement loop.
+
+
+---
+
+61. IMPLEMENTATION SHAPE
+
+3H logical modules:
+
+learning/
+outcomes/
+attribution/
+evidence/
+calibration/
+drift/
+health/
+diagnosis/
+learning_candidates/
+adaptation/
+authority/
+stability/
+experimentation/
+champion_challenger/
+shadow/
+canary/
+rollback/
+recovery_learning/
+self_model/
+learning_metrics/
+
+These are logical boundaries.
+
+They do not automatically become separate processes or services.
+
+
+---
+
+62. CORE INTERFACES
+
+trait LearningEngine {
+    observe_outcome(...)
+    compare_expected_actual(...)
+    attribute(...)
+    assess_evidence(...)
+    generate_candidate(...)
+    select_validation_path(...)
+    validate_candidate(...)
+}
+
+trait CalibrationEngine {
+    record_prediction(...)
+    record_outcome(...)
+    measure(...)
+    update(...)
+}
+
+trait HealthEngine {
+    observe(...)
+    assess(...)
+    trend(...)
+    diagnose(...)
+}
+
+trait DriftEngine {
+    baseline(...)
+    detect(...)
+    measure(...)
+    classify(...)
+}
+
+trait AdaptationEngine {
+    classify_impact(...)
+    check_authority(...)
+    propose(...)
+    validate(...)
+    deploy(...)
+    promote(...)
+    reject(...)
+    rollback(...)
+}
+
+trait AdaptationStability {
+    active_changes(...)
+    observe_window(...)
+    cooldown(...)
+    check_churn(...)
+    allow_next_change(...)
+}
+
+trait RecoveryLearning {
+    observe_failure(...)
+    classify(...)
+    assess_recovery(...)
+    recommend_recovery(...)
+    record_lesson(...)
+}
+
+trait SelfModel {
+    capabilities(...)
+    limitations(...)
+    reliability(...)
+    failures(...)
+    improvement_targets(...)
+}
+
+
+---
+
+63. ACCEPTANCE TESTS
+
+3H must pass at minimum:
+
+LEARN-001   record expected outcome
+LEARN-002   record actual outcome
+LEARN-003   compare expected vs actual
+LEARN-004   preserve outcome provenance
+LEARN-005   generate learning candidate
+LEARN-006   prevent unvalidated learning from becoming accepted knowledge
+LEARN-007   perform attribution
+LEARN-008   represent alternative causes
+LEARN-009   track attribution confidence
+LEARN-010   measure calibration
+LEARN-011   detect material drift
+LEARN-012   distinguish normal variation from material drift
+LEARN-013   maintain resource learning profile
+LEARN-014   maintain ecosystem self-model
+LEARN-015   detect resource degradation
+LEARN-016   detect repeated failure
+LEARN-017   classify failure
+LEARN-018   generate adaptation proposal
+LEARN-019   classify adaptation scope
+LEARN-020   classify adaptation consequence
+LEARN-021   select validation depth
+LEARN-022   enforce adaptation authority
+LEARN-023   route research-grade claims to 3F
+LEARN-024   run regression tests
+LEARN-025   run replay/sandbox evaluation
+LEARN-026   compare champion vs challenger
+LEARN-027   support shadow evaluation
+LEARN-028   support canary deployment
+LEARN-029   reject inferior challenger
+LEARN-030   promote validated challenger
+LEARN-031   rollback failed adaptation
+LEARN-032   restore last-known-good state
+LEARN-033   verify recovery before resume
+LEARN-034   preserve adaptation provenance
+LEARN-035   prevent uncontrolled self-modification
+LEARN-036   prevent financial safety bypass
+LEARN-037   detect learning-system failure
+LEARN-038   track regression
+LEARN-039   track adaptation success
+LEARN-040   measure learning effectiveness
+LEARN-041   support counterfactual analysis
+LEARN-042   protect against hindsight leakage
+LEARN-043   protect against data leakage
+LEARN-044   distinguish knowledge update from code change
+LEARN-045   support capability-gap detection
+LEARN-046   learn resource reliability
+LEARN-047   learn orchestration weaknesses
+LEARN-048   learn memory weaknesses
+LEARN-049   learn verification weaknesses
+LEARN-050   support recovery levels
+LEARN-051   maintain adaptation version history
+LEARN-052   enforce stability/change controls
+LEARN-053   detect adaptation churn
+LEARN-054   enforce observation windows
+LEARN-055   prevent unsafe concurrent related adaptations
+LEARN-056   operate safely when learning subsystem is unavailable
+
+
+---
+
+64. PERFORMANCE MEASURES
+
+3H must be measurable.
+
+Primary measures:
+
+prediction calibration
+
+prediction improvement
+
+failure recurrence
+
+diagnosis accuracy
+
+diagnosis latency
+
+adaptation success rate
+
+adaptation rejection rate
+
+rollback rate
+
+regression rate
+
+learning-candidate validation rate
+
+false-learning rate
+
+drift-detection quality
+
+health-detection quality
+
+recovery time
+
+recovery success rate
+
+resource reliability estimation accuracy
+
+self-model accuracy
+
+improvement persistence
+
+learning cost
+
+compute consumed by learning
+
+human intervention required
+
+adaptation churn rate
+
+average adaptation observation window
+
+repeated-change frequency
+
+
+
+---
+
+65. EXPLICIT NON-ASSUMPTIONS
+
+3H does not assume:
+
+every outcome contains a lesson
+
+every failure requires adaptation
+
+every successful result proves correctness
+
+every failure proves strategy weakness
+
+latest data is most important
+
+more learning automatically means more intelligence
+
+continual learning automatically improves performance
+
+more model updates = better model
+
+more adaptations = better CNS
+
+every drift requires model replacement
+
+every challenger should replace champion
+
+higher benchmark score = better ecosystem
+
+one metric defines improvement
+
+one failure identifies one cause
+
+correlation = causation
+
+human correction = universal truth
+
+simulation = reality
+
+paper performance = live performance
+
+learning can bypass financial controls
+
+learning can bypass governance
+
+self-improvement means unrestricted self-modification
+
+recovery means simply restarting
+
+health means availability
+
+health score means safety
+
+every learning candidate requires full 3F verification
+
+every learning candidate can bypass 3F when research-grade verification is required
+
+complexity = intelligence
+
+constant change = improvement
+
+
+
+---
+
+66. FINAL 3H ARCHITECTURE
+
+ECOSYSTEM EXPERIENCE
+                                  │
+                                  ▼
+                               OUTCOMES
+                                  │
+                                  ▼
+                        EXPECTED vs ACTUAL
+                                  │
+                                  ▼
+                              ATTRIBUTION
+                                  │
+                         ┌────────┴────────┐
+                         ▼                 ▼
+                    CALIBRATION          HEALTH
+                         │                 │
+                         └────────┬────────┘
+                                  ▼
+                         EVIDENCE ASSESSMENT
+                                  │
+                         ┌────────┴────────┐
+                         ▼                 ▼
+                  OPERATIONAL PATH   RESEARCH PATH
+                         │                 │
+                         │                3F
+                         │                 │
+                         └────────┬────────┘
+                                  ▼
+                              DIAGNOSIS
+                                  │
+                                  ▼
+                         LEARNING CANDIDATE
+                                  │
+                                  ▼
+                       IMPACT CLASSIFICATION
+                                  │
+                                  ▼
+                          AUTHORITY CHECK
+                                  │
+                                  ▼
+                         ADAPTATION PROPOSAL
+                                  │
+                                  ▼
+                     VALIDATION DEPTH SELECTION
+                                  │
+                                  ▼
+                    ADAPTATION VALIDATION
+                                  │
+                                  ▼
+                     SANDBOX / REPLAY / SHADOW
+                                  │
+                                  ▼
+                       CHAMPION / CHALLENGER
+                                  │
+                                  ▼
+                               CANARY
+                                  │
+                         ┌────────┴────────┐
+                         ▼                 ▼
+                    PROMOTE             REJECT
+                         │
+                         ▼
+                       ACTIVE
+                         │
+                         ▼
+                 STABILITY / MONITORING
+                         │
+                 ┌───────┴────────┐
+                 ▼                ▼
+              IMPROVES         DEGRADES
+                 │                │
+                 │                ▼
+                 │             ROLLBACK
+                 │                │
+                 └───────┬────────┘
+                         ▼
+                       LEARN
+                         │
+                         └──────────→ NEXT CYCLE
+
+
+---
+
+67. FINAL CHECKER ATTACK — V1.1
+
+I attacked the corrected architecture again.
+
+Can one outcome rewrite CNS?
+
+No.
+
+Evidence assessment and learning-candidate validation stand between outcome and adaptation.
+
+Can 3H become a second 3F?
+
+No.
+
+The operational-learning path and research-verification path are explicitly separated.
+
+Can a research-grade claim bypass 3F?
+
+No.
+
+The validation path explicitly routes such claims to 3F.
+
+Can 3H promote a financial-risk change by itself?
+
+No.
+
+The adaptation authority matrix prevents that.
+
+Can a system-wide change receive lightweight testing?
+
+No.
+
+Impact classification determines validation depth.
+
+Can CNS endlessly oscillate between adaptations?
+
+Controlled against.
+
+Observation windows, cooldowns, concurrent-change limits, lineage and churn detection are explicit.
+
+Can “health = 82” accidentally mean “safe”?
+
+No.
+
+Health profile is authoritative; summary score is only a projection. Critical flags override it.
+
+Can 3H become the universal recovery engine?
+
+No.
+
+3H learns and recommends; the responsible subsystem executes recovery.
+
+Can one repeated observation become a universal lesson?
+
+No.
+
+Evidence strength explicitly tracks independence, replication, OOS evidence, regime coverage and contradiction.
+
+Can a challenger win because of one attractive metric?
+
+No.
+
+Multi-metric champion/challenger evaluation is required.
+
+Can adaptation bypass rollback?
+
+No.
+
+Accepted changes carry rollback references and deployment state.
+
+Can the learning system itself become unhealthy?
+
+Yes — and now it can detect that.
+
+Learning-system failure is an explicit acceptance test and health concern.
+
+Can learning bypass 3G?
+
+No.
+
+Financial authority remains in 3G.
+
+Can learning bypass 3I?
+
+No.
+
+Security/governance authority remains in 3I.
+
+Can 3H authorize resumption after recovery?
+
+No.
+
+The responsible subsystem and applicable governance/safety boundaries retain resume authority. 3H evaluates the learning and health implications.
+
+Are learning validation and adaptation validation the same thing?
+
+No.
+
+Learning validation establishes whether the lesson is sufficiently supported.
+
+Adaptation validation establishes whether the proposed change is safe, effective, and acceptable for deployment.
+
+Did the seven corrections require another log?
+
+No.
+
+Everything belongs naturally inside 3H.
+
+
+---
+
+🟢 FINAL CHECKER DECISION
+
+3H V1.1 — CHECKED / NO MATERIAL STRUCTURAL GAP FOUND / READY TO FREEZE
+
+The seven latest corrections have now been physically integrated into the document.
+
+3G remains untouched and frozen.
+
+The construction line is therefore:
+
+1    Constitution                         ✅ FROZEN
+2    Capability Intelligence              ✅ FROZEN
+3A   Foundation / Runtime                 ✅ FROZEN
+3B   Brain / Cognition                    ✅ FROZEN
+3C   Work / Orchestration                ✅ FROZEN
+3D   Resource Fabric                     ✅ FROZEN
+3E   Memory / Experience                 ✅ FROZEN
+3F   Verification / Research / Decision  ✅ FROZEN
+3G   Financial / Market Operating        ✅ FROZEN
+3H   Learning / Adaptation / Health      ✅ FROZEN
+
+This is the corrected 3H master to save.
