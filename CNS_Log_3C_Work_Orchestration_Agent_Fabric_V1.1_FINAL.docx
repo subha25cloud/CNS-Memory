@@ -1,0 +1,1523 @@
+👍 Yes. I’ll make 3C V1.1 as the clean engineering version, incorporating the checker corrections—not just append them as extra sections. I’ll keep the useful mechanisms and remove repetition/over-engineering.
+
+CNS — LOG 3C
+
+WORK, ORCHESTRATION & AGENT FABRIC
+
+Engineering Construction Baseline V1.1
+
+Status: ENGINEERING BASELINE — CHECKED & CORRECTED
+Depends on: Log 1 Constitution + Log 2 Capability/Mechanism Construction + 3A Foundation & Runtime Fabric + 3B Brain & Cognitive Architecture
+Role: CNS work-control layer
+
+
+---
+
+3C.1 — Purpose
+
+3C constructs the machinery that converts CNS intent into coordinated, controlled work.
+
+INTENT
+ ↓
+ADMIT
+ ↓
+UNDERSTAND WORK
+ ↓
+DECOMPOSE IF JUSTIFIED
+ ↓
+MAP CAPABILITIES
+ ↓
+SELECT METHODS
+ ↓
+SELECT RESOURCES
+ ↓
+CHECK CAPACITY / AUTHORITY / RISK
+ ↓
+BUILD DEPENDENCIES
+ ↓
+SCHEDULE
+ ↓
+EXECUTE
+ ↓
+SUPERVISE
+ ↓
+VALIDATE RESULTS
+ ↓
+GLOBAL COMPLETION CHECK
+ ↓
+COMPLETE / REPLAN / RECOVER / ESCALATE
+ ↓
+OUTCOME
+ ↓
+LEARNING
+
+3C does not itself provide intelligence, memory, models, bots or engines. It controls how available capabilities are used.
+
+
+---
+
+3C.2 — Fundamental Principle
+
+> CNS must coordinate work, not manufacture agents.
+
+
+
+A work item may be executed by:
+
+deterministic function
+engine
+bot
+ML system
+LLM
+agent
+temporary sub-agent
+tool
+parallel resources
+human
+combination of resources
+
+Therefore:
+
+TASK ≠ AGENT
+MORE AGENTS ≠ MORE INTELLIGENCE
+
+The simplest resource capable of completing the task is preferred unless additional resources produce measurable value.
+
+
+---
+
+3C.3 — Work Object
+
+3A defines the base WorkItem.
+
+3C extends its operational control:
+
+WorkControl {
+    work_id
+    intent_id
+    parent_id
+
+    required_capabilities[]
+    candidate_methods[]
+    selected_method
+
+    candidate_resources[]
+    selected_resource
+
+    dependencies[]
+    dependents[]
+
+    priority
+    consequence_level
+
+    cost_budget
+    latency_budget
+    resource_budget
+
+    completion_criteria[]
+    stop_conditions[]
+
+    retry_policy
+    supervision_policy
+
+    status
+    attempt
+    lease_id
+
+    progress_state
+    result_refs[]
+    evidence_refs[]
+
+    failure_state
+    provenance
+}
+
+
+---
+
+3C.4 — Work Admission Control
+
+Not every request immediately becomes executable work.
+
+INTENT
+ ↓
+VALIDATE
+ ↓
+AUTHORITY CHECK
+ ↓
+DUPLICATE WORK CHECK
+ ↓
+CAPABILITY CHECK
+ ↓
+CAPACITY CHECK
+ ↓
+RISK / BUDGET CHECK
+ ↓
+ADMIT / DELAY / REJECT / ESCALATE
+
+Admission prevents CNS from accepting work that it cannot safely or economically execute.
+
+Possible outcomes:
+
+ADMITTED
+QUEUED
+DELAYED
+REJECTED
+ESCALATED
+
+
+---
+
+3C.5 — Work Decomposition
+
+Decomposition is optional.
+
+CNS first asks:
+
+Can one existing resource complete this correctly?
+
+If yes:
+
+USE ONE RESOURCE
+
+If not:
+
+DECOMPOSE
+
+Decomposition considers:
+
+reliability gain
+specialization gain
+parallelism gain
+verification gain
+context isolation
+resource efficiency
+
+versus
+
+coordination cost
+latency
+financial cost
+handoff risk
+duplication
+failure complexity
+
+Conceptually:
+
+\[
+DecompositionValue =
+Benefit - CoordinationCost
+\]
+
+Decomposition occurs only when expected value is positive.
+
+
+---
+
+3C.6 — Work Graph
+
+For substantial work, CNS may construct a dynamic dependency graph.
+
+WorkGraph {
+    graph_id
+    intent_id
+    root_work_id
+    nodes[]
+    dependencies[]
+    completion_policy
+    supervision_policy
+    escalation_policy
+    budgets
+    version
+}
+
+Simple work does not require an artificial graph.
+
+
+---
+
+3C.7 — Dynamic Replanning
+
+The work graph is not permanent.
+
+New evidence may produce:
+
+new task
+removed task
+changed dependency
+new resource
+different method
+different priority
+new verification requirement
+
+Flow:
+
+OBSERVE
+ ↓
+DEVIATION / NEW INFORMATION
+ ↓
+DIAGNOSE
+ ↓
+REPLAN
+ ↓
+UPDATE WORK GRAPH
+ ↓
+RESUME
+
+The original plan is subordinate to the actual objective.
+
+
+---
+
+3C.8 — Task Types
+
+Initial task types:
+
+OBSERVE
+RETRIEVE
+CALCULATE
+CLASSIFY
+EXTRACT
+RESEARCH
+ANALYZE
+PREDICT
+COMPARE
+VERIFY
+CHALLENGE
+SIMULATE
+BACKTEST
+EXECUTE
+MONITOR
+SYNTHESIZE
+RECONCILE
+RECOVER
+
+New types can be added when a real capability requires them.
+
+
+---
+
+3C.9 — Capability Matching
+
+For every admitted task:
+
+TASK
+ ↓
+REQUIRED CAPABILITIES
+ ↓
+CAPABILITY REGISTRY
+ ↓
+CANDIDATE METHODS
+ ↓
+CANDIDATE RESOURCES
+
+Capability, method and resource remain separate:
+
+Capability = what must be done
+Method     = how it can be done
+Resource   = what actually performs it
+
+This separation is critical for future replacement.
+
+
+---
+
+3C.10 — Method Selection
+
+CNS should not automatically select a resource before considering the method.
+
+Example:
+
+Task: detect abnormal financial behaviour
+
+Methods:
+    deterministic ratio analysis
+    statistical anomaly detection
+    ML model
+    specialist research
+    multi-resource investigation
+
+CNS selects the appropriate method according to:
+
+task characteristics
+data availability
+consequence
+uncertainty
+historical method performance
+cost
+latency
+resource health
+
+Method performance becomes part of future orchestration learning.
+
+
+---
+
+3C.11 — Resource Selection
+
+Candidate resources are filtered by hard constraints first:
+
+capability
+authority
+privacy
+risk
+compatibility
+availability
+health
+
+Then ranked by:
+
+quality
+reliability
+historical performance
+calibration
+latency
+cost
+freshness
+domain/regime performance
+
+Conceptually:
+
+\[
+r^*=\arg\max_r U(r|x)
+\]
+
+subject to all hard constraints.
+
+No resource receives authority merely because it has higher intelligence or model capability.
+
+
+---
+
+3C.12 — Capacity Management
+
+A resource may be suitable but currently unavailable because it is overloaded.
+
+ResourceCapacity {
+    resource_id
+    concurrency_limit
+    compute_budget
+    memory_limit
+    queue_limit
+    reserved_capacity
+    current_load
+}
+
+Selection therefore becomes:
+
+CAPABILITY FIT
+ ↓
+HEALTH
+ ↓
+AUTHORITY
+ ↓
+CAPACITY
+ ↓
+QUALITY / COST / LATENCY
+
+If capacity is insufficient:
+
+WAIT
+ALTERNATIVE RESOURCE
+REDUCE PARALLELISM
+REPLAN
+ESCALATE
+
+
+---
+
+3C.13 — Backpressure
+
+When incoming work exceeds available capacity:
+
+WORKLOAD ↑
+ ↓
+CAPACITY PRESSURE
+ ↓
+QUEUE / DELAY / REDUCE PARALLELISM
+ ↓
+RESOURCE RECOVERY
+ ↓
+RESUME
+
+Backpressure prevents CNS from destabilizing itself by accepting unlimited work.
+
+
+---
+
+3C.14 — Dependency Control
+
+Every dependent task must declare its dependencies.
+
+Example:
+
+Financial Analysis
+       ↓
+Valuation
+       ↓
+Portfolio Impact
+
+Independent tasks may run concurrently:
+
+Financials ───────┐
+Management ───────┤
+Industry ─────────┤
+Competitors ──────┼→ Global Synthesis
+Technical ────────┤
+News ─────────────┘
+
+
+---
+
+3C.15 — Dependency Safety
+
+CNS must detect:
+
+dependency cycle
+missing producer
+impossible dependency
+permanently blocked task
+invalid dependency state
+
+Example:
+
+A → B
+B → C
+C → A
+
+must not be allowed to remain active indefinitely.
+
+The system must:
+
+detect
+diagnose
+restructure
+or escalate
+
+
+---
+
+3C.16 — Scheduling
+
+Scheduler considers:
+
+dependency readiness
+priority
+consequence
+deadline
+critical-path importance
+information value
+resource availability
+cost
+latency
+risk
+
+Scheduling must not allow lower-priority work to become permanently starved.
+
+Conceptually:
+
+\[
+EffectivePriority =
+BasePriority + Aging + DeadlinePressure + Criticality
+\]
+
+The exact policy remains configurable.
+
+
+---
+
+3C.17 — Parallel Execution
+
+Parallelism is allowed when:
+
+tasks are sufficiently independent
+resources are available
+shared-state conflicts are controlled
+coordination cost is justified
+
+Parallelism is not automatically beneficial.
+
+CNS may deliberately execute sequentially when dependencies, risk or shared state require it.
+
+
+---
+
+3C.18 — Atomic Work Claim
+
+Two workers must never legitimately acquire the same task simultaneously.
+
+Required transition:
+
+READY
+ ↓ atomic claim
+ASSIGNED
+ ↓
+LEASED
+ ↓
+RUNNING
+
+The claim must be atomic at the persistence/control boundary.
+
+This prevents duplicate ownership.
+
+
+---
+
+3C.19 — Work Lease
+
+3A defines the lease structure.
+
+3C uses it to control worker ownership:
+
+Lease {
+    lease_id
+    work_id
+    task_id
+    resource_id
+    issued_at
+    expires_at
+    attempt
+}
+
+If a worker disappears:
+
+LEASE EXPIRES
+ ↓
+INSPECT PARTIAL WORK
+ ↓
+RESUME / RETRY / REASSIGN / REPLAN
+
+No work silently disappears.
+
+
+---
+
+3C.20 — Retry Policy
+
+Retry must be controlled.
+
+RetryPolicy {
+    max_attempts
+    backoff
+    retryable_failures[]
+    non_retryable_failures[]
+    alternate_resource_after[]
+    escalation_after[]
+}
+
+Examples:
+
+network timeout → retry
+temporary provider failure → alternate resource
+invalid schema → rework/reject
+security failure → stop/escalate
+unknown external execution state → reconcile first
+
+Never:
+
+FAIL → RETRY → FAIL → RETRY → ∞
+
+
+---
+
+3C.21 — Agent Contract
+
+Agents are bounded execution resources.
+
+Agent {
+    agent_id
+    version
+    purpose
+    capabilities[]
+    accepted_task_types[]
+
+    input_schema
+    output_schema
+
+    authority_scope
+    resource_limits
+    time_limits
+
+    tools[]
+    state_scope
+
+    health
+    performance
+    failure_modes[]
+}
+
+Agents do not own global CNS authority.
+
+
+---
+
+3C.22 — Agent Lifecycle
+
+DISCOVER
+ ↓
+CONFIGURE
+ ↓
+VALIDATE
+ ↓
+READY
+ ↓
+ASSIGN
+ ↓
+RUN
+ ↓
+REPORT
+ ↓
+RESULT VALIDATION
+ ↓
+RELEASE / RETAIN
+
+Failure:
+
+RUN
+ ↓
+FAIL
+ ↓
+RECOVER / RETRY / REASSIGN
+ ↓
+QUARANTINE if necessary
+
+Temporary agents may be destroyed after their useful work is complete.
+
+
+---
+
+3C.23 — Selective Sub-Agent Creation
+
+Sub-agent creation is itself a work-control decision.
+
+NEED
+ ↓
+EXISTING RESOURCE SUFFICIENT?
+ ├── YES → USE IT
+ └── NO
+      ↓
+NEW SPECIALIST JUSTIFIED?
+ ├── NO → ALTERNATIVE METHOD
+ └── YES → CREATE BOUNDED WORKER
+
+Creation requires:
+
+purpose
+capability
+scope
+authority
+budget
+deadline
+inputs
+completion criteria
+termination condition
+
+
+---
+
+3C.24 — Spawn Protection
+
+Every temporary worker carries:
+
+parent_work_id
+parent_agent_id
+depth
+spawn_budget
+
+CNS enforces:
+
+maximum depth
+maximum workers
+maximum runtime
+maximum cost
+maximum branching
+
+Prevents:
+
+agent → agent → agent → agent → ...
+
+from becoming uncontrolled.
+
+
+---
+
+3C.25 — Supervision
+
+Supervision begins with cheap deterministic checks:
+
+assignment correct?
+started?
+heartbeat alive?
+dependency satisfied?
+output schema valid?
+evidence present?
+deadline respected?
+resource healthy?
+completion criteria satisfied?
+
+Only when interpretation is necessary:
+
+DETERMINISTIC CHECK
+ ↓
+AMBIGUITY
+ ↓
+SPECIALIST / LLM JUDGMENT
+
+A permanent supervisor agent is not required.
+
+
+---
+
+3C.26 — Progress
+
+Work reports:
+
+completed_tasks
+remaining_tasks
+blocked_tasks
+failed_tasks
+evidence_collected
+expected_output
+actual_output
+quality
+uncertainty
+resource_health
+estimated_remaining_cost
+estimated_remaining_time
+
+But:
+
+> Progress percentage is never equivalent to completion.
+
+
+
+One missing critical fact can make “99% complete” unusable.
+
+
+---
+
+3C.27 — Result Acceptance Gate
+
+A worker's completion does not automatically mean its result is accepted.
+
+RESULT
+ ↓
+SCHEMA VALIDATION
+ ↓
+COMPLETENESS
+ ↓
+PROVENANCE
+ ↓
+EVIDENCE
+ ↓
+QUALITY
+ ↓
+ACCEPT / REWORK / REJECT
+
+Accepted results become eligible for downstream work.
+
+Rejected results remain traceable and may trigger rework.
+
+
+---
+
+3C.28 — Structured Result Contract
+
+WorkResult {
+    result_id
+    work_id
+    resource_id
+    method_id
+
+    output
+    evidence_refs[]
+    assumptions[]
+    uncertainty
+    confidence
+    limitations[]
+
+    provenance
+    timestamp
+    status
+}
+
+This prevents outputs such as:
+
+> “Looks bullish.”
+
+
+
+from becoming machine-trusted conclusions without context.
+
+
+---
+
+3C.29 — Work Handoff
+
+A handoff must communicate:
+
+WHAT WAS FOUND
+WHAT WAS NOT FOUND
+ASSUMPTIONS
+UNCERTAINTIES
+EVIDENCE
+LIMITATIONS
+WHAT SHOULD HAPPEN NEXT
+
+Therefore:
+
+Worker A
+ ↓
+Structured Result
+ ↓
+Worker B
+
+rather than uncontrolled context passing.
+
+
+---
+
+3C.30 — Global Completion
+
+Critical distinction:
+
+LOCAL COMPLETION ≠ GLOBAL COMPLETION
+
+A worker can say:
+
+> “My task is finished.”
+
+
+
+CNS must separately determine:
+
+> “Is the original objective sufficiently completed?”
+
+
+
+Global completion checks:
+
+goal coverage
+required evidence
+critical dependencies
+contradictions
+risk coverage
+missing capabilities
+output quality
+decision readiness
+stop conditions
+
+Possible result:
+
+COMPLETE
+INVESTIGATE_MORE
+REPLAN
+ESCALATE
+STOP
+
+
+---
+
+3C.31 — Cross-Worker Contradiction
+
+Suppose:
+
+Bot A → bullish
+ML-3 → bullish
+Agent B → bullish
+
+Financial analysis → weak
+Cash flow → deteriorating
+Management research → contradiction
+
+CNS does not vote:
+
+3 bullish vs 3 negative
+
+Instead:
+
+CONTRADICTION
+ ↓
+SOURCE CHECK
+ ↓
+TIME CHECK
+ ↓
+DEFINITION CHECK
+ ↓
+EVIDENCE CHECK
+ ↓
+INDEPENDENCE CHECK
+ ↓
+INVESTIGATE
+
+Contradiction becomes an investigation signal.
+
+
+---
+
+3C.32 — Adaptive Replanning
+
+Replanning may be triggered by:
+
+new evidence
+failed resource
+invalid assumption
+contradiction
+changed deadline
+budget pressure
+capability gap
+unexpected result
+task becoming irrelevant
+
+DEVIATION
+ ↓
+DIAGNOSE
+ ↓
+MODIFY WORK GRAPH
+ ↓
+REASSIGN / ADD / REMOVE / REORDER WORK
+ ↓
+RESUME
+
+
+---
+
+3C.33 — Cancellation Propagation
+
+When work is cancelled, CNS determines what happens to dependent/child work.
+
+ROOT CANCEL
+ ↓
+DEPENDENCY ANALYSIS
+ ↓
+┌─────────────┬──────────────┐
+CANCEL       DETACH         FINISH
+
+A child task may continue if its result remains independently valuable.
+
+Otherwise it is cancelled.
+
+No orphan work should remain without an owner.
+
+
+---
+
+3C.34 — Computational Reuse
+
+Before creating new work:
+
+DO WE ALREADY HAVE A VALID RESULT?
+
+Check:
+
+input identity
+data version
+method version
+resource version
+timestamp
+freshness
+validity conditions
+provenance
+
+If valid:
+
+REUSE
+
+Otherwise:
+
+RECOMPUTE
+
+This implements Log 2 CAP-020.
+
+
+---
+
+3C.35 — Work Supervision vs Brain
+
+3B provides cognitive judgment.
+
+3C provides work control.
+
+3B:
+What should we investigate?
+
+3C:
+How will we investigate it?
+
+3D:
+Which resources can do it?
+
+3E:
+What should be remembered?
+
+3F:
+Can we trust the result?
+
+This prevents architectural overlap.
+
+
+---
+
+3C.36 — Whole-Ecosystem Work Loop
+
+The complete mechanism is:
+
+CNS
+                          │
+                      UNDERSTAND
+                          │
+                    ADMISSION CONTROL
+                          │
+                 DECOMPOSE IF JUSTIFIED
+                          │
+                  CAPABILITY MATCH
+                          │
+                   METHOD SELECT
+                          │
+                  RESOURCE SELECT
+                          │
+             CAPACITY / AUTHORITY / RISK
+                          │
+                 DEPENDENCY CONTROL
+                          │
+                     SCHEDULE
+                          │
+                 ATOMIC CLAIM + LEASE
+                          │
+                      EXECUTE
+                          │
+                     SUPERVISE
+                          │
+                 RESULT VALIDATION
+                          │
+                      COLLECT
+                          │
+                GLOBAL COMPLETION?
+                    /            \
+                  NO              YES
+                  │                │
+               REPLAN          SYNTHESIZE
+                  │                │
+             MORE WORK             │
+                  └───────┬────────┘
+                          ↓
+                       OUTCOME
+                          ↓
+                       LEARN
+
+This is the actual work machine of CNS.
+
+
+---
+
+3C.37 — Failure Handling
+
+FAILURE
+ ↓
+CLASSIFY
+ ↓
+RESUME?
+ ├─ YES → RESUME
+ └─ NO
+      ↓
+ALTERNATIVE RESOURCE?
+ ├─ YES → REASSIGN
+ └─ NO
+      ↓
+ALTERNATIVE METHOD?
+ ├─ YES → REPLAN
+ └─ NO
+      ↓
+CAPABILITY GAP?
+ ├─ YES → GAP RESEARCH
+ └─ NO
+      ↓
+ESCALATE / STOP
+
+Unknown failures are not endlessly retried.
+
+
+---
+
+3C.38 — Work Priority & Starvation Protection
+
+Scheduler must balance:
+
+priority
+deadline
+consequence
+critical path
+dependency importance
+age
+resource availability
+
+Aging prevents low-priority work from being permanently starved.
+
+Critical financial work can receive stronger scheduling priority according to policy and authority.
+
+
+---
+
+3C.39 — Work Learning
+
+CNS records orchestration outcomes:
+
+task
+method
+resource
+conditions
+execution
+result
+quality
+cost
+latency
+failure
+outcome
+
+Then learns:
+
+Which method works?
+Which resource works?
+Under what conditions?
+At what cost?
+With what reliability?
+Which decomposition patterns help?
+Which create waste?
+Which resource combinations create useful results?
+
+This feeds future resource and method selection.
+
+
+---
+
+3C.40 — Orchestration Policy
+
+OrchestrationPolicy {
+    version
+
+    admission_rules
+    decomposition_rules
+    routing_rules
+    capacity_rules
+    parallelism_rules
+
+    scheduling_rules
+    spawn_rules
+
+    supervision_rules
+    retry_rules
+    escalation_rules
+
+    completion_rules
+    cancellation_rules
+    budget_rules
+    failure_rules
+}
+
+Policies are versioned and controlled.
+
+
+---
+
+3C.41 — Runtime Implementation Boundary
+
+Conceptual CNS work fabric:
+
+CNS WORK FABRIC
+│
+├── Work Admission
+├── Work Graph
+├── Task Manager
+├── Capability Matcher
+├── Method Selector
+├── Resource Selector
+├── Capacity Manager
+├── Dependency Manager
+├── Scheduler
+├── Lease Manager
+├── Worker / Agent Manager
+├── Supervisor
+├── Result Validator
+├── Replanner
+├── Completion Checker
+└── Work Metrics
+
+These are logical boundaries, not mandatory separate services.
+
+Initial implementation may remain compact.
+
+
+---
+
+3C.42 — Core Interfaces
+
+Conceptual:
+
+trait WorkController {
+    create_work(...)
+    admit(...)
+    decompose(...)
+    match_capabilities(...)
+    select_methods(...)
+    select_resources(...)
+    check_capacity(...)
+    schedule(...)
+    claim(...)
+    assign(...)
+    supervise(...)
+    validate_result(...)
+    collect(...)
+    replan(...)
+    cancel(...)
+    complete(...)
+}
+
+Agent:
+
+trait Agent {
+    capabilities(...)
+    accept(...)
+    execute(...)
+    report(...)
+    health(...)
+    shutdown(...)
+}
+
+Resource selection:
+
+trait ResourceSelector {
+    candidates(...)
+    score(...)
+    select(...)
+}
+
+
+---
+
+3C.43 — Security / Authority Boundary
+
+3C never grants authority merely because a worker is selected.
+
+Workers cannot automatically:
+
+change constitution
+change risk limits
+deploy themselves
+modify core policy
+move capital
+bypass verification
+approve their own modification
+access unrelated secrets
+
+All consequential actions remain subject to 3A authority, validation and financial safety boundaries.
+
+
+---
+
+3C.44 — Acceptance Tests
+
+WORK-001  Create work from intent
+WORK-002  Admit/reject work correctly
+WORK-003  Decompose only when justified
+WORK-004  Match required capabilities
+WORK-005  Select valid methods
+WORK-006  Select valid resources
+WORK-007  Respect capacity
+WORK-008  Apply backpressure
+WORK-009  Respect dependencies
+WORK-010  Detect dependency cycles
+WORK-011  Execute safe parallel work
+WORK-012  Prevent duplicate task ownership
+WORK-013  Recover worker failure
+WORK-014  Apply retry policy correctly
+WORK-015  Prevent uncontrolled spawning
+WORK-016  Validate worker results
+WORK-017  Detect contradictions
+WORK-018  Detect missing evidence
+WORK-019  Replan after new evidence
+WORK-020  Distinguish local/global completion
+WORK-021  Prevent starvation
+WORK-022  Propagate cancellation correctly
+WORK-023  Reuse valid computation
+WORK-024  Recover interrupted work
+WORK-025  Preserve provenance
+WORK-026  Respect authority
+WORK-027  Never bypass financial safety controls
+
+
+---
+
+3C.45 — Performance Measurements
+
+Measure:
+
+goal completion
+task success
+unnecessary work
+duplicate work
+decomposition quality
+resource-selection quality
+handoff failures
+contradiction detection
+missing-evidence detection
+replanning success
+worker recovery
+global completion accuracy
+latency
+cost
+resource utilization
+queue pressure
+human intervention
+
+Most important:
+
+> Does orchestration produce better CNS outcomes than a simpler baseline?
+
+
+
+
+---
+
+3C.46 — Baseline Requirement
+
+Every sophisticated mechanism must demonstrate measurable benefit over an appropriate simpler baseline.
+
+Examples:
+
+single worker
+fixed workflow
+static resource selection
+no parallelism
+no replanning
+no temporary sub-agents
+
+If a complex mechanism does not improve the actual objective:
+
+REMOVE / SIMPLIFY
+
+
+---
+
+3C.47 — Explicit Non-Assumptions
+
+3C does not require:
+
+agent swarm
+
+hundreds of permanent agents
+
+manager LLM
+
+recursive spawning
+
+decomposition of every task
+
+parallelism everywhere
+
+LLM supervision everywhere
+
+majority voting as truth
+
+unrestricted agent communication
+
+graph database
+
+distributed message broker at initial scale
+
+complex workflow platform
+
+one permanent orchestration algorithm.
+
+
+Complexity must earn its place through measured value.
+
+
+---
+
+3C.48 — Relationship With CNS
+
+3A → FOUNDATION
+      ↓
+3B → BRAIN
+      ↓
+3C → WORK CONTROL
+      ↓
+3D → RESOURCES
+      ↓
+3E → MEMORY / EXPERIENCE
+      ↓
+3F → VERIFICATION / RESEARCH / DECISION
+      ↓
+3G → SELF-IMPROVEMENT / RECOVERY
+
+Actual CNS operation is cyclic:
+
+BRAIN
+ ↕
+WORK
+ ↕
+RESOURCES
+ ↕
+MEMORY
+ ↕
+VERIFICATION
+ ↕
+OUTCOME
+ ↕
+LEARNING
+ ↺
+
+
+---
+
+3C.49 — Checker Approval
+
+The independent checker specifically tested for:
+
+Agent explosion → controlled.
+Manager-LLM dependency → rejected.
+Unnecessary decomposition → prevented.
+Infinite retries → prevented.
+Resource overload → capacity + backpressure.
+Deadlocks → dependency-cycle detection.
+Duplicate workers → atomic claim + lease.
+Starvation → aging/priority mechanism.
+Bad worker output → result acceptance gate.
+Orphaned work → cancellation propagation.
+Worker completion mistaken for global completion → explicitly prevented.
+Contradictions averaged away → explicitly prevented.
+New evidence ignored → replanning.
+Resource failure → recovery/reassignment.
+Authority escape → 3A boundary.
+Unnecessary infrastructure → explicitly rejected.
+
+Verdict:
+
+> ACCEPTED AS CNS LOG 3C ENGINEERING CONSTRUCTION BASELINE V1.1.
+
+
+
+No further structural change is justified at this point.
+
+
+---
+
+3C.50 — Final Construction Principle
+
+> CNS does not become intelligent merely because it has many workers. CNS becomes intelligent when it can understand what work is required, determine why that work matters, choose the right capability and method, use the right resources, control capacity and dependencies, verify the results, recognize failure and contradiction, replan when reality changes, and determine when the whole objective—not merely an individual task—is actually complete.
+
+
+
+STATUS
+
+CNS LOG 3C — WORK, ORCHESTRATION & AGENT FABRIC
+ENGINEERING CONSTRUCTION BASELINE V1.1 — CHECKED & CORRECTED
+
+LOG 1  Constitution                         ✅ FINAL
+LOG 2  Capability / Mechanisms              ✅ FINAL
+3A     Foundation / Runtime Fabric          ✅ FINAL
+3B     Brain / Cognitive Architecture       ✅ FINAL
+3C     Work / Orchestration / Agent Fabric  ✅ FINAL V1.1
+3D     Resources / Bots / ML / Models       → NEXT
+
+This is the version I would save.
